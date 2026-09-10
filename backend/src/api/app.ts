@@ -17,6 +17,8 @@ export const app=express();
 app.use(express.json());
 
 function actor(req:any){ return String(req.principal?.email ?? "system"); }
+function routeParam(v:string|string[]|undefined){ return Array.isArray(v) ? (v[0]??"") : (v??""); }
+function queryString(v:unknown){ return typeof v==="string" ? v : undefined; }
 
 async function hydratedProperty(id:string){
  const base=await propertyRepo.get(id);
@@ -37,14 +39,13 @@ app.post("/api/v1/properties",allow("ADMIN","ANALYST"),async(req,res)=>{
  res.status(201).json(p);
 });
 app.get("/api/v1/properties/:id",async(req,res)=>{
- const p=await hydratedProperty(req.params.id);
+ const p=await hydratedProperty(routeParam(req.params.id));
  if(!p)return res.status(404).json({error:"not_found"});
  res.json(p);
 });
 
-
 app.post("/api/v1/properties/:id/workflow",allow("ADMIN","ANALYST"),async(req,res)=>{
- const p=await propertyRepo.get(req.params.id); if(!p)return res.status(404).json({error:"not_found"});
+ const p=await propertyRepo.get(routeParam(req.params.id)); if(!p)return res.status(404).json({error:"not_found"});
  const to=req.body.to;
  if(!canTransition(p.workflow,to))return res.status(409).json({error:"invalid_transition",from:p.workflow,to});
  const before={...p}; p.workflow=to; await propertyRepo.save(p);
@@ -53,7 +54,7 @@ app.post("/api/v1/properties/:id/workflow",allow("ADMIN","ANALYST"),async(req,re
 });
 
 app.post("/api/v1/properties/:id/sources",allow("ADMIN","ANALYST"),async(req,res)=>{
- const p=await propertyRepo.get(req.params.id); if(!p)return res.status(404).json({error:"not_found"});
+ const p=await propertyRepo.get(routeParam(req.params.id)); if(!p)return res.status(404).json({error:"not_found"});
  const source=await sourceRepo.create({
    id:uuid(),propertyId:p.id,documentType:req.body.documentType,issuer:req.body.issuer,
    sourceDate:req.body.sourceDate,status:req.body.status,title:req.body.title,uri:req.body.uri,
@@ -62,12 +63,11 @@ app.post("/api/v1/properties/:id/sources",allow("ADMIN","ANALYST"),async(req,res
  await auditRepo.log(actor(req),"CREATE","source",source.id,null,source);
  res.status(201).json(source);
 });
-app.get("/api/v1/properties/:id/sources",async(req,res)=>res.json(await sourceRepo.listByProperty(req.params.id)));
+app.get("/api/v1/properties/:id/sources",async(req,res)=>res.json(await sourceRepo.listByProperty(routeParam(req.params.id))));
 
 app.post("/api/v1/properties/:id/evidence",allow("ADMIN","ANALYST"),async(req,res)=>{
- const p=await propertyRepo.get(req.params.id); if(!p)return res.status(404).json({error:"not_found"});
- if(req.body.sourceId && !(await sourceRepo.get(req.body.sourceId)))
-   return res.status(400).json({error:"source_not_found"});
+ const p=await propertyRepo.get(routeParam(req.params.id)); if(!p)return res.status(404).json({error:"not_found"});
+ if(req.body.sourceId && !(await sourceRepo.get(req.body.sourceId))) return res.status(400).json({error:"source_not_found"});
  const e=await evidenceRepo.create({
    id:uuid(),propertyId:p.id,field:req.body.field,value:req.body.value,unit:req.body.unit,
    status:req.body.status,sourceId:req.body.sourceId,asOf:req.body.asOf,
@@ -77,31 +77,32 @@ app.post("/api/v1/properties/:id/evidence",allow("ADMIN","ANALYST"),async(req,re
  await auditRepo.log(actor(req),"CREATE","evidence",e.id,null,e);
  res.status(201).json(e);
 });
-app.get("/api/v1/properties/:id/evidence",async(req,res)=>res.json(await evidenceRepo.listByProperty(req.params.id)));
+app.get("/api/v1/properties/:id/evidence",async(req,res)=>res.json(await evidenceRepo.listByProperty(routeParam(req.params.id))));
 
 app.post("/api/v1/properties/:id/verification/sync",async(req,res)=>{
- const p=await hydratedProperty(req.params.id); if(!p)return res.status(404).json({error:"not_found"});
+ const p=await hydratedProperty(routeParam(req.params.id)); if(!p)return res.status(404).json({error:"not_found"});
  const evidence=await evidenceRepo.latestByField(p.id);
  const items=buildVerificationItems(p,evidence);
  const saved=[]; for(const item of items) saved.push(await verificationRepo.upsertOpen(item));
  res.json({count:saved.length,items:saved});
 });
 app.get("/api/v1/verification",async(req,res)=>{
- res.json(await verificationRepo.list({propertyId:req.query.propertyId as string|undefined,state:req.query.state as string|undefined}));
+ res.json(await verificationRepo.list({propertyId:queryString(req.query.propertyId),state:queryString(req.query.state)}));
 });
 app.post("/api/v1/verification/:id/resolve",async(req,res)=>{
- const item=await verificationRepo.resolve(req.params.id,actor(req),req.body.comment,req.body.sourceId);
+ const id=routeParam(req.params.id);
+ const item=await verificationRepo.resolve(id,actor(req),req.body.comment,req.body.sourceId);
  if(!item)return res.status(404).json({error:"not_found_or_not_open"});
- await auditRepo.log(actor(req),"RESOLVE","verification",req.params.id,null,item);
+ await auditRepo.log(actor(req),"RESOLVE","verification",id,null,item);
  res.json(item);
 });
 
 app.post("/api/v1/properties/:id/validate",async(req,res)=>{
- const p=await hydratedProperty(req.params.id); if(!p)return res.status(404).json({error:"not_found"});
+ const p=await hydratedProperty(routeParam(req.params.id)); if(!p)return res.status(404).json({error:"not_found"});
  res.json(validateForCalculation(p));
 });
 app.post("/api/v1/properties/:id/calculate",async(req,res)=>{
- const p=await hydratedProperty(req.params.id); if(!p)return res.status(404).json({error:"not_found"});
+ const p=await hydratedProperty(routeParam(req.params.id)); if(!p)return res.status(404).json({error:"not_found"});
  const run=calculateProperty(p); if(run.status==="BLOCKED")return res.status(422).json(run);
  await calculationRunRepo.save(run);
  await auditRepo.log(actor(req),"CALCULATE","calculation_run",run.calculationRunId,null,run);
@@ -109,21 +110,21 @@ app.post("/api/v1/properties/:id/calculate",async(req,res)=>{
 });
 
 app.get("/api/v1/properties/:id/calculations",async(req,res)=>{
- const p=await propertyRepo.get(req.params.id); if(!p)return res.status(404).json({error:"not_found"});
+ const p=await propertyRepo.get(routeParam(req.params.id)); if(!p)return res.status(404).json({error:"not_found"});
  res.json(await calculationRunRepo.listByProperty(p.id));
 });
 app.post("/api/v1/calculations/:id/review",allow("ADMIN","ANALYST"),async(req,res)=>{
  const status=req.body.status;
  if(status!=="APPROVED"&&status!=="REJECTED")return res.status(400).json({error:"invalid_review_status"});
- const run=await calculationRunRepo.review(req.params.id,status,actor(req),req.body.comment);
+ const id=routeParam(req.params.id);
+ const run=await calculationRunRepo.review(id,status,actor(req),req.body.comment);
  if(!run)return res.status(404).json({error:"not_found"});
- await auditRepo.log(actor(req),"REVIEW","calculation_run",req.params.id,null,run);
+ await auditRepo.log(actor(req),"REVIEW","calculation_run",id,null,run);
  res.json(run);
 });
 
-
 app.put("/api/v1/properties/:id/publication-draft",allow("ADMIN","ANALYST","EDITOR"),async(req,res)=>{
- const p=await propertyRepo.get(req.params.id); if(!p)return res.status(404).json({error:"not_found"});
+ const p=await propertyRepo.get(routeParam(req.params.id)); if(!p)return res.status(404).json({error:"not_found"});
  const run=await calculationRunRepo.get(req.body.calculationRunId);
  if(!run||run.propertyId!==p.id)return res.status(400).json({error:"invalid_calculation_run"});
  const draft=await publicationDraftRepo.upsert({...req.body,propertyId:p.id,actor:actor(req)});
@@ -131,12 +132,12 @@ app.put("/api/v1/properties/:id/publication-draft",allow("ADMIN","ANALYST","EDIT
  res.json(draft);
 });
 app.get("/api/v1/properties/:id/publication-draft/:runId",async(req,res)=>{
- const d=await publicationDraftRepo.get(req.params.id,req.params.runId);
+ const d=await publicationDraftRepo.get(routeParam(req.params.id),routeParam(req.params.runId));
  if(!d)return res.status(404).json({error:"not_found"}); res.json(d);
 });
 
 app.post("/api/v1/properties/:id/publish",allow("ADMIN","EDITOR"),async(req,res)=>{
- const p=await propertyRepo.get(req.params.id); if(!p)return res.status(404).json({error:"not_found"});
+ const p=await propertyRepo.get(routeParam(req.params.id)); if(!p)return res.status(404).json({error:"not_found"});
  const run=await calculationRunRepo.get(req.body.calculationRunId);
  if(!run||run.propertyId!==p.id)return res.status(400).json({error:"invalid_calculation_run"});
  if(run.verdictStatus!=="FINAL")return res.status(409).json({error:"run_not_final"});
@@ -150,7 +151,7 @@ app.post("/api/v1/properties/:id/publish",allow("ADMIN","EDITOR"),async(req,res)
  res.status(201).json(pub);
 });
 app.get("/api/v1/properties/:id/public",async(req,res)=>{
- const pub=await publicationRepo.latest(req.params.id); if(!pub)return res.status(404).json({error:"not_published"});
+ const pub=await publicationRepo.latest(routeParam(req.params.id)); if(!pub)return res.status(404).json({error:"not_published"});
  if(pub.snapshot)return res.json({publication:pub,snapshot:pub.snapshot});
  const run=await calculationRunRepo.get(pub.calculation_run_id);
  res.json({publication:pub,analytics:run});
