@@ -32,9 +32,9 @@ jobs:
           rm -rf .rc4-expanded
           mkdir .rc4-expanded
           unzip -q rc4.zip -d .rc4-expanded
+          rm -rf .rc4-expanded/PrivatePhuket_v1_0_RC4_Stabilized/.github
           cp -a .rc4-expanded/PrivatePhuket_v1_0_RC4_Stabilized/. .
           rm -rf bootstrap rc4.b64 rc4.zip .rc4-expanded
-          rm -f .github/workflows/bootstrap-rc4.yml
 
       - name: Commit expanded source
         shell: bash
