@@ -1,0 +1,50 @@
+name: PrivatePhuket Staging CI
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: privatephuket
+          POSTGRES_USER: privatephuket
+          POSTGRES_PASSWORD: privatephuket_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U privatephuket"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+    env:
+      DATABASE_URL: postgresql://privatephuket:privatephuket_ci@localhost:5432/privatephuket
+      JWT_SECRET: ci-only-secret-not-for-staging
+      NODE_ENV: test
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Backend install
+        working-directory: backend
+        run: npm install
+      - name: Database migrations
+        working-directory: backend
+        run: npx tsx src/db/migrate.ts
+      - name: Backend typecheck
+        working-directory: backend
+        run: npm run typecheck
+      - name: Backend tests
+        working-directory: backend
+        run: npm test
+      - name: Analyst Workspace build
+        working-directory: workspace
+        run: npm install && npm run typecheck && npm run build
+      - name: Public Web build
+        working-directory: public-web
+        run: npm install && npm run typecheck && npm run build
