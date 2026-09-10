@@ -1,4 +1,4 @@
-import Decimal from "decimal.js";
+import { Decimal } from "decimal.js";
 import type { DatedCashFlow } from "./types.js";
 
 const DAY_MS=86400000;
