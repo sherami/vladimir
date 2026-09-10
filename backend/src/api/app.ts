@@ -103,7 +103,8 @@ app.post("/api/v1/properties/:id/validate",async(req,res)=>{
 });
 app.post("/api/v1/properties/:id/calculate",async(req,res)=>{
  const p=await hydratedProperty(routeParam(req.params.id)); if(!p)return res.status(404).json({error:"not_found"});
- const run=calculateProperty(p); if(run.status==="BLOCKED")return res.status(422).json(run);
+ const run=calculateProperty(p);
+ if(run.status==="BLOCKED" || !("calculationRunId" in run)) return res.status(422).json(run);
  await calculationRunRepo.save(run);
  await auditRepo.log(actor(req),"CALCULATE","calculation_run",run.calculationRunId,null,run);
  res.status(201).json(run);
