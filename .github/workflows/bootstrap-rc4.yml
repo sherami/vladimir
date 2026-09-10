@@ -1,0 +1,35 @@
+name: Bootstrap PrivatePhuket RC4
+
+on:
+  push:
+    branches: [privatephuket-rc4]
+    paths:
+      - 'rc4_bundle.b64'
+      - '.github/workflows/bootstrap-rc4.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: privatephuket-rc4
+      - name: Decode RC4 bundle
+        run: |
+          base64 -d rc4_bundle.b64 > /tmp/rc4.zip
+          rm -rf /tmp/rc4
+          mkdir -p /tmp/rc4
+          unzip -q /tmp/rc4.zip -d /tmp/rc4
+          cp -a /tmp/rc4/PrivatePhuket_v1_0_RC4_Stabilized/. .
+          rm -f rc4_bundle.b64 .github/workflows/bootstrap-rc4.yml
+      - name: Commit expanded RC4
+        run: |
+          git config user.name 'PrivatePhuket CI Bootstrap'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -A
+          git commit -m 'Expand PrivatePhuket v1.0 RC4 source tree' || exit 0
+          git push origin HEAD:privatephuket-rc4
