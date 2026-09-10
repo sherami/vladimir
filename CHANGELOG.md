@@ -1,19 +1,13 @@
 # Changelog
 
-## 1.0.0-rc.1
-Consolidates MVP v0.1–v0.9 into first Release Candidate:
-- financial engine + XIRR;
-- PostgreSQL persistence;
-- immutable calculation runs;
-- Source/Evidence provenance;
-- Confidence + Verification Queue;
-- Analyst Workspace;
-- JWT/RBAC + workflow;
-- staging Layan Verde vertical slice;
-- public property page;
-- structured analyst narrative/source/scenario disclosure;
-- frozen publication snapshots;
-- Docker/PostgreSQL staging baseline;
-- migration runner, readiness endpoint, release/security checklists.
+## 1.0.0-rc.4
+Stabilization release for first real GitHub CI/staging execution.
 
-Known release blocker: no production Golden Dataset object yet.
+- Fixed CONSIDER return threshold to Required Return minus 2 percentage points.
+- JWT secret validation now fails closed when missing or too short.
+- Data Confidence follows the frozen fixed-category methodology.
+- Off-plan XIRR requires exact dated cash flows; month-only dates are rejected.
+- Frontend dependency versions pinned.
+- Regression tests added for corrected policy invariants.
+
+The release still requires real CI execution and does not declare a production Golden Dataset object.
