@@ -1,0 +1,23 @@
+{
+  "release": "1.0.0-rc.3",
+  "architectureFrozen": true,
+  "productionGoldenDataset": false,
+  "stagingDeployed": false,
+  "referenceFixture": "Layan Verde Studio 37.4 sqm",
+  "expectedCalibration": {
+    "tacTHB": 9294039.14,
+    "netYield": 0.080669447
+  },
+  "requiredExternalGates": [
+    "database migrations",
+    "backend typecheck",
+    "backend tests",
+    "analyst workspace build",
+    "public web build",
+    "RBAC negative tests",
+    "vertical slice",
+    "publication immutability",
+    "backup restore smoke test"
+  ],
+  "notes": "No live staging success is claimed until release-evidence is populated."
+}

@@ -1,0 +1,61 @@
+[
+  {
+    "field": "purchasePrice",
+    "value": 8591740,
+    "unit": "THB",
+    "status": "VERIFIED_DOCUMENT",
+    "sourceKey": "price_source",
+    "isCritical": true,
+    "analystComment": "Control studio 37.4 sqm."
+  },
+  {
+    "field": "annualNoi",
+    "value": 749745,
+    "unit": "THB/year",
+    "status": "DEVELOPER_MODEL",
+    "sourceKey": "rental_pool",
+    "isCritical": true,
+    "analystComment": "Owner 60% share in developer rental-pool model; not actual operating history."
+  },
+  {
+    "field": "initialCapex",
+    "value": 561000,
+    "unit": "THB",
+    "status": "PP_ESTIMATE",
+    "isCritical": false,
+    "analystComment": "Furniture lower-bound assumption: 15,000 THB/sqm × 37.4 sqm."
+  },
+  {
+    "field": "acquisitionCosts",
+    "value": 141299.14,
+    "unit": "THB",
+    "status": "PP_ESTIMATE",
+    "isCritical": true,
+    "analystComment": "Reference Base Case assumption; must be replaced by verified closing inputs before production golden freeze."
+  },
+  {
+    "field": "entryMarketValue",
+    "value": 8591740,
+    "unit": "THB",
+    "status": "VERIFIED_DOCUMENT",
+    "sourceKey": "price_source",
+    "isCritical": true,
+    "analystComment": "Uses current control-unit purchase price as entry value until independent market value is verified."
+  },
+  {
+    "field": "exitGrowthRate",
+    "value": 0.06,
+    "unit": "decimal/year",
+    "status": "PP_ESTIMATE",
+    "isCritical": false,
+    "analystComment": "PP Base Case assumption; not developer forecast."
+  },
+  {
+    "field": "sellingCostRate",
+    "value": 0.06,
+    "unit": "decimal",
+    "status": "PP_ESTIMATE",
+    "isCritical": false,
+    "analystComment": "PP Base Case exit-cost assumption."
+  }
+]

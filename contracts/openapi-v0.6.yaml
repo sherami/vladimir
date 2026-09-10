@@ -1,0 +1,44 @@
+openapi: 3.1.0
+info: {title: PrivatePhuket API, version: 0.6.0}
+servers: [{url: /api/v1}]
+components:
+  securitySchemes:
+    bearerAuth: {type: http, scheme: bearer, bearerFormat: JWT}
+  schemas:
+    DataStatus:
+      type: string
+      enum: [VERIFIED_DOCUMENT,ACTUAL,MARKET_DATA,DEVELOPER_MODEL,PP_ESTIMATE,DEVELOPER_CLAIM,ASSUMPTION,TO_VERIFY]
+    WorkflowState:
+      type: string
+      enum: [DRAFT,VERIFICATION,READY_TO_CALCULATE,CALCULATED,ANALYST_REVIEW,READY_TO_PUBLISH,PUBLISHED,SUPERSEDED]
+security: [{bearerAuth: []}]
+paths:
+  /health:
+    get: {security: [], responses: {'200': {description: OK}}}
+  /properties:
+    get: {responses: {'200': {description: Property list}}}
+    post: {responses: {'201': {description: Created}, '403': {description: Forbidden}}}
+  /properties/{id}/workflow:
+    post: {parameters: [{name: id,in: path,required: true,schema: {type: string,format: uuid}}],responses: {'200': {description: Transitioned},'409': {description: Invalid transition}}}
+  /properties/{id}/sources:
+    get: {responses: {'200': {description: Sources}}}
+    post: {responses: {'201': {description: Source created}}}
+  /properties/{id}/evidence:
+    get: {responses: {'200': {description: Evidence history}}}
+    post: {responses: {'201': {description: Evidence created}}}
+  /properties/{id}/validate:
+    post: {responses: {'200': {description: Validation result}}}
+  /properties/{id}/calculate:
+    post: {responses: {'201': {description: Immutable calculation run},'422': {description: Blocked}}}
+  /properties/{id}/calculations:
+    get: {responses: {'200': {description: Calculation history}}}
+  /calculations/{id}/review:
+    post: {responses: {'200': {description: Reviewed}}}
+  /properties/{id}/publish:
+    post: {responses: {'201': {description: Published},'409': {description: Run not FINAL or APPROVED}}}
+  /properties/{id}/public:
+    get: {responses: {'200': {description: Published analytics}}}
+  /verification:
+    get: {responses: {'200': {description: Verification queue}}}
+  /verification/{id}/resolve:
+    post: {responses: {'200': {description: Resolved}}}

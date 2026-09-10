@@ -1,0 +1,23 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: privatephuket
+      POSTGRES_USER: privatephuket
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL","pg_isready -U privatephuket"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    volumes: [pp_db:/var/lib/postgresql/data]
+  api:
+    build: ../backend
+    environment:
+      DATABASE_URL: postgresql://privatephuket:${POSTGRES_PASSWORD}@db:5432/privatephuket
+      JWT_SECRET: ${JWT_SECRET}
+      NODE_ENV: staging
+    depends_on:
+      db: {condition: service_healthy}
+    ports: ["3000:3000"]
+volumes: {pp_db: {}}
