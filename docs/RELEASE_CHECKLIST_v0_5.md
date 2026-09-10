@@ -1,0 +1,12 @@
+# Release Checklist v0.5
+- [ ] Apply migrations 002, 003, 004 to clean PostgreSQL.
+- [ ] Set DATABASE_URL.
+- [ ] Run backend typecheck/tests.
+- [ ] Run workspace typecheck/build.
+- [ ] Seed one reference property.
+- [ ] Add source and evidence.
+- [ ] Sync/resolve verification.
+- [ ] Validate and calculate.
+- [ ] Approve FINAL run.
+- [ ] Publish exact run.
+- [ ] Confirm public endpoint remains pinned after a new draft calculation.

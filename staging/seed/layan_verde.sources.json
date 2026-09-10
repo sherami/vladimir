@@ -1,0 +1,16 @@
+[
+  {
+    "key": "price_source",
+    "documentType": "PRICE_LIST",
+    "title": "Layan Verde price source",
+    "issuer": "Developer / supplied project material",
+    "status": "VERIFIED_DOCUMENT"
+  },
+  {
+    "key": "rental_pool",
+    "documentType": "RENTAL_MODEL",
+    "title": "Layan Verde Rental Pool model",
+    "issuer": "Developer / supplied project material",
+    "status": "DEVELOPER_MODEL"
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "classification": "STAGING_CALIBRATION_NOT_PRODUCTION_GOLDEN",
+  "purchasePrice": 8591740,
+  "initialCapex": 561000,
+  "acquisitionCosts": 141299.14,
+  "expectedTAC": 9294039.14,
+  "annualNoi": 749745,
+  "expectedNetYield": 0.080669447,
+  "notes": [
+    "Rental income is DEVELOPER_MODEL.",
+    "Acquisition costs and several scenario assumptions remain PP_ESTIMATE.",
+    "Do not convert this fixture into a FINAL production verdict merely because the arithmetic passes."
+  ]
+}

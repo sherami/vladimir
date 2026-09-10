@@ -1,0 +1,42 @@
+{
+  "headline": "Layan Verde: высокая модельная доходность, которую нужно проверить",
+  "summary": "Контрольный объект PrivatePhuket. Доходность выглядит сильной в модели девелопера, но часть acquisition/exit assumptions пока остаётся оценкой PrivatePhuket.",
+  "whyBuy": [
+    "Модельный доход собственника даёт высокий Net Yield относительно TAC.",
+    "Контрольный unit имеет прозрачную базовую цену и понятный формат студии."
+  ],
+  "whyNotBuy": [
+    "749 745 THB годового дохода — DEVELOPER_MODEL, а не подтверждённая история эксплуатации.",
+    "Часть расходов на вход и сценарий выхода пока основаны на PP_ESTIMATE."
+  ],
+  "bestFor": [
+    "Инвестор, готовый отдельно проверять rental-pool assumptions."
+  ],
+  "notSuitableFor": [
+    "Покупатель, которому нужна только фактическая подтверждённая история NOI."
+  ],
+  "sourceDisclosures": [
+    {
+      "label": "Purchase price 8,591,740 THB",
+      "status": "VERIFIED_DOCUMENT"
+    },
+    {
+      "label": "Owner income 749,745 THB/year",
+      "status": "DEVELOPER_MODEL"
+    },
+    {
+      "label": "Furniture 561,000 THB",
+      "status": "PP_ESTIMATE"
+    },
+    {
+      "label": "Other acquisition 141,299.14 THB",
+      "status": "PP_ESTIMATE"
+    }
+  ],
+  "scenarioDisclosures": [
+    {
+      "name": "Base",
+      "text": "Exit growth 6% p.a. and selling costs 6% are PP Base Case assumptions, not guarantees."
+    }
+  ]
+}
