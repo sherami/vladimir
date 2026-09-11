@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { v4 as uuid } from "uuid";
 import type { Property } from "../domain/types.js";
 import { adjustedScore, exitValue, irr, netYield, provisionalVerdict, tac, verdictStatus } from "../domain/calculation.js";
+import { buildScenarios } from "../domain/scenarios.js";
 import { validateForCalculation } from "../domain/validation.js";
 import { xirr } from "../domain/xirr.js";
 
@@ -19,6 +20,7 @@ export function calculateProperty(p:Property) {
  let modeledExitValue:number|null=null;
  let netExitProceeds:number|null=null;
  let periodicCashFlows:number[]|null=null;
+ let scenarios:ReturnType<typeof buildScenarios>|null=null;
 
  if(p.isOffPlan){
    // Exact dated cash flows only; validation blocks missing schedules.
@@ -37,6 +39,14 @@ export function calculateProperty(p:Property) {
      periodicCashFlows.push(cf);
    }
    productionReturn=irr(periodicCashFlows); metric="IRR";
+   scenarios=buildScenarios({
+     tac:total,
+     annualNoi:p.annualNoi.value,
+     entryMarketValue:entryValue,
+     exitGrowthRate:p.exitGrowthRate,
+     sellingCostRate:p.sellingCostRate,
+     holdingYears:p.holdingYears
+   });
  }
 
  const score=p.scores?adjustedScore(p.scores):null;
@@ -52,7 +62,7 @@ export function calculateProperty(p:Property) {
    inputSnapshotHash:createHash("sha256").update(snapshot).digest("hex"),
    status:"CALCULATED", tac:total, noi:p.annualNoi?.value??null, netYield:ny,
    productionReturnMetric:metric, productionReturn,
-   exitValue:modeledExitValue, netExitProceeds, periodicCashFlows,
+   exitValue:modeledExitValue, netExitProceeds, periodicCashFlows, scenarios,
    riskAdjustedScore:score, provisionalVerdict:provisional,
    verdictStatus:vStatus, finalVerdict:vStatus==="FINAL"?provisional:null, validation
  };
