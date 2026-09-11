@@ -32,9 +32,17 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: |
+            backend/package-lock.json
+            workspace/package-lock.json
+            public-web/package-lock.json
       - name: Backend install
         working-directory: backend
-        run: npm install
+        run: npm ci
+      - name: Backend dependency audit
+        working-directory: backend
+        run: npm audit --audit-level=high
       - name: Database migrations
         working-directory: backend
         run: npx tsx src/db/migrate.ts
@@ -73,9 +81,21 @@ jobs:
           PP_TOKEN="$TOKEN" node staging/scripts/seed-layan-verde.mjs > /tmp/layan-seed.json
           PROPERTY_ID=$(node -e "const fs=require('fs'); const x=JSON.parse(fs.readFileSync('/tmp/layan-seed.json','utf8')); process.stdout.write(x.propertyId)")
           PP_TOKEN="$TOKEN" PP_PROPERTY_ID="$PROPERTY_ID" node staging/scripts/verify-vertical-slice.mjs
+      - name: Analyst Workspace install
+        working-directory: workspace
+        run: npm ci
+      - name: Analyst Workspace audit
+        working-directory: workspace
+        run: npm audit --audit-level=high
       - name: Analyst Workspace build
         working-directory: workspace
-        run: npm install && npm run typecheck && npm run build
+        run: npm run typecheck && npm run build
+      - name: Public Web install
+        working-directory: public-web
+        run: npm ci
+      - name: Public Web audit
+        working-directory: public-web
+        run: npm audit --audit-level=high
       - name: Public Web build
         working-directory: public-web
-        run: npm install && npm run typecheck && npm run build
+        run: npm run typecheck && npm run build
