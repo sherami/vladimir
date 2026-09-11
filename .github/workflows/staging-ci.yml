@@ -81,6 +81,40 @@ jobs:
           PP_TOKEN="$TOKEN" node staging/scripts/seed-layan-verde.mjs > /tmp/layan-seed.json
           PROPERTY_ID=$(node -e "const fs=require('fs'); const x=JSON.parse(fs.readFileSync('/tmp/layan-seed.json','utf8')); process.stdout.write(x.propertyId)")
           PP_TOKEN="$TOKEN" PP_PROPERTY_ID="$PROPERTY_ID" node staging/scripts/verify-vertical-slice.mjs
+      - name: PostgreSQL backup and restore smoke test
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PGPASSWORD=privatephuket_ci
+
+          docker run --rm --network host -e PGPASSWORD="$PGPASSWORD" postgres:16 \
+            pg_dump -h 127.0.0.1 -U privatephuket -d privatephuket -Fc > /tmp/privatephuket.dump
+
+          test -s /tmp/privatephuket.dump
+
+          docker run --rm --network host -e PGPASSWORD="$PGPASSWORD" postgres:16 \
+            psql -h 127.0.0.1 -U privatephuket -d postgres -v ON_ERROR_STOP=1 \
+            -c "DROP DATABASE IF EXISTS privatephuket_restore;" \
+            -c "CREATE DATABASE privatephuket_restore;"
+
+          docker run --rm --network host -e PGPASSWORD="$PGPASSWORD" -v /tmp:/backup postgres:16 \
+            pg_restore -h 127.0.0.1 -U privatephuket -d privatephuket_restore --exit-on-error /backup/privatephuket.dump
+
+          original_properties=$(docker run --rm --network host -e PGPASSWORD="$PGPASSWORD" postgres:16 \
+            psql -h 127.0.0.1 -U privatephuket -d privatephuket -Atc "select count(*) from pp_properties")
+          restored_properties=$(docker run --rm --network host -e PGPASSWORD="$PGPASSWORD" postgres:16 \
+            psql -h 127.0.0.1 -U privatephuket -d privatephuket_restore -Atc "select count(*) from pp_properties")
+          original_runs=$(docker run --rm --network host -e PGPASSWORD="$PGPASSWORD" postgres:16 \
+            psql -h 127.0.0.1 -U privatephuket -d privatephuket -Atc "select count(*) from pp_calculation_runs")
+          restored_runs=$(docker run --rm --network host -e PGPASSWORD="$PGPASSWORD" postgres:16 \
+            psql -h 127.0.0.1 -U privatephuket -d privatephuket_restore -Atc "select count(*) from pp_calculation_runs")
+
+          test "$original_properties" -ge 1
+          test "$original_runs" -ge 1
+          test "$original_properties" = "$restored_properties"
+          test "$original_runs" = "$restored_runs"
+
+          echo "backup_restore=PASS properties=$restored_properties calculation_runs=$restored_runs"
       - name: Analyst Workspace install
         working-directory: workspace
         run: npm ci
