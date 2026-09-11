@@ -1,23 +1,37 @@
 {
-  "release": "1.0.0-rc.3",
+  "release": "1.0.0-rc.5",
   "architectureFrozen": true,
   "productionGoldenDataset": false,
   "stagingDeployed": false,
   "referenceFixture": "Layan Verde Studio 37.4 sqm",
   "expectedCalibration": {
     "tacTHB": 9294039.14,
-    "netYield": 0.080669447
+    "netYield": 0.080669447,
+    "productionReturnMetric": "IRR",
+    "verdictStatus": "PROVISIONAL"
   },
-  "requiredExternalGates": [
-    "database migrations",
-    "backend typecheck",
-    "backend tests",
-    "analyst workspace build",
-    "public web build",
+  "verifiedCIGates": {
+    "databaseMigrations": true,
+    "backendTypecheck": true,
+    "backendTests": true,
+    "layanVerdeVerticalSlice": true,
+    "publicationImmutability": true,
+    "analystWorkspaceBuild": true,
+    "publicWebBuild": true
+  },
+  "remainingReleaseGates": [
     "RBAC negative tests",
-    "vertical slice",
-    "publication immutability",
-    "backup restore smoke test"
+    "JWT issuer/audience or production IdP integration",
+    "dependency vulnerability remediation",
+    "reproducible lockfiles and npm ci",
+    "backup restore smoke test",
+    "cloud staging deployment",
+    "Production Golden Dataset source closure"
   ],
-  "notes": "No live staging success is claimed until release-evidence is populated."
+  "lastVerifiedCiRun": {
+    "runNumber": 15,
+    "runId": 34562727685,
+    "url": "https://github.com/sherami/vladimir/actions/runs/34562727685"
+  },
+  "notes": "GitHub CI is green including an authenticated PostgreSQL-backed Layan Verde vertical slice. This is not a claim of cloud staging deployment or Production Golden Dataset completion."
 }
