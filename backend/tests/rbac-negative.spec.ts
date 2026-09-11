@@ -4,14 +4,20 @@ import jwt from "jsonwebtoken";
 import {app} from "../src/api/app.js";
 
 const SECRET="rbac-test-secret-123456789";
+const ISSUER="privatephuket-test";
+const AUDIENCE="privatephuket-api";
 function token(role:"ADMIN"|"ANALYST"|"ADVISOR"|"EDITOR"|"VIEWER"){
- return jwt.sign({sub:`${role.toLowerCase()}-test`,email:`${role.toLowerCase()}@privatephuket`,role},SECRET,{expiresIn:"10m"});
+ return jwt.sign({sub:`${role.toLowerCase()}-test`,email:`${role.toLowerCase()}@privatephuket`,role},SECRET,{expiresIn:"10m",issuer:ISSUER,audience:AUDIENCE});
 }
 function auth(role:"ADMIN"|"ANALYST"|"ADVISOR"|"EDITOR"|"VIEWER"){
  return {Authorization:`Bearer ${token(role)}`};
 }
 
-beforeAll(()=>{ process.env.JWT_SECRET=SECRET; });
+beforeAll(()=>{
+ process.env.JWT_SECRET=SECRET;
+ process.env.JWT_ISSUER=ISSUER;
+ process.env.JWT_AUDIENCE=AUDIENCE;
+});
 
 describe("RBAC negative paths",()=>{
  test("internal property list rejects missing JWT",async()=>{
