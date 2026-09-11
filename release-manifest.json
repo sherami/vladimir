@@ -2,6 +2,7 @@
   "release": "1.0.0-rc.5",
   "architectureFrozen": true,
   "productionGoldenDataset": false,
+  "stagingPrepared": true,
   "stagingDeployed": false,
   "referenceFixture": "Layan Verde Studio 37.4 sqm",
   "expectedCalibration": {
@@ -16,6 +17,9 @@
     "backendTests": true,
     "backendProductionBuild": true,
     "backendProductionContainerBuild": true,
+    "analystWorkspaceContainerBuild": true,
+    "publicWebContainerBuild": true,
+    "httpSecurityHeadersAndCorsBoundary": true,
     "layanVerdeVerticalSlice": true,
     "publicationImmutability": true,
     "rbacNegativeTests": true,
@@ -32,9 +36,9 @@
     "Production Golden Dataset source closure"
   ],
   "lastVerifiedCiRun": {
-    "runNumber": 27,
-    "runId": 34565547998,
-    "url": "https://github.com/sherami/vladimir/actions/runs/34565547998"
+    "runNumber": 30,
+    "runId": 34566113665,
+    "url": "https://github.com/sherami/vladimir/actions/runs/34566113665"
   },
-  "notes": "GitHub CI is green with PostgreSQL 16, reproducible npm ci installs, moderate-or-higher dependency audit gates, backend regression tests, compiled production backend build and Docker image build, RBAC/JWT security checks, authenticated Layan Verde vertical slice, PostgreSQL backup/restore smoke verification, and both frontend production builds. The verified code baseline is ready for a real cloud staging deployment; stagingDeployed remains false until an external environment is actually provisioned and verified. Production Golden Dataset also remains open pending primary-source evidence."
+  "notes": "RC5 is fully prepared for an external Railway staging deployment: all three application Docker images build in GitHub CI, API migrations are included in the runtime image for pre-deploy execution, Railway Config-as-Code and a staging handoff runbook are committed, and the HTTP CORS/security boundary is regression-tested. stagingDeployed remains false until Railway resources are actually provisioned and live acceptance gates pass. Production Golden Dataset remains open pending primary-source evidence."
 }
