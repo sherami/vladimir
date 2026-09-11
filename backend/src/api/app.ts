@@ -27,7 +27,7 @@ async function hydratedProperty(id:string){
  return applyEvidenceToProperty(base,latest);
 }
 
-app.get("/api/v1/health",(_,res)=>res.json({status:"ok",version:"1.0.0-rc.4"}));
+app.get("/api/v1/health",(_,res)=>res.json({status:"ok",version:"1.0.0-rc.5"}));
 app.get("/api/v1/ready",readiness);
 app.use("/api/v1",authenticate);
 
@@ -104,10 +104,11 @@ app.post("/api/v1/properties/:id/validate",async(req,res)=>{
 app.post("/api/v1/properties/:id/calculate",async(req,res)=>{
  const p=await hydratedProperty(routeParam(req.params.id)); if(!p)return res.status(404).json({error:"not_found"});
  const run=calculateProperty(p);
- const runId="calculationRunId" in run && typeof run.calculationRunId==="string" ? run.calculationRunId : undefined;
- if(run.status==="BLOCKED" || !runId) return res.status(422).json(run);
+ if(run.status==="BLOCKED" || !("calculationRunId" in run)) return res.status(422).json(run);
+ const calculationRunId=run.calculationRunId;
+ if(typeof calculationRunId!=="string") return res.status(500).json({error:"invalid_calculation_run_id"});
  await calculationRunRepo.save(run);
- await auditRepo.log(actor(req),"CALCULATE","calculation_run",runId,null,run);
+ await auditRepo.log(actor(req),"CALCULATE","calculation_run",calculationRunId,null,run);
  res.status(201).json(run);
 });
 
