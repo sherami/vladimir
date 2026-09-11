@@ -9,6 +9,13 @@
     "analystComment": "Control studio 37.4 sqm."
   },
   {
+    "field": "ownershipType",
+    "value": "LEASEHOLD",
+    "status": "PP_ESTIMATE",
+    "isCritical": false,
+    "analystComment": "Staging calculation assumption matching the current leasehold Base Case. Must be verified from primary transaction documents before production Golden Dataset freeze."
+  },
+  {
     "field": "annualNoi",
     "value": 749745,
     "unit": "THB/year",

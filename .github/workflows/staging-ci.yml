@@ -42,6 +42,35 @@ jobs:
       - name: Backend tests
         working-directory: backend
         run: npm test
+      - name: Layan Verde vertical slice
+        shell: bash
+        run: |
+          set -euo pipefail
+          (
+            cd backend
+            npm run dev > /tmp/privatephuket-api.log 2>&1 &
+            echo $! > /tmp/privatephuket-api.pid
+          )
+          cleanup() {
+            if [ -f /tmp/privatephuket-api.pid ]; then
+              kill "$(cat /tmp/privatephuket-api.pid)" 2>/dev/null || true
+            fi
+          }
+          trap cleanup EXIT
+
+          for i in {1..30}; do
+            if curl --fail --silent http://localhost:3000/api/v1/health >/dev/null; then break; fi
+            if [ "$i" -eq 30 ]; then
+              cat /tmp/privatephuket-api.log
+              exit 1
+            fi
+            sleep 1
+          done
+
+          TOKEN=$(cd backend && node --input-type=module -e "import jwt from 'jsonwebtoken'; console.log(jwt.sign({sub:'ci-admin',email:'ci@privatephuket',role:'ADMIN'},process.env.JWT_SECRET,{expiresIn:'10m'}))")
+          PP_TOKEN="$TOKEN" node staging/scripts/seed-layan-verde.mjs > /tmp/layan-seed.json
+          PROPERTY_ID=$(node -e "const fs=require('fs'); const x=JSON.parse(fs.readFileSync('/tmp/layan-seed.json','utf8')); process.stdout.write(x.propertyId)")
+          PP_TOKEN="$TOKEN" PP_PROPERTY_ID="$PROPERTY_ID" node staging/scripts/verify-vertical-slice.mjs
       - name: Analyst Workspace build
         working-directory: workspace
         run: npm install && npm run typecheck && npm run build
