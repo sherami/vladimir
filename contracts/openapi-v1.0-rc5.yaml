@@ -1,0 +1,276 @@
+openapi: 3.1.0
+info:
+  title: PrivatePhuket API
+  version: 1.0.0-rc.5
+  description: Canonical RC5 contract for analyst, calculation, publication and public-read flows.
+servers:
+  - url: /api/v1
+security:
+  - bearerAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    DataStatus:
+      type: string
+      enum: [VERIFIED_DOCUMENT, ACTUAL, MARKET_DATA, DEVELOPER_MODEL, PP_ESTIMATE, DEVELOPER_CLAIM, ASSUMPTION, TO_VERIFY]
+    WorkflowState:
+      type: string
+      enum: [DRAFT, VERIFICATION, READY_TO_CALCULATE, CALCULATED, ANALYST_REVIEW, READY_TO_PUBLISH, PUBLISHED, SUPERSEDED]
+    Verdict:
+      type: string
+      enum: [BUY, CONSIDER, WATCH, PASS]
+    VerdictStatus:
+      type: string
+      enum: [FINAL, PROVISIONAL, BLOCKED]
+    DatedCashFlow:
+      type: object
+      required: [date, amount]
+      properties:
+        date: {type: string, format: date}
+        amount: {type: number}
+        dateStatus:
+          type: string
+          enum: [EXACT_DATE, MONTH_KNOWN, TO_VERIFY]
+    ScoreInputs:
+      type: object
+      required: [rentalEconomics, value, capitalGrowth, liquidity, location, supply, developer, legal, riskScore]
+      properties:
+        rentalEconomics: {type: number, minimum: 0, maximum: 100}
+        value: {type: number, minimum: 0, maximum: 100}
+        capitalGrowth: {type: number, minimum: 0, maximum: 100}
+        liquidity: {type: number, minimum: 0, maximum: 100}
+        location: {type: number, minimum: 0, maximum: 100}
+        supply: {type: number, minimum: 0, maximum: 100}
+        developer: {type: number, minimum: 0, maximum: 100}
+        legal: {type: number, minimum: 0, maximum: 100}
+        riskScore: {type: number, minimum: 0, maximum: 100}
+    ScenarioAssumptions:
+      type: object
+      required: [noiMultiplier, exitValueMultiplier, note]
+      properties:
+        noiMultiplier: {type: number}
+        exitValueMultiplier: {type: number}
+        note: {type: string}
+    ScenarioOutput:
+      type: object
+      required: [code, noi, netYield, exitValue, netExitProceeds, irr, cashFlows, assumptions]
+      properties:
+        code:
+          type: string
+          enum: [BASE, DOWNSIDE, SEVERE]
+        noi: {type: number}
+        netYield: {type: number}
+        exitValue: {type: number}
+        netExitProceeds: {type: number}
+        irr: {type: number}
+        cashFlows:
+          type: array
+          items: {type: number}
+        assumptions:
+          $ref: '#/components/schemas/ScenarioAssumptions'
+    ValidationIssue:
+      type: object
+      required: [severity, code, message]
+      properties:
+        severity:
+          type: string
+          enum: [ERROR, BLOCKER, WARNING, INFO]
+        code: {type: string}
+        field: {type: string}
+        message: {type: string}
+    ValidationResult:
+      type: object
+      required: [readyToCalculate, issues]
+      properties:
+        readyToCalculate: {type: boolean}
+        issues:
+          type: array
+          items: {$ref: '#/components/schemas/ValidationIssue'}
+    CalculationRun:
+      type: object
+      required: [calculationRunId, propertyId, engineVersion, methodologyVersion, inputSnapshotHash, status, tac, verdictStatus]
+      properties:
+        calculationRunId: {type: string, format: uuid}
+        propertyId: {type: string, format: uuid}
+        engineVersion: {type: string, example: 1.0.0-rc.5}
+        methodologyVersion: {type: string, example: '1.0'}
+        inputSnapshotHash: {type: string}
+        status: {type: string, enum: [CALCULATED]}
+        tac: {type: number}
+        noi: {type: [number, 'null']}
+        netYield: {type: [number, 'null']}
+        productionReturnMetric:
+          type: [string, 'null']
+          enum: [IRR, XIRR, null]
+        productionReturn: {type: [number, 'null']}
+        exitValue: {type: [number, 'null']}
+        netExitProceeds: {type: [number, 'null']}
+        periodicCashFlows:
+          type: [array, 'null']
+          items: {type: number}
+        scenarios:
+          type: [array, 'null']
+          items: {$ref: '#/components/schemas/ScenarioOutput'}
+        riskAdjustedScore: {type: [number, 'null']}
+        provisionalVerdict:
+          anyOf:
+            - {$ref: '#/components/schemas/Verdict'}
+            - {type: 'null'}
+        verdictStatus: {$ref: '#/components/schemas/VerdictStatus'}
+        finalVerdict:
+          anyOf:
+            - {$ref: '#/components/schemas/Verdict'}
+            - {type: 'null'}
+        validation: {$ref: '#/components/schemas/ValidationResult'}
+    PublicationNarrative:
+      type: object
+      required: [summary, why_buy, why_not_buy]
+      properties:
+        headline: {type: string}
+        summary: {type: string}
+        why_buy: {type: array, items: {type: string}, minItems: 1}
+        why_not_buy: {type: array, items: {type: string}, minItems: 1}
+        best_for: {type: array, items: {type: string}}
+        not_suitable_for: {type: array, items: {type: string}}
+        source_disclosures: {type: array, items: {type: object, additionalProperties: true}}
+        scenario_disclosures: {type: array, items: {type: object, additionalProperties: true}}
+    Error:
+      type: object
+      properties:
+        error: {type: string}
+paths:
+  /health:
+    get:
+      security: []
+      responses:
+        '200': {description: Health status}
+  /ready:
+    get:
+      security: []
+      responses:
+        '200': {description: Readiness status}
+  /properties:
+    get:
+      responses:
+        '200': {description: Property list}
+    post:
+      responses:
+        '201': {description: Property created}
+        '403': {description: Forbidden}
+  /properties/{id}:
+    get:
+      parameters:
+        - {name: id, in: path, required: true, schema: {type: string, format: uuid}}
+      responses:
+        '200': {description: Hydrated property}
+        '404': {description: Not found}
+  /properties/{id}/workflow:
+    post:
+      parameters:
+        - {name: id, in: path, required: true, schema: {type: string, format: uuid}}
+      responses:
+        '200': {description: Workflow transitioned}
+        '409': {description: Invalid transition}
+  /properties/{id}/sources:
+    get:
+      parameters:
+        - {name: id, in: path, required: true, schema: {type: string, format: uuid}}
+      responses:
+        '200': {description: Sources}
+    post:
+      parameters:
+        - {name: id, in: path, required: true, schema: {type: string, format: uuid}}
+      responses:
+        '201': {description: Source created}
+  /properties/{id}/evidence:
+    get:
+      parameters:
+        - {name: id, in: path, required: true, schema: {type: string, format: uuid}}
+      responses:
+        '200': {description: Evidence history}
+    post:
+      parameters:
+        - {name: id, in: path, required: true, schema: {type: string, format: uuid}}
+      responses:
+        '201': {description: Evidence created}
+  /properties/{id}/verification/sync:
+    post:
+      parameters:
+        - {name: id, in: path, required: true, schema: {type: string, format: uuid}}
+      responses:
+        '200': {description: Verification queue synchronized}
+  /verification:
+    get:
+      responses:
+        '200': {description: Verification queue}
+  /verification/{id}/resolve:
+    post:
+      parameters:
+        - {name: id, in: path, required: true, schema: {type: string, format: uuid}}
+      responses:
+        '200': {description: Verification item resolved}
+  /properties/{id}/validate:
+    post:
+      parameters:
+        - {name: id, in: path, required: true, schema: {type: string, format: uuid}}
+      responses:
+        '200':
+          description: Validation result
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/ValidationResult'}
+  /properties/{id}/calculate:
+    post:
+      parameters:
+        - {name: id, in: path, required: true, schema: {type: string, format: uuid}}
+      responses:
+        '201':
+          description: Immutable calculation run. IRR for single-date acquisition; XIRR for off-plan exact dated cash flows.
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/CalculationRun'}
+        '422': {description: Calculation blocked by hard-stop validation}
+  /properties/{id}/calculations:
+    get:
+      parameters:
+        - {name: id, in: path, required: true, schema: {type: string, format: uuid}}
+      responses:
+        '200': {description: Calculation history}
+  /calculations/{id}/review:
+    post:
+      parameters:
+        - {name: id, in: path, required: true, schema: {type: string, format: uuid}}
+      responses:
+        '200': {description: Calculation reviewed}
+  /properties/{id}/publication-draft:
+    put:
+      parameters:
+        - {name: id, in: path, required: true, schema: {type: string, format: uuid}}
+      responses:
+        '200': {description: Publication draft upserted}
+  /properties/{id}/publication-draft/{runId}:
+    get:
+      parameters:
+        - {name: id, in: path, required: true, schema: {type: string, format: uuid}}
+        - {name: runId, in: path, required: true, schema: {type: string, format: uuid}}
+      responses:
+        '200': {description: Publication draft}
+        '404': {description: Not found}
+  /properties/{id}/publish:
+    post:
+      parameters:
+        - {name: id, in: path, required: true, schema: {type: string, format: uuid}}
+      responses:
+        '201': {description: Frozen publication snapshot created from an APPROVED FINAL run}
+        '409': {description: Run not FINAL/APPROVED or narrative incomplete}
+  /properties/{id}/public:
+    get:
+      parameters:
+        - {name: id, in: path, required: true, schema: {type: string, format: uuid}}
+      responses:
+        '200': {description: Frozen published snapshot with sanitized public source disclosures}
+        '404': {description: Not published}
