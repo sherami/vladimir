@@ -14,6 +14,8 @@
     "databaseMigrations": true,
     "backendTypecheck": true,
     "backendTests": true,
+    "backendProductionBuild": true,
+    "backendProductionContainerBuild": true,
     "layanVerdeVerticalSlice": true,
     "publicationImmutability": true,
     "rbacNegativeTests": true,
@@ -30,9 +32,9 @@
     "Production Golden Dataset source closure"
   ],
   "lastVerifiedCiRun": {
-    "runNumber": 25,
-    "runId": 34565265255,
-    "url": "https://github.com/sherami/vladimir/actions/runs/34565265255"
+    "runNumber": 27,
+    "runId": 34565547998,
+    "url": "https://github.com/sherami/vladimir/actions/runs/34565547998"
   },
-  "notes": "GitHub CI is green with PostgreSQL 16, reproducible npm ci installs, moderate-or-higher dependency audit gates, backend regression tests, RBAC/JWT security checks, authenticated Layan Verde vertical slice, PostgreSQL backup/restore smoke verification, and both frontend production builds. This is not a claim of cloud staging deployment or Production Golden Dataset completion."
+  "notes": "GitHub CI is green with PostgreSQL 16, reproducible npm ci installs, moderate-or-higher dependency audit gates, backend regression tests, compiled production backend build and Docker image build, RBAC/JWT security checks, authenticated Layan Verde vertical slice, PostgreSQL backup/restore smoke verification, and both frontend production builds. The verified code baseline is ready for a real cloud staging deployment; stagingDeployed remains false until an external environment is actually provisioned and verified. Production Golden Dataset also remains open pending primary-source evidence."
 }
