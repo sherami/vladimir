@@ -4,16 +4,19 @@ PrivatePhuket is a Property Intelligence platform for Phuket real estate. The sy
 
 ## RC5 status
 
-The GitHub CI pipeline is now executing against PostgreSQL 16 and has proven the current code path end to end:
+The GitHub CI pipeline executes against PostgreSQL 16 and now proves the current code path end to end:
 
 - migrations from an explicit `001` baseline marker through `006`;
-- backend TypeScript typecheck;
-- backend regression and PostgreSQL-backed tests;
+- reproducible `npm ci` installs from committed lockfiles;
+- moderate-or-higher dependency audit gates for backend, Analyst Workspace and Public Web;
+- backend TypeScript typecheck and regression suite;
+- RBAC negative-path checks plus JWT issuer/audience validation;
 - authenticated Layan Verde vertical slice through the real API;
 - production IRR for single-date acquisitions and exact-date XIRR gate for off-plan;
 - Base / Downside / Severe MODEL scenarios;
 - canonical fixed-category Data Confidence provenance;
 - immutable publication pointer behavior;
+- PostgreSQL backup / restore smoke verification against non-empty property and calculation-run data;
 - Analyst Workspace production build;
 - Public Web production build.
 
@@ -29,6 +32,8 @@ The GitHub CI pipeline is now executing against PostgreSQL 16 and has proven the
 
 ## Current limitations
 
-This repository does **not** claim a deployed cloud staging environment or a Production Golden Dataset object. Layan Verde remains a staging calibration fixture and includes PP_ESTIMATE / DEVELOPER_MODEL inputs that prevent a production-final evidence status. Package audit warnings also remain to be remediated before production release.
+This repository does **not** claim a deployed cloud staging environment or a Production Golden Dataset object. Layan Verde remains a staging calibration fixture and includes PP_ESTIMATE / DEVELOPER_MODEL inputs that prevent a production-final evidence status.
+
+At the RC5 code/CI level, the remaining release blockers are external rather than calculation-engine blockers: deploy the verified stack to a real cloud staging environment and close the Production Golden Dataset with primary-source evidence.
 
 Canonical API contract: `contracts/openapi-v1.0-rc5.yaml`.

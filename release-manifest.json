@@ -18,20 +18,21 @@
     "publicationImmutability": true,
     "rbacNegativeTests": true,
     "jwtIssuerAudience": true,
+    "reproducibleLockfiles": true,
+    "npmCi": true,
+    "dependencyAuditModerateOrHigher": true,
+    "postgresBackupRestoreSmoke": true,
     "analystWorkspaceBuild": true,
     "publicWebBuild": true
   },
   "remainingReleaseGates": [
-    "dependency vulnerability remediation",
-    "reproducible lockfiles and npm ci",
-    "backup restore smoke test",
     "cloud staging deployment",
     "Production Golden Dataset source closure"
   ],
   "lastVerifiedCiRun": {
-    "runNumber": 18,
-    "runId": 34563240842,
-    "url": "https://github.com/sherami/vladimir/actions/runs/34563240842"
+    "runNumber": 25,
+    "runId": 34565265255,
+    "url": "https://github.com/sherami/vladimir/actions/runs/34565265255"
   },
-  "notes": "GitHub CI is green including PostgreSQL-backed tests, RBAC negative-path coverage, JWT issuer/audience enforcement, and an authenticated Layan Verde vertical slice. This is not a claim of cloud staging deployment or Production Golden Dataset completion."
+  "notes": "GitHub CI is green with PostgreSQL 16, reproducible npm ci installs, moderate-or-higher dependency audit gates, backend regression tests, RBAC/JWT security checks, authenticated Layan Verde vertical slice, PostgreSQL backup/restore smoke verification, and both frontend production builds. This is not a claim of cloud staging deployment or Production Golden Dataset completion."
 }
