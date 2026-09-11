@@ -21,21 +21,37 @@ export interface ScoreInputs {
   rentalEconomics:number; value:number; capitalGrowth:number; liquidity:number;
   location:number; supply:number; developer:number; legal:number; riskScore:number;
 }
+export interface ConfidenceFieldBreakdown {
+  status:DataStatus;
+  confidence:number;
+  critical:boolean;
+  category?:string;
+}
+export interface ConfidenceCategoryBreakdown {
+  weight:number;
+  confidence:number;
+  fields:string[];
+}
+export interface DataConfidenceBreakdown {
+  byField:Record<string,ConfidenceFieldBreakdown>;
+  byCategory:Record<string,ConfidenceCategoryBreakdown>;
+}
 export interface Property {
   id:string; project:string; unit?:string; workflow:WorkflowState;
   purchasePrice?:Evidence<number>; ownershipType?:Evidence<string>;
   acquisitionCosts?:Evidence<number>; initialCapex?:Evidence<number>;
   annualNoi?:Evidence<number>; entryMarketValue?:Evidence<number>;
   holdingYears?:number; exitGrowthRate?:number; sellingCostRate?:number;
-  requiredReturn?:number; dataConfidence?:number; criticalToVerify?:boolean;
+  requiredReturn?:number; dataConfidence?:number; dataConfidenceBreakdown?:DataConfidenceBreakdown; criticalToVerify?:boolean;
   isOffPlan?:boolean; datedCashFlows?:DatedCashFlow[]; scores?:ScoreInputs;
 }
-
 
 export type EvidenceField =
   | "purchasePrice" | "ownershipType" | "acquisitionCosts" | "initialCapex"
   | "annualNoi" | "entryMarketValue" | "holdingYears" | "exitGrowthRate"
-  | "sellingCostRate" | "requiredReturn" | "dataConfidence"
+  | "sellingCostRate" | "requiredReturn" | "dataConfidence" | "isOffPlan"
+  | "datedCashFlows" | "paymentSchedule" | "operatingExpenses"
+  | "developerStatus" | "developerDelivery" | "titleStatus" | "legalStatus"
   | string;
 
 export interface SourceRecord {
