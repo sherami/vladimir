@@ -3,6 +3,7 @@ import {createRoot} from "react-dom/client";
 import {getPublishedProperty} from "./lib/api";
 import "./styles.css";
 const fmt=(x:any)=>typeof x==="number"?new Intl.NumberFormat("en-US",{maximumFractionDigits:0}).format(x):"—";
+function Badge({children}:{children:React.ReactNode}){return <span className="badge">{children}</span>}
 function App(){
  const id=new URLSearchParams(location.search).get("id")??import.meta.env.VITE_DEMO_PROPERTY_ID;
  const [data,setData]=useState<any>(),[err,setErr]=useState("");
