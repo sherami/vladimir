@@ -29,6 +29,16 @@ async function hydratedProperty(id:string){
 
 app.get("/api/v1/health",(_,res)=>res.json({status:"ok",version:"1.0.0-rc.5"}));
 app.get("/api/v1/ready",readiness);
+
+// Public read model is deliberately outside JWT middleware. It only returns a
+// frozen explicitly-published snapshot and never falls back to analyst drafts.
+app.get("/api/v1/properties/:id/public",async(req,res)=>{
+ const pub=await publicationRepo.latest(routeParam(req.params.id)); if(!pub)return res.status(404).json({error:"not_published"});
+ if(pub.snapshot)return res.json({publication:pub,snapshot:pub.snapshot});
+ const run=await calculationRunRepo.get(pub.calculation_run_id);
+ res.json({publication:pub,analytics:run});
+});
+
 app.use("/api/v1",authenticate);
 
 app.get("/api/v1/properties",async(_,res)=>res.json(await propertyRepo.list()));
@@ -79,7 +89,7 @@ app.post("/api/v1/properties/:id/evidence",allow("ADMIN","ANALYST"),async(req,re
 });
 app.get("/api/v1/properties/:id/evidence",async(req,res)=>res.json(await evidenceRepo.listByProperty(routeParam(req.params.id))));
 
-app.post("/api/v1/properties/:id/verification/sync",async(req,res)=>{
+app.post("/api/v1/properties/:id/verification/sync",allow("ADMIN","ANALYST"),async(req,res)=>{
  const p=await hydratedProperty(routeParam(req.params.id)); if(!p)return res.status(404).json({error:"not_found"});
  const evidence=await evidenceRepo.latestByField(p.id);
  const items=buildVerificationItems(p,evidence);
@@ -89,7 +99,7 @@ app.post("/api/v1/properties/:id/verification/sync",async(req,res)=>{
 app.get("/api/v1/verification",async(req,res)=>{
  res.json(await verificationRepo.list({propertyId:queryString(req.query.propertyId),state:queryString(req.query.state)}));
 });
-app.post("/api/v1/verification/:id/resolve",async(req,res)=>{
+app.post("/api/v1/verification/:id/resolve",allow("ADMIN","ANALYST"),async(req,res)=>{
  const id=routeParam(req.params.id);
  const item=await verificationRepo.resolve(id,actor(req),req.body.comment,req.body.sourceId);
  if(!item)return res.status(404).json({error:"not_found_or_not_open"});
@@ -97,11 +107,11 @@ app.post("/api/v1/verification/:id/resolve",async(req,res)=>{
  res.json(item);
 });
 
-app.post("/api/v1/properties/:id/validate",async(req,res)=>{
+app.post("/api/v1/properties/:id/validate",allow("ADMIN","ANALYST"),async(req,res)=>{
  const p=await hydratedProperty(routeParam(req.params.id)); if(!p)return res.status(404).json({error:"not_found"});
  res.json(validateForCalculation(p));
 });
-app.post("/api/v1/properties/:id/calculate",async(req,res)=>{
+app.post("/api/v1/properties/:id/calculate",allow("ADMIN","ANALYST"),async(req,res)=>{
  const p=await hydratedProperty(routeParam(req.params.id)); if(!p)return res.status(404).json({error:"not_found"});
  const run=calculateProperty(p);
  if(run.status==="BLOCKED" || !("calculationRunId" in run)) return res.status(422).json(run);
@@ -152,10 +162,4 @@ app.post("/api/v1/properties/:id/publish",allow("ADMIN","EDITOR"),async(req,res)
  const pub=await publicationRepo.publish(p.id,run.calculationRunId,actor(req),snapshot);
  await auditRepo.log(actor(req),"PUBLISH","property",p.id,null,pub);
  res.status(201).json(pub);
-});
-app.get("/api/v1/properties/:id/public",async(req,res)=>{
- const pub=await publicationRepo.latest(routeParam(req.params.id)); if(!pub)return res.status(404).json({error:"not_published"});
- if(pub.snapshot)return res.json({publication:pub,snapshot:pub.snapshot});
- const run=await calculationRunRepo.get(pub.calculation_run_id);
- res.json({publication:pub,analytics:run});
 });
