@@ -130,6 +130,9 @@ jobs:
       - name: Analyst Workspace build
         working-directory: workspace
         run: npm run typecheck && npm run build
+      - name: Analyst Workspace container build
+        working-directory: workspace
+        run: docker build --build-arg VITE_API_URL=http://localhost:3000/api/v1 -t privatephuket-workspace:rc5 .
       - name: Public Web install
         working-directory: public-web
         run: npm ci
@@ -139,3 +142,6 @@ jobs:
       - name: Public Web build
         working-directory: public-web
         run: npm run typecheck && npm run build
+      - name: Public Web container build
+        working-directory: public-web
+        run: docker build --build-arg VITE_PUBLIC_API_URL=http://localhost:3000/api/v1 -t privatephuket-public:rc5 .
