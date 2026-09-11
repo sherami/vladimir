@@ -1,3 +1,20 @@
+const PRIVATE_DISCLOSURE_KEYS=new Set([
+ "uri","url","path","filePath","sourceUri","privateUri","storageKey","containerPath"
+]);
+
+export function sanitizePublicDisclosure(value:any):any{
+ if(Array.isArray(value)) return value.map(sanitizePublicDisclosure);
+ if(value && typeof value==="object"){
+   return Object.fromEntries(
+     Object.entries(value)
+       .filter(([key])=>!PRIVATE_DISCLOSURE_KEYS.has(key))
+       .map(([key,v])=>[key,sanitizePublicDisclosure(v)])
+   );
+ }
+ if(typeof value==="string" && /^(file:|sandbox:|s3:|gs:|\/mnt\/|\/home\/)/i.test(value)) return "[private source reference removed]";
+ return value;
+}
+
 export function validateNarrative(d:any){
  const issues:string[]=[];
  if(!d) issues.push("publication narrative missing");
@@ -14,8 +31,8 @@ export function buildPublicationSnapshot(property:any,run:any,draft:any){
    headline:draft.headline,summary:draft.summary,whyBuy:draft.why_buy,whyNotBuy:draft.why_not_buy,
    bestFor:draft.best_for,notSuitableFor:draft.not_suitable_for
   },
-  sourceDisclosures:draft.source_disclosures,
-  scenarioDisclosures:draft.scenario_disclosures,
+  sourceDisclosures:sanitizePublicDisclosure(draft.source_disclosures),
+  scenarioDisclosures:sanitizePublicDisclosure(draft.scenario_disclosures),
   frozenAt:new Date().toISOString()
  };
 }
