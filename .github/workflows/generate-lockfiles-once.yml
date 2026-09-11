@@ -1,0 +1,31 @@
+name: Generate RC5 Lockfiles Once
+on:
+  push:
+    branches: [privatephuket-rc5-lockfiles]
+permissions:
+  contents: write
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: privatephuket-rc5-lockfiles
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Generate lockfiles
+        run: |
+          set -euo pipefail
+          for dir in backend workspace public-web; do
+            (cd "$dir" && npm install --package-lock-only --ignore-scripts)
+          done
+      - name: Commit generated lockfiles and remove temporary workflow
+        run: |
+          set -euo pipefail
+          git config user.name "PrivatePhuket CI"
+          git config user.email "ci@privatephuket.local"
+          git add backend/package-lock.json workspace/package-lock.json public-web/package-lock.json
+          git rm .github/workflows/generate-lockfiles-once.yml
+          git commit -m "RC5: generate reproducible npm lockfiles"
+          git push origin HEAD:privatephuket-rc5-lockfiles
