@@ -16,12 +16,12 @@
     "backendTests": true,
     "layanVerdeVerticalSlice": true,
     "publicationImmutability": true,
+    "rbacNegativeTests": true,
+    "jwtIssuerAudience": true,
     "analystWorkspaceBuild": true,
     "publicWebBuild": true
   },
   "remainingReleaseGates": [
-    "RBAC negative tests",
-    "JWT issuer/audience or production IdP integration",
     "dependency vulnerability remediation",
     "reproducible lockfiles and npm ci",
     "backup restore smoke test",
@@ -29,9 +29,9 @@
     "Production Golden Dataset source closure"
   ],
   "lastVerifiedCiRun": {
-    "runNumber": 15,
-    "runId": 34562727685,
-    "url": "https://github.com/sherami/vladimir/actions/runs/34562727685"
+    "runNumber": 18,
+    "runId": 34563240842,
+    "url": "https://github.com/sherami/vladimir/actions/runs/34563240842"
   },
-  "notes": "GitHub CI is green including an authenticated PostgreSQL-backed Layan Verde vertical slice. This is not a claim of cloud staging deployment or Production Golden Dataset completion."
+  "notes": "GitHub CI is green including PostgreSQL-backed tests, RBAC negative-path coverage, JWT issuer/audience enforcement, and an authenticated Layan Verde vertical slice. This is not a claim of cloud staging deployment or Production Golden Dataset completion."
 }
