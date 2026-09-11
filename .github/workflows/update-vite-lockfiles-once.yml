@@ -1,0 +1,35 @@
+name: Update Vite Lockfiles Once
+on:
+  push:
+    branches: [privatephuket-rc5-vite-security]
+
+permissions:
+  contents: write
+
+jobs:
+  update-lockfiles:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: privatephuket-rc5-vite-security
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Update Analyst Workspace lockfile
+        working-directory: workspace
+        run: npm install --package-lock-only
+      - name: Update Public Web lockfile
+        working-directory: public-web
+        run: npm install --package-lock-only
+      - name: Commit lockfiles and remove one-time workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm .github/workflows/update-vite-lockfiles-once.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add workspace/package-lock.json public-web/package-lock.json .github/workflows/update-vite-lockfiles-once.yml
+          git commit -m "RC5: refresh Vite lockfiles"
+          git push origin HEAD:privatephuket-rc5-vite-security
