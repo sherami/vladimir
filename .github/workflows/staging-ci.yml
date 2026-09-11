@@ -42,7 +42,7 @@ jobs:
         run: npm ci
       - name: Backend dependency audit
         working-directory: backend
-        run: npm audit --audit-level=high
+        run: npm audit --audit-level=moderate
       - name: Database migrations
         working-directory: backend
         run: npx tsx src/db/migrate.ts
@@ -120,7 +120,7 @@ jobs:
         run: npm ci
       - name: Analyst Workspace audit
         working-directory: workspace
-        run: npm audit --audit-level=high
+        run: npm audit --audit-level=moderate
       - name: Analyst Workspace build
         working-directory: workspace
         run: npm run typecheck && npm run build
@@ -129,7 +129,7 @@ jobs:
         run: npm ci
       - name: Public Web audit
         working-directory: public-web
-        run: npm audit --audit-level=high
+        run: npm audit --audit-level=moderate
       - name: Public Web build
         working-directory: public-web
         run: npm run typecheck && npm run build
