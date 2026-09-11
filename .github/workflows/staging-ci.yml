@@ -52,6 +52,12 @@ jobs:
       - name: Backend tests
         working-directory: backend
         run: npm test
+      - name: Backend production build
+        working-directory: backend
+        run: npm run build
+      - name: Backend production container build
+        working-directory: backend
+        run: docker build -t privatephuket-api:rc5 .
       - name: Layan Verde vertical slice
         shell: bash
         run: |
