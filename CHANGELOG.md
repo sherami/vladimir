@@ -14,9 +14,14 @@ Calculation-engine completion and executable CI baseline.
 - Added PostgreSQL-backed publication immutability regression coverage.
 - Fixed JSONB evidence persistence for string, number and structured values.
 - Added and executed a real authenticated Layan Verde vertical slice in GitHub CI against PostgreSQL 16.
+- Enforced RBAC negative paths and JWT issuer/audience verification.
+- Added committed lockfiles and switched CI / backend container installation to reproducible `npm ci`.
+- Patched Vite to 6.4.3 in both frontends and upgraded backend Vitest to 5.0.0 after npm audit findings.
+- CI now rejects moderate-or-higher dependency vulnerabilities.
+- Added PostgreSQL custom-format backup / restore smoke verification with restored data-count checks.
 - Canonical API contract updated to `contracts/openapi-v1.0-rc5.yaml`.
 
-CI now proves migrations, backend typecheck/tests, Layan Verde vertical slice, Analyst Workspace build and Public Web build. A cloud staging deployment and Production Golden Dataset are still not declared.
+CI run #25 proves migrations, reproducible installs, moderate dependency audits, backend typecheck/tests, Layan Verde vertical slice, backup/restore, Analyst Workspace build and Public Web build. A cloud staging deployment and Production Golden Dataset are still not declared.
 
 ## 1.0.0-rc.4
 Stabilization release for first real GitHub CI/staging execution.
