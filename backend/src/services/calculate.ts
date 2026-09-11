@@ -63,6 +63,9 @@ export function calculateProperty(p:Property) {
    status:"CALCULATED", tac:total, noi:p.annualNoi?.value??null, netYield:ny,
    productionReturnMetric:metric, productionReturn,
    exitValue:modeledExitValue, netExitProceeds, periodicCashFlows, scenarios,
+   financialDataConfidence:confidence,
+   financialDataConfidenceBreakdown:p.dataConfidenceBreakdown??null,
+   criticalToVerify:!!p.criticalToVerify,
    riskAdjustedScore:score, provisionalVerdict:provisional,
    verdictStatus:vStatus, finalVerdict:vStatus==="FINAL"?provisional:null, validation
  };
