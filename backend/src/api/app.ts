@@ -1,5 +1,6 @@
 import express from "express";
 import { authenticate,allow } from "./auth.js";
+import { httpBoundary } from "./http-boundary.js";
 import { canTransition } from "../domain/workflow.js";
 import { readiness } from "./readiness.js";
 import { v4 as uuid } from "uuid";
@@ -14,6 +15,7 @@ import { buildVerificationItems } from "../services/verification.js";
 import { validateNarrative,buildPublicationSnapshot } from "../services/publication.js";
 
 export const app=express();
+app.use(httpBoundary);
 app.use(express.json());
 
 function actor(req:any){ return String(req.principal?.email ?? "system"); }
