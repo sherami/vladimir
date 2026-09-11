@@ -42,7 +42,7 @@ export const evidenceRepo={
     (id,property_id,field,value,unit,status,source_id,as_of,analyst_comment,is_critical,created_by,supersedes_id)
     values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)
     returning *`,
-    [e.id,e.propertyId,e.field,e.value,e.unit??null,e.status,e.sourceId??null,e.asOf??null,
+    [e.id,e.propertyId,e.field,JSON.stringify(e.value??null),e.unit??null,e.status,e.sourceId??null,e.asOf??null,
      e.analystComment??null,!!e.isCritical,e.createdBy,e.supersedesId??null]);
    return r.rows[0];
  },
@@ -115,7 +115,6 @@ export const calculationRunRepo={
    return r.rowCount?r.rows[0].payload:undefined;
  }
 };
-
 
 export const publicationDraftRepo={
  async upsert(d:any){
