@@ -64,7 +64,7 @@ function addSessionControl(){
 
 if(localStorage.getItem(TOKEN_KEY)){
  addSessionControl();
- import("./main.tsx");
+ import("./main");
 }else{
  showLogin();
 }
