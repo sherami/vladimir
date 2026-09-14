@@ -1,3 +1,4 @@
+import {createHash,timingSafeEqual} from "node:crypto";
 import jwt from "jsonwebtoken";
 import type { Request,Response,NextFunction } from "express";
 export type Role="ADMIN"|"ANALYST"|"ADVISOR"|"EDITOR"|"VIEWER";
@@ -14,6 +15,22 @@ function jwtConfig(){
   issuer:requiredEnv("JWT_ISSUER"),
   audience:requiredEnv("JWT_AUDIENCE")
  };
+}
+function secureEqual(a:string,b:string){
+ const ah=createHash("sha256").update(a).digest();
+ const bh=createHash("sha256").update(b).digest();
+ return timingSafeEqual(ah,bh);
+}
+export function loginWorkspace(email:string,password:string){
+ const configuredEmail=requiredEnv("WORKSPACE_AUTH_EMAIL");
+ const configuredPassword=requiredEnv("WORKSPACE_AUTH_PASSWORD",12);
+ if(!secureEqual(email.trim().toLowerCase(),configuredEmail.trim().toLowerCase())||!secureEqual(password,configuredPassword)) return null;
+ const config=jwtConfig();
+ const principal:Principal={sub:`workspace:${configuredEmail.trim().toLowerCase()}`,email:configuredEmail.trim().toLowerCase(),role:"ADMIN"};
+ const token=jwt.sign({email:principal.email,role:principal.role},config.secret,{
+  subject:principal.sub,issuer:config.issuer,audience:config.audience,expiresIn:"8h"
+ });
+ return {token,principal,expiresInSeconds:8*60*60};
 }
 export function authenticate(req:Request,res:Response,next:NextFunction){
  const h=req.header("authorization"); if(!h?.startsWith("Bearer ")) return res.status(401).json({error:"unauthorized"});
