@@ -15,7 +15,6 @@ services:
     rootDir: backend
     dockerfilePath: ./Dockerfile
     dockerContext: .
-    dockerCommand: node dist/db/migrate.js && node dist/server.js
     healthCheckPath: /api/v1/health
     autoDeployTrigger: checksPass
     envVars:
