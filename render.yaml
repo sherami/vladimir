@@ -15,7 +15,7 @@ services:
     rootDir: backend
     dockerfilePath: ./Dockerfile
     dockerContext: .
-    dockerCommand: /bin/sh -c "node dist/db/migrate.js && node dist/server.js"
+    dockerCommand: node dist/db/migrate.js && node dist/server.js
     healthCheckPath: /api/v1/health
     autoDeployTrigger: checksPass
     envVars:
@@ -31,7 +31,7 @@ services:
         value: privatephuket-staging
       - key: JWT_AUDIENCE
         value: privatephuket-api
-      - key: CORS_ALLOWED_ORIGINS
+      - key: CORS_ORIGINS
         sync: false
 
   - type: web
