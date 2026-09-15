@@ -30,6 +30,10 @@ services:
         value: privatephuket-staging
       - key: JWT_AUDIENCE
         value: privatephuket-api
+      - key: WORKSPACE_AUTH_EMAIL
+        sync: false
+      - key: WORKSPACE_AUTH_PASSWORD
+        sync: false
       - key: CORS_ORIGINS
         sync: false
 

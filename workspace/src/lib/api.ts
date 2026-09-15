@@ -1,12 +1,18 @@
 const BASE=import.meta.env.VITE_API_URL ?? "http://localhost:3000/api/v1";
-const TOKEN=()=>localStorage.getItem("pp_token")??"";
+const TOKEN_KEY="pp_token";
+const TOKEN=()=>localStorage.getItem(TOKEN_KEY)??"";
 async function request(path:string,init?:RequestInit){
  const r=await fetch(BASE+path,{...init,headers:{"Content-Type":"application/json",Authorization:`Bearer ${TOKEN()}`,...(init?.headers??{})}});
+ if(r.status===401){
+  localStorage.removeItem(TOKEN_KEY);
+  location.reload();
+  throw new Error("401 session_expired");
+ }
  if(!r.ok) throw new Error(`${r.status} ${await r.text()}`);
  return r.json();
 }
 export const api={
- setToken:(token:string)=>localStorage.setItem("pp_token",token),
+ setToken:(token:string)=>localStorage.setItem(TOKEN_KEY,token),
  properties:()=>request("/properties"),
  property:(id:string)=>request(`/properties/${id}`),
  sources:(id:string)=>request(`/properties/${id}/sources`),
