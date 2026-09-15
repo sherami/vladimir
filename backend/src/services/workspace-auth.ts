@@ -7,7 +7,7 @@ const scrypt=promisify(scryptCb);
 const KEYLEN=64;
 // One-time bootstrap credential: only its SHA-256 digest is stored in source.
 // The bootstrap route permanently refuses initialization once any workspace user exists.
-const FALLBACK_BOOTSTRAP_TOKEN_SHA256="73a43af62c9073572ce61aa4ae3c1a398eff78e1ef144735fa276438f8a9014f";
+const FALLBACK_BOOTSTRAP_TOKEN_SHA256="cb96555766daf47da43b09f05d1a43087a35aeadee90ed22b92fcee499b7fc83";
 
 async function hashPassword(password:string){
  if(password.length<12)throw new Error("password_too_short");
