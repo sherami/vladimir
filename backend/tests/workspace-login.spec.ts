@@ -19,7 +19,7 @@ afterEach(()=>{
 });
 
 describe("workspace login",()=>{
- test("issues an ADMIN JWT for valid credentials",async()=>{
+ test("issues an ADMIN JWT for valid legacy rollout credentials",async()=>{
   const r=await request(rootApp).post("/api/v1/auth/login").send({email:"ADMIN@PRIVATEPHUKET.TEST",password:"very-strong-test-password"});
   expect(r.status).toBe(200);
   expect(r.body.tokenType).toBe("Bearer");
@@ -37,10 +37,10 @@ describe("workspace login",()=>{
   expect(r.body).toEqual({error:"invalid_credentials"});
  });
 
- test("fails closed when workspace credentials are not configured",async()=>{
+ test("rejects unknown credentials when legacy password fallback is absent",async()=>{
   delete process.env.WORKSPACE_AUTH_PASSWORD;
   const r=await request(rootApp).post("/api/v1/auth/login").send({email:"admin@privatephuket.test",password:"anything"});
-  expect(r.status).toBe(503);
-  expect(r.body).toEqual({error:"auth_not_configured"});
+  expect(r.status).toBe(401);
+  expect(r.body).toEqual({error:"invalid_credentials"});
  });
 });
