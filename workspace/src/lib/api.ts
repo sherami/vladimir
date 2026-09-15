@@ -14,6 +14,7 @@ async function request(path:string,init?:RequestInit){
 export const api={
  setToken:(token:string)=>localStorage.setItem(TOKEN_KEY,token),
  properties:()=>request("/properties"),
+ createProperty:(body:any)=>request("/properties",{method:"POST",body:JSON.stringify(body)}),
  property:(id:string)=>request(`/properties/${id}`),
  sources:(id:string)=>request(`/properties/${id}/sources`),
  evidence:(id:string)=>request(`/properties/${id}/evidence`),
