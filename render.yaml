@@ -34,6 +34,8 @@ services:
         sync: false
       - key: WORKSPACE_AUTH_PASSWORD
         sync: false
+      - key: WORKSPACE_BOOTSTRAP_TOKEN
+        sync: false
       - key: CORS_ORIGINS
         sync: false
 
