@@ -31,5 +31,5 @@ function showSetup(){
 }
 function addSessionControl(){const button=document.createElement("button");button.className="session-logout";button.type="button";button.textContent="Sign out";button.addEventListener("click",()=>{localStorage.removeItem(TOKEN_KEY);location.reload();});document.body.appendChild(button);}
 
-if(localStorage.getItem(TOKEN_KEY)){addSessionControl();import("./main");}
+if(localStorage.getItem(TOKEN_KEY)){addSessionControl();Promise.all([import("./main"),import("./property-intake")]);}
 else{authStatus().then(s=>s.initialized?showLogin():showSetup());}
