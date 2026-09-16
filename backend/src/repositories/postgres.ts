@@ -54,7 +54,10 @@ export const evidenceRepo={
    const r=await pool.query(`
      select distinct on(field) * from pp_evidence
      where property_id=$1
-     order by field, created_at desc`,[propertyId]);
+       and value is not null
+       and value <> 'null'::jsonb
+       and value <> '\"\"'::jsonb
+     order by field, created_at desc, id desc`,[propertyId]);
    return r.rows;
  }
 };
