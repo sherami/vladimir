@@ -25,12 +25,30 @@ function calculationBlockerMessage(error:unknown){
  }catch{}
  return `Calculation could not be completed.\n\n${message}`;
 }
+function mutationErrorMessage(label:string,error:unknown){
+ const message=error instanceof Error?error.message:String(error);
+ const body=message.replace(/^\d+\s+/,"");
+ try{
+  const parsed=JSON.parse(body);
+  const detail=parsed?.message??parsed?.error??parsed?.code;
+  if(detail)return `${label} could not be saved.\n\n${detail}`;
+ }catch{}
+ return `${label} could not be saved.\n\n${message}`;
+}
 async function calculate(id:string){
  try{return await request(`/properties/${id}/calculate`,{method:"POST"});}
  catch(error){
   window.alert(calculationBlockerMessage(error));
   return null;
  }
+}
+async function createSource(id:string,body:any){
+ try{return await request(`/properties/${id}/sources`,{method:"POST",body:JSON.stringify(body)});}
+ catch(error){window.alert(mutationErrorMessage("Source",error));throw error;}
+}
+async function createEvidence(id:string,body:any){
+ try{return await request(`/properties/${id}/evidence`,{method:"POST",body:JSON.stringify(body)});}
+ catch(error){window.alert(mutationErrorMessage("Evidence",error));throw error;}
 }
 export const api={
  setToken:(token:string)=>localStorage.setItem(TOKEN_KEY,token),
@@ -43,8 +61,8 @@ export const api={
  syncVerification:(id:string)=>request(`/properties/${id}/verification/sync`,{method:"POST"}),
  validate:(id:string)=>request(`/properties/${id}/validate`,{method:"POST"}),
  calculate,
- createSource:(id:string,body:any)=>request(`/properties/${id}/sources`,{method:"POST",body:JSON.stringify(body)}),
- createEvidence:(id:string,body:any)=>request(`/properties/${id}/evidence`,{method:"POST",body:JSON.stringify(body)}),
+ createSource,
+ createEvidence,
  calculations:(id:string)=>request(`/properties/${id}/calculations`),
  reviewRun:(runId:string,status:"APPROVED"|"REJECTED",comment="")=>request(`/calculations/${runId}/review`,{method:"POST",body:JSON.stringify({status,comment})}),
  resolveVerification:(id:string,comment:string,sourceId?:string)=>request(`/verification/${id}/resolve`,{method:"POST",body:JSON.stringify({comment,sourceId})}),
