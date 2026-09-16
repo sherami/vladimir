@@ -11,6 +11,27 @@ async function request(path:string,init?:RequestInit){
  if(!r.ok) throw new Error(`${r.status} ${await r.text()}`);
  return r.json();
 }
+function calculationBlockerMessage(error:unknown){
+ const message=error instanceof Error?error.message:String(error);
+ const body=message.replace(/^\d+\s+/,"");
+ try{
+  const parsed=JSON.parse(body);
+  const issues=parsed?.validation?.issues;
+  if(Array.isArray(issues)&&issues.length){
+   const blockers=issues.filter((x:any)=>x?.severity==="BLOCKER"||x?.severity==="ERROR");
+   const selected=blockers.length?blockers:issues;
+   return `Calculation blocked\n\n${selected.map((x:any)=>`• ${x.message??x.code??"Validation issue"}`).join("\n")}`;
+  }
+ }catch{}
+ return `Calculation could not be completed.\n\n${message}`;
+}
+async function calculate(id:string){
+ try{return await request(`/properties/${id}/calculate`,{method:"POST"});}
+ catch(error){
+  window.alert(calculationBlockerMessage(error));
+  return null;
+ }
+}
 export const api={
  setToken:(token:string)=>localStorage.setItem(TOKEN_KEY,token),
  properties:()=>request("/properties"),
@@ -21,7 +42,7 @@ export const api={
  verification:(state="OPEN")=>request(`/verification?state=${state}`),
  syncVerification:(id:string)=>request(`/properties/${id}/verification/sync`,{method:"POST"}),
  validate:(id:string)=>request(`/properties/${id}/validate`,{method:"POST"}),
- calculate:(id:string)=>request(`/properties/${id}/calculate`,{method:"POST"}),
+ calculate,
  createSource:(id:string,body:any)=>request(`/properties/${id}/sources`,{method:"POST",body:JSON.stringify(body)}),
  createEvidence:(id:string,body:any)=>request(`/properties/${id}/evidence`,{method:"POST",body:JSON.stringify(body)}),
  calculations:(id:string)=>request(`/properties/${id}/calculations`),
