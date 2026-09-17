@@ -9,6 +9,10 @@ import { xirr } from "../domain/xirr.js";
 export const ENGINE_VERSION="1.0.0-rc.5";
 export const METHODOLOGY_VERSION="1.0";
 
+export function calculationInputSnapshotHash(p:Property){
+ return createHash("sha256").update(JSON.stringify(p)).digest("hex");
+}
+
 export function calculateProperty(p:Property) {
  const validation=validateForCalculation(p);
  if(!validation.readyToCalculate) return {status:"BLOCKED",validation};
@@ -54,12 +58,11 @@ export function calculateProperty(p:Property) {
  const provisional=score==null||productionReturn==null?null:
    provisionalVerdict(score,productionReturn,p.requiredReturn??.08);
  const vStatus=verdictStatus(confidence,!!p.criticalToVerify,false,productionReturn!=null);
- const snapshot=JSON.stringify(p);
 
  return {
    calculationRunId:uuid(), propertyId:p.id, engineVersion:ENGINE_VERSION,
    methodologyVersion:METHODOLOGY_VERSION,
-   inputSnapshotHash:createHash("sha256").update(snapshot).digest("hex"),
+   inputSnapshotHash:calculationInputSnapshotHash(p),
    status:"CALCULATED", tac:total, noi:p.annualNoi?.value??null, netYield:ny,
    productionReturnMetric:metric, productionReturn,
    exitValue:modeledExitValue, netExitProceeds, periodicCashFlows, scenarios,

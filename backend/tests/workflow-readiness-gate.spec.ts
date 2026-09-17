@@ -36,6 +36,39 @@ describe("workflow calculation readiness gate",()=>{
    .toEqual({allowed:true});
  });
 
+ test("requires a successful calculation before CALCULATED",()=>{
+  const decision=evaluateWorkflowTransition(
+   property({workflow:"READY_TO_CALCULATE"}),
+   "CALCULATED",
+   {currentInputSnapshotHash:"current"}
+  );
+  expect(decision).toMatchObject({allowed:false,error:"calculation_run_required"});
+ });
+
+ test("rejects a stale calculation after inputs change",()=>{
+  const decision=evaluateWorkflowTransition(
+   property({workflow:"READY_TO_CALCULATE"}),
+   "CALCULATED",
+   {
+    latestCalculationRun:{propertyId:"p",status:"CALCULATED",inputSnapshotHash:"old"},
+    currentInputSnapshotHash:"current"
+   }
+  );
+  expect(decision).toMatchObject({allowed:false,error:"calculation_run_stale"});
+ });
+
+ test("allows CALCULATED only for the current successful run",()=>{
+  const decision=evaluateWorkflowTransition(
+   property({workflow:"READY_TO_CALCULATE"}),
+   "CALCULATED",
+   {
+    latestCalculationRun:{propertyId:"p",status:"CALCULATED",inputSnapshotHash:"current"},
+    currentInputSnapshotHash:"current"
+   }
+  );
+  expect(decision).toEqual({allowed:true});
+ });
+
  test("still rejects transitions outside the state machine",()=>{
   expect(evaluateWorkflowTransition(property(),"PUBLISHED"))
    .toMatchObject({allowed:false,error:"invalid_transition"});

@@ -9,7 +9,7 @@ import {
  calculationRunRepo, publicationRepo, publicationDraftRepo, auditRepo
 } from "../repositories/postgres.js";
 import { validateForCalculation } from "../domain/validation.js";
-import { calculateProperty } from "../services/calculate.js";
+import { calculateProperty,calculationInputSnapshotHash } from "../services/calculate.js";
 import { applyEvidenceToProperty } from "../services/evidence.js";
 import { buildVerificationItems,isVerificationBlockerStillActive } from "../services/verification.js";
 import { validateNarrative,buildPublicationSnapshot } from "../services/publication.js";
@@ -66,7 +66,15 @@ app.post("/api/v1/properties/:id/workflow",allow("ADMIN","ANALYST"),async(req,re
  const base=await propertyRepo.get(id); if(!base)return res.status(404).json({error:"not_found"});
  const hydrated=await hydratedProperty(id); if(!hydrated)return res.status(404).json({error:"not_found"});
  const to=req.body.to;
- const decision=evaluateWorkflowTransition(hydrated,to);
+ const latestCalculationRun=to==="CALCULATED"
+  ? (await calculationRunRepo.listByProperty(id))[0]
+  : undefined;
+ const decision=evaluateWorkflowTransition(hydrated,to,{
+  latestCalculationRun,
+  currentInputSnapshotHash:to==="CALCULATED"
+   ? calculationInputSnapshotHash(hydrated)
+   : undefined
+ });
  if(!decision.allowed)return res.status(409).json(decision);
  const before={...base}; base.workflow=to; await propertyRepo.save(base);
  await auditRepo.log(actor(req),"WORKFLOW_TRANSITION","property",base.id,before,base);
