@@ -3,7 +3,7 @@ import { authenticate,allow } from "./auth.js";
 import { httpBoundary } from "./http-boundary.js";
 import { evaluateCalculationRequest,evaluateWorkflowTransition } from "../domain/workflow.js";
 import { validateCalculationReview } from "../domain/calculation-review.js";
-import { evaluateEvidenceMutation } from "../domain/evidence-mutation.js";
+import { evaluateEvidenceMutation,evaluatePropertyDataMutation } from "../domain/evidence-mutation.js";
 import { validatePublicationDraftMutation } from "../domain/publication-draft.js";
 import { readiness } from "./readiness.js";
 import { v4 as uuid } from "uuid";
@@ -90,16 +90,22 @@ app.post("/api/v1/properties/:id/workflow",allow("ADMIN","ANALYST"),async(req,re
   publicationNarrativeIssues:to==="READY_TO_PUBLISH"
    ? validateNarrative(publicationDraft)
    : undefined,
-  latestPublication
+  latestPublication,
+  supersessionReason:req.body.comment
  });
  if(!decision.allowed)return res.status(409).json(decision);
  const before={...base}; base.workflow=to; await propertyRepo.save(base);
- await auditRepo.log(actor(req),"WORKFLOW_TRANSITION","property",base.id,before,base);
+ const auditAfter=to==="SUPERSEDED"
+  ? {property:base,supersessionReason:req.body.comment.trim()}
+  : base;
+ await auditRepo.log(actor(req),"WORKFLOW_TRANSITION","property",base.id,before,auditAfter);
  res.json(base);
 });
 
 app.post("/api/v1/properties/:id/sources",allow("ADMIN","ANALYST"),async(req,res)=>{
  const p=await propertyRepo.get(routeParam(req.params.id)); if(!p)return res.status(404).json({error:"not_found"});
+ const mutationDecision=evaluatePropertyDataMutation(p);
+ if(!mutationDecision.allowed)return res.status(409).json(mutationDecision);
  const sourceValidation=validateSourceInput(req.body);
  if(!sourceValidation.valid)return res.status(400).json({
    error:sourceValidation.error,
