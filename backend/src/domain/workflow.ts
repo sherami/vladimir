@@ -19,6 +19,10 @@ export interface WorkflowTransitionContext {
  };
  currentInputSnapshotHash?:string;
  publicationNarrativeIssues?:string[];
+ latestPublication?:{
+  property_id:string;
+  calculation_run_id:string;
+ };
 }
 
 export function canTransition(from:WorkflowState,to:WorkflowState){
@@ -39,7 +43,7 @@ export function evaluateWorkflowTransition(
    return {allowed:false as const,error:"validation_failed",validation};
  }
 
- if(to==="CALCULATED" || to==="ANALYST_REVIEW" || to==="READY_TO_PUBLISH"){
+ if(to==="CALCULATED" || to==="ANALYST_REVIEW" || to==="READY_TO_PUBLISH" || to==="PUBLISHED"){
   const run=context.latestCalculationRun;
   if(!run || run.propertyId!==p.id || run.status!=="CALCULATED")
    return {
@@ -54,6 +58,18 @@ export function evaluateWorkflowTransition(
     calculationRunId:run.calculationRunId,
     message:"Property inputs changed after the latest calculation. Recalculate before advancing its workflow."
    };
+
+  if(to==="PUBLISHED"){
+   const publication=context.latestPublication;
+   if(!publication || publication.property_id!==p.id ||
+      publication.calculation_run_id!==run.calculationRunId)
+    return {
+     allowed:false as const,
+     error:"publication_required",
+     calculationRunId:run.calculationRunId,
+     message:"Create a publication from the current calculation before marking the property PUBLISHED."
+    };
+  }
 
   if(to==="READY_TO_PUBLISH"){
    if(run.verdictStatus!=="FINAL")
