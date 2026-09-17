@@ -11,7 +11,7 @@ import {
 import { validateForCalculation } from "../domain/validation.js";
 import { calculateProperty } from "../services/calculate.js";
 import { applyEvidenceToProperty } from "../services/evidence.js";
-import { buildVerificationItems } from "../services/verification.js";
+import { buildVerificationItems,isVerificationBlockerStillActive } from "../services/verification.js";
 import { validateNarrative,buildPublicationSnapshot } from "../services/publication.js";
 
 export const app=express();
@@ -109,9 +109,7 @@ app.post("/api/v1/verification/:id/resolve",allow("ADMIN","ANALYST"),async(req,r
    const p=await hydratedProperty(openItem.property_id);
    if(!p)return res.status(404).json({error:"property_not_found"});
    const evidence=await evidenceRepo.latestByField(p.id);
-   const active=buildVerificationItems(p,evidence).some(x=>
-     x.severity==="BLOCKER"&&x.code===openItem.code&&(x.field??null)===(openItem.field??null)
-   );
+   const active=isVerificationBlockerStillActive(openItem,buildVerificationItems(p,evidence));
    if(active)return res.status(409).json({
      error:"blocker_still_active",
      code:openItem.code,
