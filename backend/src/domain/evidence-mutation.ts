@@ -4,14 +4,20 @@ const RESET_TO_VERIFICATION=new Set<WorkflowState>([
  "READY_TO_CALCULATE","CALCULATED","ANALYST_REVIEW","READY_TO_PUBLISH"
 ]);
 
-export function evaluateEvidenceMutation(property:Property) {
+export function evaluatePropertyDataMutation(property:Property) {
  if(property.workflow==="PUBLISHED" || property.workflow==="SUPERSEDED")
   return {
    allowed:false as const,
    error:"immutable_property_version",
    workflow:property.workflow,
-   message:"Published and superseded property versions are immutable. Create a new analysis version for new evidence."
+   message:"Published and superseded property versions are immutable. Create a new analysis version for new source or evidence data."
   };
+ return {allowed:true as const};
+}
+
+export function evaluateEvidenceMutation(property:Property) {
+ const versionDecision=evaluatePropertyDataMutation(property);
+ if(!versionDecision.allowed)return versionDecision;
  return {
   allowed:true as const,
   nextWorkflow:RESET_TO_VERIFICATION.has(property.workflow)
