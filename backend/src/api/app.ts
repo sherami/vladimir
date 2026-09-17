@@ -4,6 +4,7 @@ import { httpBoundary } from "./http-boundary.js";
 import { evaluateCalculationRequest,evaluateWorkflowTransition } from "../domain/workflow.js";
 import { validateCalculationReview } from "../domain/calculation-review.js";
 import { evaluateEvidenceMutation } from "../domain/evidence-mutation.js";
+import { validatePublicationDraftMutation } from "../domain/publication-draft.js";
 import { readiness } from "./readiness.js";
 import { v4 as uuid } from "uuid";
 import {
@@ -231,12 +232,27 @@ app.post("/api/v1/calculations/:id/review",allow("ADMIN","ANALYST"),async(req,re
 });
 
 app.put("/api/v1/properties/:id/publication-draft",allow("ADMIN","ANALYST","EDITOR"),async(req,res)=>{
- const p=await propertyRepo.get(routeParam(req.params.id)); if(!p)return res.status(404).json({error:"not_found"});
+ const id=routeParam(req.params.id);
+ const p=await propertyRepo.get(id); if(!p)return res.status(404).json({error:"not_found"});
+ const hydrated=await hydratedProperty(id); if(!hydrated)return res.status(404).json({error:"not_found"});
  const run=await calculationRunRepo.get(req.body.calculationRunId);
  if(!run||run.propertyId!==p.id)return res.status(400).json({error:"invalid_calculation_run"});
+ const latestRun=(await calculationRunRepo.listByProperty(p.id))[0];
+ const draftDecision=validatePublicationDraftMutation(
+  hydrated,run,latestRun?.calculationRunId,calculationInputSnapshotHash(hydrated)
+ );
+ if(!draftDecision.valid)return res.status(409).json(draftDecision);
+ const previousDraft=await publicationDraftRepo.get(p.id,run.calculationRunId);
  const draft=await publicationDraftRepo.upsert({...req.body,propertyId:p.id,actor:actor(req)});
- await auditRepo.log(actor(req),"UPSERT_PUBLICATION_DRAFT","property",p.id,null,draft);
- res.json(draft);
+ await auditRepo.log(actor(req),"UPSERT_PUBLICATION_DRAFT","property",p.id,previousDraft,draft);
+ const narrativeIssues=validateNarrative(draft);
+ if(p.workflow==="READY_TO_PUBLISH" && narrativeIssues.length){
+  const before={...p};
+  p.workflow="ANALYST_REVIEW";
+  await propertyRepo.save(p);
+  await auditRepo.log(actor(req),"WORKFLOW_RESET_ON_DRAFT","property",p.id,before,p);
+ }
+ res.json({...draft,workflow:p.workflow,narrativeIssues});
 });
 app.get("/api/v1/properties/:id/publication-draft/:runId",async(req,res)=>{
  const d=await publicationDraftRepo.get(routeParam(req.params.id),routeParam(req.params.runId));
