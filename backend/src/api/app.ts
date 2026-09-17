@@ -1,7 +1,7 @@
 import express from "express";
 import { authenticate,allow } from "./auth.js";
 import { httpBoundary } from "./http-boundary.js";
-import { canTransition } from "../domain/workflow.js";
+import { evaluateWorkflowTransition } from "../domain/workflow.js";
 import { readiness } from "./readiness.js";
 import { v4 as uuid } from "uuid";
 import {
@@ -62,12 +62,15 @@ app.get("/api/v1/properties/:id",async(req,res)=>{
 });
 
 app.post("/api/v1/properties/:id/workflow",allow("ADMIN","ANALYST"),async(req,res)=>{
- const p=await propertyRepo.get(routeParam(req.params.id)); if(!p)return res.status(404).json({error:"not_found"});
+ const id=routeParam(req.params.id);
+ const base=await propertyRepo.get(id); if(!base)return res.status(404).json({error:"not_found"});
+ const hydrated=await hydratedProperty(id); if(!hydrated)return res.status(404).json({error:"not_found"});
  const to=req.body.to;
- if(!canTransition(p.workflow,to))return res.status(409).json({error:"invalid_transition",from:p.workflow,to});
- const before={...p}; p.workflow=to; await propertyRepo.save(p);
- await auditRepo.log(actor(req),"WORKFLOW_TRANSITION","property",p.id,before,p);
- res.json(p);
+ const decision=evaluateWorkflowTransition(hydrated,to);
+ if(!decision.allowed)return res.status(409).json(decision);
+ const before={...base}; base.workflow=to; await propertyRepo.save(base);
+ await auditRepo.log(actor(req),"WORKFLOW_TRANSITION","property",base.id,before,base);
+ res.json(base);
 });
 
 app.post("/api/v1/properties/:id/sources",allow("ADMIN","ANALYST"),async(req,res)=>{
