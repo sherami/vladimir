@@ -153,6 +153,35 @@ describe("workflow calculation readiness gate",()=>{
   expect(decision).toEqual({allowed:true});
  });
 
+ test("blocks PUBLISHED until a matching publication exists",()=>{
+  const decision=evaluateWorkflowTransition(
+   property({workflow:"READY_TO_PUBLISH"}),
+   "PUBLISHED",
+   {
+    latestCalculationRun:{
+     calculationRunId:"run-1",propertyId:"p",status:"CALCULATED",inputSnapshotHash:"current"
+    },
+    currentInputSnapshotHash:"current"
+   }
+  );
+  expect(decision).toMatchObject({allowed:false,error:"publication_required"});
+ });
+
+ test("allows PUBLISHED only for the publication tied to the current run",()=>{
+  const decision=evaluateWorkflowTransition(
+   property({workflow:"READY_TO_PUBLISH"}),
+   "PUBLISHED",
+   {
+    latestCalculationRun:{
+     calculationRunId:"run-1",propertyId:"p",status:"CALCULATED",inputSnapshotHash:"current"
+    },
+    currentInputSnapshotHash:"current",
+    latestPublication:{property_id:"p",calculation_run_id:"run-1"}
+   }
+  );
+  expect(decision).toEqual({allowed:true});
+ });
+
  test("still rejects transitions outside the state machine",()=>{
   expect(evaluateWorkflowTransition(property(),"PUBLISHED"))
    .toMatchObject({allowed:false,error:"invalid_transition"});
