@@ -28,7 +28,7 @@ function optionalStringIsValid(value:unknown,maxLength=500){
 export function validateSourceInput(input:SourceInput) {
  const fields:string[]=[];
  if(!nonEmptyString(input.documentType,100)) fields.push("documentType");
- if(!DATA_STATUSES.has(input.status)) fields.push("status");
+ if(typeof input.status!=="string" || !DATA_STATUSES.has(input.status)) fields.push("status");
  if(!optionalStringIsValid(input.title)) fields.push("title");
  if(!optionalStringIsValid(input.issuer,200)) fields.push("issuer");
  if(!optionalStringIsValid(input.uri,2000)) fields.push("uri");
