@@ -18,6 +18,7 @@ import { validateNarrative,buildPublicationSnapshot } from "../services/publicat
 import { validateSourceInput } from "../services/source-validation.js";
 import { validateEvidenceSource } from "../services/evidence-source-validation.js";
 import { validateEvidenceInput } from "../services/evidence-input-validation.js";
+import { validateEvidenceSupersession } from "../services/evidence-supersession-validation.js";
 import { prepareDraftProperty } from "../services/property-intake.js";
 
 export const app=express();
@@ -126,6 +127,14 @@ app.post("/api/v1/properties/:id/evidence",allow("ADMIN","ANALYST"),async(req,re
    error:sourceValidation.error,
    message:"Verified evidence must link to a verified source owned by the same property."
  });
+ const superseded=req.body.supersedesId
+  ? await evidenceRepo.get(req.body.supersedesId)
+  : undefined;
+ const supersessionValidation=validateEvidenceSupersession(
+  p.id,req.body.field,req.body.supersedesId,superseded
+ );
+ if(!supersessionValidation.valid)
+  return res.status(400).json(supersessionValidation);
  const e=await evidenceRepo.create({
    id:uuid(),propertyId:p.id,field:req.body.field,value:req.body.value,unit:req.body.unit,
    status:req.body.status,sourceId:req.body.sourceId,asOf:req.body.asOf,
