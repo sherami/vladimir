@@ -13,6 +13,7 @@ import { calculateProperty } from "../services/calculate.js";
 import { applyEvidenceToProperty } from "../services/evidence.js";
 import { buildVerificationItems,isVerificationBlockerStillActive } from "../services/verification.js";
 import { validateNarrative,buildPublicationSnapshot } from "../services/publication.js";
+import { validateSourceInput } from "../services/source-validation.js";
 
 export const app=express();
 app.use(httpBoundary);
@@ -67,6 +68,12 @@ app.post("/api/v1/properties/:id/workflow",allow("ADMIN","ANALYST"),async(req,re
 
 app.post("/api/v1/properties/:id/sources",allow("ADMIN","ANALYST"),async(req,res)=>{
  const p=await propertyRepo.get(routeParam(req.params.id)); if(!p)return res.status(404).json({error:"not_found"});
+ const sourceValidation=validateSourceInput(req.body);
+ if(!sourceValidation.valid)return res.status(400).json({
+   error:"verified_source_metadata_incomplete",
+   fields:sourceValidation.missingOrInvalidFields,
+   message:"VERIFIED_DOCUMENT requires title, issuer, a valid sourceDate, and a stable URI or file identifier."
+ });
  const source=await sourceRepo.create({
    id:uuid(),propertyId:p.id,documentType:req.body.documentType,issuer:req.body.issuer,
    sourceDate:req.body.sourceDate,status:req.body.status,title:req.body.title,uri:req.body.uri,

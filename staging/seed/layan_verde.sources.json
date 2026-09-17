@@ -4,7 +4,9 @@
     "documentType": "PRICE_LIST",
     "title": "Layan Verde price source",
     "issuer": "Developer / supplied project material",
-    "status": "VERIFIED_DOCUMENT"
+    "status": "VERIFIED_DOCUMENT",
+    "sourceDate": "2026-09-01",
+    "uri": "library:libfile_b5cf30bcde108191a6d93d48e4bbeec9"
   },
   {
     "key": "rental_pool",
