@@ -20,6 +20,7 @@ export interface WorkflowTransitionContext {
  currentInputSnapshotHash?:string;
  publicationNarrativeIssues?:string[];
  supersessionReason?:string;
+ successorProperty?:Pick<Property,"id"|"project"|"workflow">;
  latestPublication?:{
   property_id:string;
   calculation_run_id:string;
@@ -52,12 +53,32 @@ export function evaluateWorkflowTransition(
  if(!canTransition(p.workflow,to))
   return {allowed:false as const,error:"invalid_transition",from:p.workflow,to};
 
- if(to==="SUPERSEDED" && !context.supersessionReason?.trim())
-  return {
-   allowed:false as const,
-   error:"supersession_reason_required",
-   message:"Explain why this published property version is being superseded."
-  };
+ if(to==="SUPERSEDED"){
+  if(!context.supersessionReason?.trim())
+   return {
+    allowed:false as const,
+    error:"supersession_reason_required",
+    message:"Explain why this published property version is being superseded."
+   };
+  const successor=context.successorProperty;
+  if(!successor)
+   return {
+    allowed:false as const,
+    error:"published_successor_required",
+    message:"Select the published replacement version before superseding this property."
+   };
+  if(successor.id===p.id)
+   return {allowed:false as const,error:"successor_cannot_be_self"};
+  if(successor.project!==p.project)
+   return {allowed:false as const,error:"successor_project_mismatch"};
+  if(successor.workflow!=="PUBLISHED")
+   return {
+    allowed:false as const,
+    error:"successor_not_published",
+    workflow:successor.workflow,
+    message:"The replacement version must be published before superseding the current version."
+   };
+ }
 
  if(to==="READY_TO_CALCULATE"){
   const validation=validateForCalculation(p);
