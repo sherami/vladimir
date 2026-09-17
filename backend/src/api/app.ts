@@ -296,11 +296,9 @@ app.post("/api/v1/properties/:id/publish",allow("ADMIN","EDITOR"),async(req,res)
  const narrativeIssues=validateNarrative(draft);
  if(narrativeIssues.length)return res.status(409).json({error:"publication_narrative_incomplete",issues:narrativeIssues});
  const snapshot=buildPublicationSnapshot(hydrated,run,draft);
- const before={...p};
- const pub=await publicationRepo.publish(p.id,run.calculationRunId,actor(req),snapshot);
- p.workflow="PUBLISHED";
- await propertyRepo.save(p);
- await auditRepo.log(actor(req),"PUBLISH","property",p.id,null,pub);
- await auditRepo.log(actor(req),"WORKFLOW_TRANSITION","property",p.id,before,p);
- res.status(201).json({publication:pub,property:p});
+ const result=await publicationRepo.publishAtomically(
+  p.id,run.calculationRunId,actor(req),snapshot
+ );
+ if(!result.ok)return res.status(result.error==="not_found"?404:409).json(result);
+ res.status(201).json({publication:result.publication,property:result.property});
 });
