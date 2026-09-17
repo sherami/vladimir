@@ -252,7 +252,7 @@ app.put("/api/v1/properties/:id/publication-draft",allow("ADMIN","ANALYST","EDIT
   await propertyRepo.save(p);
   await auditRepo.log(actor(req),"WORKFLOW_RESET_ON_DRAFT","property",p.id,before,p);
  }
- res.json({draft,workflow:p.workflow,narrativeIssues});
+ res.json({...draft,workflow:p.workflow,narrativeIssues});
 });
 app.get("/api/v1/properties/:id/publication-draft/:runId",async(req,res)=>{
  const d=await publicationDraftRepo.get(routeParam(req.params.id),routeParam(req.params.runId));
