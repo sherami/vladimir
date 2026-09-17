@@ -2,6 +2,7 @@ import express from "express";
 import { authenticate,allow } from "./auth.js";
 import { httpBoundary } from "./http-boundary.js";
 import { evaluateWorkflowTransition } from "../domain/workflow.js";
+import { validateCalculationReview } from "../domain/calculation-review.js";
 import { readiness } from "./readiness.js";
 import { v4 as uuid } from "uuid";
 import {
@@ -185,9 +186,21 @@ app.post("/api/v1/calculations/:id/review",allow("ADMIN","ANALYST"),async(req,re
  const status=req.body.status;
  if(status!=="APPROVED"&&status!=="REJECTED")return res.status(400).json({error:"invalid_review_status"});
  const id=routeParam(req.params.id);
+ const existingRun=await calculationRunRepo.get(id);
+ if(!existingRun)return res.status(404).json({error:"not_found"});
+ const property=await hydratedProperty(existingRun.propertyId);
+ if(!property)return res.status(404).json({error:"property_not_found"});
+ const latestRun=(await calculationRunRepo.listByProperty(property.id))[0];
+ const reviewDecision=validateCalculationReview(
+  property,existingRun,status,req.body.comment,{
+   latestCalculationRunId:latestRun?.calculationRunId,
+   currentInputSnapshotHash:calculationInputSnapshotHash(property)
+  }
+ );
+ if(!reviewDecision.valid)return res.status(409).json(reviewDecision);
  const run=await calculationRunRepo.review(id,status,actor(req),req.body.comment);
  if(!run)return res.status(404).json({error:"not_found"});
- await auditRepo.log(actor(req),"REVIEW","calculation_run",id,null,run);
+ await auditRepo.log(actor(req),"REVIEW","calculation_run",id,existingRun,run);
  res.json(run);
 });
 
