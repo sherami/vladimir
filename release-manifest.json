@@ -3,7 +3,7 @@
   "architectureFrozen": true,
   "productionGoldenDataset": false,
   "stagingPrepared": true,
-  "stagingDeployed": false,
+  "stagingDeployed": true,
   "referenceFixture": "Layan Verde Studio 37.4 sqm",
   "expectedCalibration": {
     "tacTHB": 9294039.14,
@@ -31,8 +31,16 @@
     "analystWorkspaceBuild": true,
     "publicWebBuild": true
   },
+  "verifiedStagingGates": {
+    "renderResourcesProvisioned": true,
+    "apiHealth": true,
+    "workspaceAuthentication": true,
+    "persistentAdminCreated": true,
+    "postgresAvailable": true,
+    "applicationServicesLive": true,
+    "postInitializationErrorScan": true
+  },
   "remainingReleaseGates": [
-    "cloud staging deployment",
     "Production Golden Dataset source closure"
   ],
   "lastVerifiedCiRun": {
@@ -40,5 +48,6 @@
     "runId": 34566113665,
     "url": "https://github.com/sherami/vladimir/actions/runs/34566113665"
   },
-  "notes": "RC5 is fully prepared for an external Railway staging deployment: all three application Docker images build in GitHub CI, API migrations are included in the runtime image for pre-deploy execution, Railway Config-as-Code and a staging handoff runbook are committed, and the HTTP CORS/security boundary is regression-tested. stagingDeployed remains false until Railway resources are actually provisioned and live acceptance gates pass. Production Golden Dataset remains open pending primary-source evidence."
+  "stagingEvidence": "release-evidence/RC5_RENDER_STAGING_EVIDENCE.md",
+  "notes": "RC5 is deployed to Render staging. API, Analyst Workspace, Public Web and PostgreSQL passed live acceptance on 2026-09-17. Production Golden Dataset remains open pending primary-source evidence; provisional calculations must not be promoted to FINAL."
 }
