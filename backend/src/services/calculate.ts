@@ -10,7 +10,8 @@ export const ENGINE_VERSION="1.0.0-rc.5";
 export const METHODOLOGY_VERSION="1.0";
 
 export function calculationInputSnapshotHash(p:Property){
- return createHash("sha256").update(JSON.stringify(p)).digest("hex");
+ const {workflow:_workflow,...calculationInputs}=p;
+ return createHash("sha256").update(JSON.stringify(calculationInputs)).digest("hex");
 }
 
 export function calculateProperty(p:Property) {
