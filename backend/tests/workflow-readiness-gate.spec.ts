@@ -1,5 +1,5 @@
 import {describe,expect,test} from "vitest";
-import {evaluateWorkflowTransition} from "../src/domain/workflow.js";
+import {canTransition,evaluateCalculationRequest,evaluateWorkflowTransition} from "../src/domain/workflow.js";
 import {calculationInputSnapshotHash} from "../src/services/calculate.js";
 
 const property=(overrides:any={})=>({
@@ -35,6 +35,29 @@ describe("workflow calculation readiness gate",()=>{
  test("allows a valid hydrated property to become calculation-ready",()=>{
   expect(evaluateWorkflowTransition(property(),"READY_TO_CALCULATE"))
    .toEqual({allowed:true});
+ });
+
+ test("blocks calculation outside READY_TO_CALCULATE",()=>{
+  expect(evaluateCalculationRequest(property({workflow:"VERIFICATION"})))
+   .toMatchObject({allowed:false,error:"property_not_ready_to_calculate"});
+ });
+
+ test("revalidates inputs when calculation starts",()=>{
+  expect(evaluateCalculationRequest(property({
+   workflow:"READY_TO_CALCULATE",
+   purchasePrice:undefined
+  }))).toMatchObject({allowed:false,error:"validation_failed"});
+ });
+
+ test("allows calculation only from a valid ready state",()=>{
+  expect(evaluateCalculationRequest(property({workflow:"READY_TO_CALCULATE"})))
+   .toEqual({allowed:true});
+ });
+
+ test("allows downstream states to return to verification for recalculation",()=>{
+  expect(canTransition("CALCULATED","VERIFICATION")).toBe(true);
+  expect(canTransition("ANALYST_REVIEW","VERIFICATION")).toBe(true);
+  expect(canTransition("READY_TO_PUBLISH","VERIFICATION")).toBe(true);
  });
 
  test("requires a successful calculation before CALCULATED",()=>{
