@@ -66,13 +66,21 @@ app.post("/api/v1/properties/:id/workflow",allow("ADMIN","ANALYST"),async(req,re
  const base=await propertyRepo.get(id); if(!base)return res.status(404).json({error:"not_found"});
  const hydrated=await hydratedProperty(id); if(!hydrated)return res.status(404).json({error:"not_found"});
  const to=req.body.to;
- const latestCalculationRun=to==="CALCULATED"
+ const calculationRunRequired=
+  to==="CALCULATED" || to==="ANALYST_REVIEW" || to==="READY_TO_PUBLISH";
+ const latestCalculationRun=calculationRunRequired
   ? (await calculationRunRepo.listByProperty(id))[0]
+  : undefined;
+ const publicationDraft=to==="READY_TO_PUBLISH" && latestCalculationRun?.calculationRunId
+  ? await publicationDraftRepo.get(id,latestCalculationRun.calculationRunId)
   : undefined;
  const decision=evaluateWorkflowTransition(hydrated,to,{
   latestCalculationRun,
-  currentInputSnapshotHash:to==="CALCULATED"
+  currentInputSnapshotHash:calculationRunRequired
    ? calculationInputSnapshotHash(hydrated)
+   : undefined,
+  publicationNarrativeIssues:to==="READY_TO_PUBLISH"
+   ? validateNarrative(publicationDraft)
    : undefined
  });
  if(!decision.allowed)return res.status(409).json(decision);
