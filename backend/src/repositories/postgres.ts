@@ -149,6 +149,35 @@ export const publicationDraftRepo={
 };
 
 export const publicationRepo={
+ async publishAtomically(propertyId:string,runId:string,actor:string,snapshot:any){
+   const client=await pool.connect();
+   try{
+    await client.query("begin");
+    const locked=await client.query("select payload from pp_properties where id=$1 for update",[propertyId]);
+    if(!locked.rowCount){await client.query("rollback");return {ok:false as const,error:"not_found"};}
+    const before=locked.rows[0].payload as Property;
+    if(before.workflow!=="READY_TO_PUBLISH"){
+     await client.query("rollback");
+     return {ok:false as const,error:"property_not_ready_to_publish",workflow:before.workflow};
+    }
+    const publication=(await client.query(`insert into pp_publications
+      (property_id,calculation_run_id,published_by,snapshot)
+      values($1,$2,$3,$4)
+      returning id,property_id,calculation_run_id,published_at,published_by,snapshot`,
+      [propertyId,runId,actor,snapshot])).rows[0];
+    const published={...before,workflow:"PUBLISHED" as const};
+    await client.query("update pp_properties set payload=$2,updated_at=now() where id=$1",[propertyId,published]);
+    await client.query(`insert into pp_audit_log(actor,action,entity_type,entity_id,before_state,after_state)
+      values($1,'PUBLISH','property',$2,null,$3),
+            ($1,'WORKFLOW_TRANSITION','property',$2,$4,$5)`,
+      [actor,propertyId,publication,before,published]);
+    await client.query("commit");
+    return {ok:true as const,publication,property:published};
+   }catch(error){
+    await client.query("rollback");
+    throw error;
+   }finally{client.release();}
+ },
  async publish(propertyId:string,runId:string,actor:string,snapshot:any){
    const r=await pool.query(`insert into pp_publications(property_id,calculation_run_id,published_by,snapshot)
       values($1,$2,$3,$4) returning id,property_id,calculation_run_id,published_at,published_by,snapshot`,
