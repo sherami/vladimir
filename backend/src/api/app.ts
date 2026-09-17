@@ -43,10 +43,15 @@ app.get("/api/v1/ready",readiness);
 // Public read model is deliberately outside JWT middleware. It only returns a
 // frozen explicitly-published snapshot and never falls back to analyst drafts.
 app.get("/api/v1/properties/:id/public",async(req,res)=>{
- const pub=await publicationRepo.latest(routeParam(req.params.id)); if(!pub)return res.status(404).json({error:"not_published"});
- if(pub.snapshot)return res.json({publication:pub,snapshot:pub.snapshot});
+ const id=routeParam(req.params.id);
+ const pub=await publicationRepo.latest(id); if(!pub)return res.status(404).json({error:"not_published"});
+ const property=await propertyRepo.get(id);
+ const lifecycle=property?.workflow==="SUPERSEDED"
+  ? {status:"SUPERSEDED",supersededByPropertyId:property.supersededByPropertyId}
+  : {status:"PUBLISHED"};
+ if(pub.snapshot)return res.json({publication:pub,snapshot:pub.snapshot,lifecycle});
  const run=await calculationRunRepo.get(pub.calculation_run_id);
- res.json({publication:pub,analytics:run});
+ res.json({publication:pub,analytics:run,lifecycle});
 });
 
 app.use("/api/v1",authenticate);
@@ -82,6 +87,9 @@ app.post("/api/v1/properties/:id/workflow",allow("ADMIN","ANALYST"),async(req,re
  const latestPublication=to==="PUBLISHED"
   ? await publicationRepo.latest(id)
   : undefined;
+ const successorProperty=to==="SUPERSEDED" && typeof req.body.successorPropertyId==="string"
+  ? await propertyRepo.get(req.body.successorPropertyId)
+  : undefined;
  const decision=evaluateWorkflowTransition(hydrated,to,{
   latestCalculationRun,
   currentInputSnapshotHash:calculationRunRequired
@@ -91,14 +99,18 @@ app.post("/api/v1/properties/:id/workflow",allow("ADMIN","ANALYST"),async(req,re
    ? validateNarrative(publicationDraft)
    : undefined,
   latestPublication,
-  supersessionReason:req.body.comment
+  supersessionReason:req.body.comment,
+  successorProperty
  });
  if(!decision.allowed)return res.status(409).json(decision);
- const before={...base}; base.workflow=to; await propertyRepo.save(base);
- const auditAfter=to==="SUPERSEDED"
-  ? {property:base,supersessionReason:req.body.comment.trim()}
-  : base;
- await auditRepo.log(actor(req),"WORKFLOW_TRANSITION","property",base.id,before,auditAfter);
+ const before={...base};
+ base.workflow=to;
+ if(to==="SUPERSEDED" && successorProperty){
+  base.supersededByPropertyId=successorProperty.id;
+  base.supersessionReason=req.body.comment.trim();
+ }
+ await propertyRepo.save(base);
+ await auditRepo.log(actor(req),"WORKFLOW_TRANSITION","property",base.id,before,base);
  res.json(base);
 });
 
