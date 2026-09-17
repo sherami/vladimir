@@ -11,7 +11,7 @@ import {
 import { validateForCalculation } from "../domain/validation.js";
 import { calculateProperty } from "../services/calculate.js";
 import { applyEvidenceToProperty } from "../services/evidence.js";
-import { buildVerificationItems } from "../services/verification.js";
+import { buildVerificationItems,isVerificationBlockerStillActive } from "../services/verification.js";
 import { validateNarrative,buildPublicationSnapshot } from "../services/publication.js";
 
 export const app=express();
@@ -103,9 +103,23 @@ app.get("/api/v1/verification",async(req,res)=>{
 });
 app.post("/api/v1/verification/:id/resolve",allow("ADMIN","ANALYST"),async(req,res)=>{
  const id=routeParam(req.params.id);
+ const openItem=await verificationRepo.get(id);
+ if(!openItem||openItem.state!=="OPEN")return res.status(404).json({error:"not_found_or_not_open"});
+ if(openItem.severity==="BLOCKER"){
+   const p=await hydratedProperty(openItem.property_id);
+   if(!p)return res.status(404).json({error:"property_not_found"});
+   const evidence=await evidenceRepo.latestByField(p.id);
+   const active=isVerificationBlockerStillActive(openItem,buildVerificationItems(p,evidence));
+   if(active)return res.status(409).json({
+     error:"blocker_still_active",
+     code:openItem.code,
+     field:openItem.field,
+     message:"Add or supersede the required source-backed evidence, then sync verification before resolving this blocker."
+   });
+ }
  const item=await verificationRepo.resolve(id,actor(req),req.body.comment,req.body.sourceId);
  if(!item)return res.status(404).json({error:"not_found_or_not_open"});
- await auditRepo.log(actor(req),"RESOLVE","verification",id,null,item);
+ await auditRepo.log(actor(req),"RESOLVE","verification",id,openItem,item);
  res.json(item);
 });
 

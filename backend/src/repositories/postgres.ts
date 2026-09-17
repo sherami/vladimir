@@ -63,6 +63,10 @@ export const evidenceRepo={
 };
 
 export const verificationRepo={
+ async get(id:string){
+   const r=await pool.query(`select * from pp_verification_items where id=$1`,[id]);
+   return r.rowCount?r.rows[0]:undefined;
+ },
  async upsertOpen(item:VerificationItem){
    const existing=await pool.query(`select * from pp_verification_items
       where property_id=$1 and code=$2 and coalesce(field,'')=coalesce($3,'') and state='OPEN'
