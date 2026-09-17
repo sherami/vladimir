@@ -211,9 +211,38 @@ describe("workflow calculation readiness gate",()=>{
   )).toMatchObject({allowed:false,error:"supersession_reason_required"});
  });
 
- test("allows supersession when the reason is recorded",()=>{
+ test("requires a published successor when superseding a version",()=>{
   expect(evaluateWorkflowTransition(
-   property({workflow:"PUBLISHED"}),"SUPERSEDED",{supersessionReason:"Replaced by corrected analysis v2"}
+   property({workflow:"PUBLISHED"}),"SUPERSEDED",{
+    supersessionReason:"Replaced by corrected analysis v2"
+   }
+  )).toMatchObject({allowed:false,error:"published_successor_required"});
+ });
+
+ test("rejects a successor from another project",()=>{
+  expect(evaluateWorkflowTransition(
+   property({workflow:"PUBLISHED"}),"SUPERSEDED",{
+    supersessionReason:"Replaced by corrected analysis v2",
+    successorProperty:{id:"p2",project:"Other project",workflow:"PUBLISHED"}
+   }
+  )).toMatchObject({allowed:false,error:"successor_project_mismatch"});
+ });
+
+ test("rejects a replacement version that is not yet published",()=>{
+  expect(evaluateWorkflowTransition(
+   property({workflow:"PUBLISHED"}),"SUPERSEDED",{
+    supersessionReason:"Replaced by corrected analysis v2",
+    successorProperty:{id:"p2",project:"Project",workflow:"READY_TO_PUBLISH"}
+   }
+  )).toMatchObject({allowed:false,error:"successor_not_published"});
+ });
+
+ test("allows supersession only when the published successor is recorded",()=>{
+  expect(evaluateWorkflowTransition(
+   property({workflow:"PUBLISHED"}),"SUPERSEDED",{
+    supersessionReason:"Replaced by corrected analysis v2",
+    successorProperty:{id:"p2",project:"Project",workflow:"PUBLISHED"}
+   }
   )).toEqual({allowed:true});
  });
 
