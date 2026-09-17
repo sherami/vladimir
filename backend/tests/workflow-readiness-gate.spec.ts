@@ -1,5 +1,6 @@
 import {describe,expect,test} from "vitest";
 import {evaluateWorkflowTransition} from "../src/domain/workflow.js";
+import {calculationInputSnapshotHash} from "../src/services/calculate.js";
 
 const property=(overrides:any={})=>({
  id:"p",project:"Project",workflow:"VERIFICATION",
@@ -64,6 +65,89 @@ describe("workflow calculation readiness gate",()=>{
    {
     latestCalculationRun:{propertyId:"p",status:"CALCULATED",inputSnapshotHash:"current"},
     currentInputSnapshotHash:"current"
+   }
+  );
+  expect(decision).toEqual({allowed:true});
+ });
+
+ test("calculation input hash ignores workflow metadata",()=>{
+  expect(calculationInputSnapshotHash(property({workflow:"READY_TO_CALCULATE"})))
+   .toBe(calculationInputSnapshotHash(property({workflow:"CALCULATED"})));
+ });
+
+ test("requires the calculation to remain current before analyst review",()=>{
+  const decision=evaluateWorkflowTransition(
+   property({workflow:"CALCULATED"}),
+   "ANALYST_REVIEW",
+   {
+    latestCalculationRun:{propertyId:"p",status:"CALCULATED",inputSnapshotHash:"old"},
+    currentInputSnapshotHash:"current"
+   }
+  );
+  expect(decision).toMatchObject({allowed:false,error:"calculation_run_stale"});
+ });
+
+ test("blocks publication readiness for a provisional verdict",()=>{
+  const decision=evaluateWorkflowTransition(
+   property({workflow:"ANALYST_REVIEW"}),
+   "READY_TO_PUBLISH",
+   {
+    latestCalculationRun:{
+     propertyId:"p",status:"CALCULATED",inputSnapshotHash:"current",
+     verdictStatus:"PROVISIONAL",reviewStatus:"APPROVED"
+    },
+    currentInputSnapshotHash:"current",
+    publicationNarrativeIssues:[]
+   }
+  );
+  expect(decision).toMatchObject({allowed:false,error:"calculation_run_not_final"});
+ });
+
+ test("blocks publication readiness until the current run is approved",()=>{
+  const decision=evaluateWorkflowTransition(
+   property({workflow:"ANALYST_REVIEW"}),
+   "READY_TO_PUBLISH",
+   {
+    latestCalculationRun:{
+     propertyId:"p",status:"CALCULATED",inputSnapshotHash:"current",
+     verdictStatus:"FINAL",reviewStatus:"REJECTED"
+    },
+    currentInputSnapshotHash:"current",
+    publicationNarrativeIssues:[]
+   }
+  );
+  expect(decision).toMatchObject({allowed:false,error:"calculation_run_not_approved"});
+ });
+
+ test("blocks publication readiness when narrative is incomplete",()=>{
+  const decision=evaluateWorkflowTransition(
+   property({workflow:"ANALYST_REVIEW"}),
+   "READY_TO_PUBLISH",
+   {
+    latestCalculationRun:{
+     propertyId:"p",status:"CALCULATED",inputSnapshotHash:"current",
+     verdictStatus:"FINAL",reviewStatus:"APPROVED"
+    },
+    currentInputSnapshotHash:"current",
+    publicationNarrativeIssues:["summary required"]
+   }
+  );
+  expect(decision).toMatchObject({
+   allowed:false,error:"publication_narrative_incomplete",issues:["summary required"]
+  });
+ });
+
+ test("allows publication readiness only after all gates pass",()=>{
+  const decision=evaluateWorkflowTransition(
+   property({workflow:"ANALYST_REVIEW"}),
+   "READY_TO_PUBLISH",
+   {
+    latestCalculationRun:{
+     propertyId:"p",status:"CALCULATED",inputSnapshotHash:"current",
+     verdictStatus:"FINAL",reviewStatus:"APPROVED"
+    },
+    currentInputSnapshotHash:"current",
+    publicationNarrativeIssues:[]
    }
   );
   expect(decision).toEqual({allowed:true});
