@@ -45,6 +45,9 @@ export function validateEvidenceInput(input:any){
   issues.push("value is required");
  if(input?.asOf!==undefined && !validDate(input.asOf))
   issues.push("asOf must be a valid YYYY-MM-DD date");
+ if(input?.supersedesId!==undefined &&
+    (typeof input.supersedesId!=="string" || !input.supersedesId.trim() || input.supersedesId.length>100))
+  issues.push("supersedesId must be a non-empty evidence identifier");
 
  if(POSITIVE_FIELDS.has(field) && (!finiteNumber(value) || value<=0))
   issues.push(`${field} must be a finite number greater than zero`);
