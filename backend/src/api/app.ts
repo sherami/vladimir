@@ -67,12 +67,15 @@ app.post("/api/v1/properties/:id/workflow",allow("ADMIN","ANALYST"),async(req,re
  const hydrated=await hydratedProperty(id); if(!hydrated)return res.status(404).json({error:"not_found"});
  const to=req.body.to;
  const calculationRunRequired=
-  to==="CALCULATED" || to==="ANALYST_REVIEW" || to==="READY_TO_PUBLISH";
+  to==="CALCULATED" || to==="ANALYST_REVIEW" || to==="READY_TO_PUBLISH" || to==="PUBLISHED";
  const latestCalculationRun=calculationRunRequired
   ? (await calculationRunRepo.listByProperty(id))[0]
   : undefined;
  const publicationDraft=to==="READY_TO_PUBLISH" && latestCalculationRun?.calculationRunId
   ? await publicationDraftRepo.get(id,latestCalculationRun.calculationRunId)
+  : undefined;
+ const latestPublication=to==="PUBLISHED"
+  ? await publicationRepo.latest(id)
   : undefined;
  const decision=evaluateWorkflowTransition(hydrated,to,{
   latestCalculationRun,
@@ -81,7 +84,8 @@ app.post("/api/v1/properties/:id/workflow",allow("ADMIN","ANALYST"),async(req,re
    : undefined,
   publicationNarrativeIssues:to==="READY_TO_PUBLISH"
    ? validateNarrative(publicationDraft)
-   : undefined
+   : undefined,
+  latestPublication
  });
  if(!decision.allowed)return res.status(409).json(decision);
  const before={...base}; base.workflow=to; await propertyRepo.save(base);
@@ -201,16 +205,29 @@ app.get("/api/v1/properties/:id/publication-draft/:runId",async(req,res)=>{
 });
 
 app.post("/api/v1/properties/:id/publish",allow("ADMIN","EDITOR"),async(req,res)=>{
- const p=await propertyRepo.get(routeParam(req.params.id)); if(!p)return res.status(404).json({error:"not_found"});
+ const id=routeParam(req.params.id);
+ const p=await propertyRepo.get(id); if(!p)return res.status(404).json({error:"not_found"});
+ if(p.workflow!=="READY_TO_PUBLISH")
+  return res.status(409).json({error:"property_not_ready_to_publish",workflow:p.workflow});
+ const hydrated=await hydratedProperty(id); if(!hydrated)return res.status(404).json({error:"not_found"});
  const run=await calculationRunRepo.get(req.body.calculationRunId);
  if(!run||run.propertyId!==p.id)return res.status(400).json({error:"invalid_calculation_run"});
+ const latestRun=(await calculationRunRepo.listByProperty(p.id))[0];
+ if(!latestRun || latestRun.calculationRunId!==run.calculationRunId)
+  return res.status(409).json({error:"calculation_run_not_latest"});
+ if(run.inputSnapshotHash!==calculationInputSnapshotHash(hydrated))
+  return res.status(409).json({error:"calculation_run_stale"});
  if(run.verdictStatus!=="FINAL")return res.status(409).json({error:"run_not_final"});
  if(run.reviewStatus!=="APPROVED")return res.status(409).json({error:"run_not_approved"});
  const draft=await publicationDraftRepo.get(p.id,run.calculationRunId);
  const narrativeIssues=validateNarrative(draft);
  if(narrativeIssues.length)return res.status(409).json({error:"publication_narrative_incomplete",issues:narrativeIssues});
- const snapshot=buildPublicationSnapshot(p,run,draft);
+ const snapshot=buildPublicationSnapshot(hydrated,run,draft);
+ const before={...p};
  const pub=await publicationRepo.publish(p.id,run.calculationRunId,actor(req),snapshot);
+ p.workflow="PUBLISHED";
+ await propertyRepo.save(p);
  await auditRepo.log(actor(req),"PUBLISH","property",p.id,null,pub);
- res.status(201).json(pub);
+ await auditRepo.log(actor(req),"WORKFLOW_TRANSITION","property",p.id,before,p);
+ res.status(201).json({publication:pub,property:p});
 });
