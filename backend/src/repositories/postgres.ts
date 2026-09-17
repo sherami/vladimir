@@ -37,6 +37,10 @@ export const sourceRepo={
 };
 
 export const evidenceRepo={
+ async get(id:string){
+   const r=await pool.query(`select * from pp_evidence where id=$1`,[id]);
+   return r.rowCount?r.rows[0]:undefined;
+ },
  async create(e:EvidenceRecord){
    const r=await pool.query(`insert into pp_evidence
     (id,property_id,field,value,unit,status,source_id,as_of,analyst_comment,is_critical,created_by,supersedes_id)
