@@ -19,6 +19,7 @@ export interface WorkflowTransitionContext {
  };
  currentInputSnapshotHash?:string;
  publicationNarrativeIssues?:string[];
+ supersessionReason?:string;
  latestPublication?:{
   property_id:string;
   calculation_run_id:string;
@@ -50,6 +51,13 @@ export function evaluateWorkflowTransition(
 ) {
  if(!canTransition(p.workflow,to))
   return {allowed:false as const,error:"invalid_transition",from:p.workflow,to};
+
+ if(to==="SUPERSEDED" && !context.supersessionReason?.trim())
+  return {
+   allowed:false as const,
+   error:"supersession_reason_required",
+   message:"Explain why this published property version is being superseded."
+  };
 
  if(to==="READY_TO_CALCULATE"){
   const validation=validateForCalculation(p);

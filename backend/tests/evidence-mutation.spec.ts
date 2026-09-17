@@ -1,5 +1,5 @@
 import {describe,expect,test} from "vitest";
-import {evaluateEvidenceMutation} from "../src/domain/evidence-mutation.js";
+import {evaluateEvidenceMutation,evaluatePropertyDataMutation} from "../src/domain/evidence-mutation.js";
 
 const property=(workflow:any)=>({id:"p",project:"Project",workflow});
 
@@ -18,6 +18,22 @@ describe("evidence mutation workflow policy",()=>{
   expect(evaluateEvidenceMutation(property(workflow)))
    .toEqual({allowed:true,nextWorkflow:"VERIFICATION"});
  });
+
+ test.each(["DRAFT","VERIFICATION","READY_TO_PUBLISH"])(
+  "allows source data changes for mutable %s versions",
+  workflow=>{
+   expect(evaluatePropertyDataMutation(property(workflow)))
+    .toEqual({allowed:true});
+  }
+ );
+
+ test.each(["PUBLISHED","SUPERSEDED"])(
+  "blocks source data changes for immutable %s versions",
+  workflow=>{
+   expect(evaluatePropertyDataMutation(property(workflow)))
+    .toMatchObject({allowed:false,error:"immutable_property_version",workflow});
+  }
+ );
 
  test.each(["PUBLISHED","SUPERSEDED"])(
   "blocks evidence changes for immutable %s versions",
