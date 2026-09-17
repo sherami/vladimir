@@ -38,6 +38,7 @@ export interface DataConfidenceBreakdown {
 }
 export interface Property {
   id:string; project:string; unit?:string; workflow:WorkflowState;
+  supersededByPropertyId?:string; supersessionReason?:string;
   purchasePrice?:Evidence<number>; ownershipType?:Evidence<string>;
   acquisitionCosts?:Evidence<number>; initialCapex?:Evidence<number>;
   annualNoi?:Evidence<number>; entryMarketValue?:Evidence<number>;
