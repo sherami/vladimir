@@ -7,10 +7,29 @@ async function call(path,method="GET",body){
  const text=await r.text(); let data; try{data=JSON.parse(text)}catch{data=text}
  return {status:r.status,data};
 }
+const initial=await call(`/properties/${ID}`);
+if(initial.status!==200) throw new Error(`Property lookup failed: ${initial.status}`);
+let workflow=initial.data.workflow;
+const transitions=[];
+if(workflow==="DRAFT"){
+ const transition=await call(`/properties/${ID}/workflow`,"POST",{to:"VERIFICATION"});
+ transitions.push(transition);
+ if(transition.status!==200) throw new Error(`DRAFT to VERIFICATION failed: ${transition.status} ${JSON.stringify(transition.data)}`);
+ workflow=transition.data.workflow;
+}
+if(workflow==="VERIFICATION"){
+ const transition=await call(`/properties/${ID}/workflow`,"POST",{to:"READY_TO_CALCULATE"});
+ transitions.push(transition);
+ if(transition.status!==200) throw new Error(`VERIFICATION to READY_TO_CALCULATE failed: ${transition.status} ${JSON.stringify(transition.data)}`);
+ workflow=transition.data.workflow;
+}
+if(workflow!=="READY_TO_CALCULATE")
+ throw new Error(`Fixture workflow is not calculation-ready: ${workflow}`);
+
 const validation=await call(`/properties/${ID}/validate`,"POST");
 const calculation=await call(`/properties/${ID}/calculate`,"POST");
 const verification=await call(`/verification?propertyId=${ID}&state=OPEN`);
-console.log(JSON.stringify({validation,calculation,verification},null,2));
+console.log(JSON.stringify({initial,transitions,validation,calculation,verification},null,2));
 
 if(validation.status!==200) throw new Error(`Validation endpoint failed: ${validation.status}`);
 if(!validation.data?.readyToCalculate) throw new Error(`Fixture did not reach READY_TO_CALCULATE: ${JSON.stringify(validation.data)}`);

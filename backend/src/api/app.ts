@@ -1,7 +1,7 @@
 import express from "express";
 import { authenticate,allow } from "./auth.js";
 import { httpBoundary } from "./http-boundary.js";
-import { evaluateWorkflowTransition } from "../domain/workflow.js";
+import { evaluateCalculationRequest,evaluateWorkflowTransition } from "../domain/workflow.js";
 import { validateCalculationReview } from "../domain/calculation-review.js";
 import { readiness } from "./readiness.js";
 import { v4 as uuid } from "uuid";
@@ -169,6 +169,11 @@ app.post("/api/v1/properties/:id/validate",allow("ADMIN","ANALYST"),async(req,re
 });
 app.post("/api/v1/properties/:id/calculate",allow("ADMIN","ANALYST"),async(req,res)=>{
  const p=await hydratedProperty(routeParam(req.params.id)); if(!p)return res.status(404).json({error:"not_found"});
+ const calculationDecision=evaluateCalculationRequest(p);
+ if(!calculationDecision.allowed){
+  const status=calculationDecision.error==="validation_failed"?422:409;
+  return res.status(status).json(calculationDecision);
+ }
  const run=calculateProperty(p);
  if(run.status==="BLOCKED" || !("calculationRunId" in run)) return res.status(422).json(run);
  const calculationRunId=run.calculationRunId;
