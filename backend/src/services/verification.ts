@@ -18,3 +18,14 @@ export function buildVerificationItems(p:Property,evidence:EvidenceRecord[]):Ver
   }
   return result;
 }
+
+
+export function isVerificationBlockerStillActive(
+  openItem:Pick<VerificationItem,"severity"|"code"|"field">,
+  currentItems:VerificationItem[]
+) {
+  if(openItem.severity!=="BLOCKER") return false;
+  return currentItems.some(x=>
+    x.severity==="BLOCKER"&&x.code===openItem.code&&(x.field??null)===(openItem.field??null)
+  );
+}
