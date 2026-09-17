@@ -17,6 +17,7 @@ import { buildVerificationItems,isVerificationBlockerStillActive } from "../serv
 import { validateNarrative,buildPublicationSnapshot } from "../services/publication.js";
 import { validateSourceInput } from "../services/source-validation.js";
 import { validateEvidenceSource } from "../services/evidence-source-validation.js";
+import { validateEvidenceInput } from "../services/evidence-input-validation.js";
 import { prepareDraftProperty } from "../services/property-intake.js";
 
 export const app=express();
@@ -115,6 +116,8 @@ app.get("/api/v1/properties/:id/sources",async(req,res)=>res.json(await sourceRe
 
 app.post("/api/v1/properties/:id/evidence",allow("ADMIN","ANALYST"),async(req,res)=>{
  const p=await propertyRepo.get(routeParam(req.params.id)); if(!p)return res.status(404).json({error:"not_found"});
+ const inputValidation=validateEvidenceInput(req.body);
+ if(!inputValidation.valid)return res.status(400).json(inputValidation);
  const mutationDecision=evaluateEvidenceMutation(p);
  if(!mutationDecision.allowed)return res.status(409).json(mutationDecision);
  const linkedSource=req.body.sourceId?await sourceRepo.get(req.body.sourceId):undefined;
