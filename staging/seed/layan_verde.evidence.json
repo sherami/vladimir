@@ -1,5 +1,28 @@
 [
   {
+    "field": "isOffPlan",
+    "value": false,
+    "status": "PP_ESTIMATE",
+    "isCritical": false,
+    "analystComment": "Staging calibration lifecycle assumption. Must be verified before production Golden Dataset freeze."
+  },
+  {
+    "field": "holdingYears",
+    "value": 5,
+    "unit": "years",
+    "status": "ASSUMPTION",
+    "isCritical": false,
+    "analystComment": "Methodology v1.0 Base Case holding period."
+  },
+  {
+    "field": "requiredReturn",
+    "value": 0.08,
+    "unit": "decimal",
+    "status": "ASSUMPTION",
+    "isCritical": false,
+    "analystComment": "Methodology v1.0 required-return threshold."
+  },
+  {
     "field": "purchasePrice",
     "value": 8591740,
     "unit": "THB",
