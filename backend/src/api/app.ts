@@ -15,6 +15,7 @@ import { buildVerificationItems,isVerificationBlockerStillActive } from "../serv
 import { validateNarrative,buildPublicationSnapshot } from "../services/publication.js";
 import { validateSourceInput } from "../services/source-validation.js";
 import { validateEvidenceSource } from "../services/evidence-source-validation.js";
+import { prepareDraftProperty } from "../services/property-intake.js";
 
 export const app=express();
 app.use(httpBoundary);
@@ -47,7 +48,9 @@ app.use("/api/v1",authenticate);
 
 app.get("/api/v1/properties",async(_,res)=>res.json(await propertyRepo.list()));
 app.post("/api/v1/properties",allow("ADMIN","ANALYST"),async(req,res)=>{
- const p={id:uuid(),workflow:"DRAFT",...req.body};
+ const intake=prepareDraftProperty(req.body,uuid());
+ if(!intake.valid)return res.status(400).json({error:intake.error});
+ const p=intake.property;
  await propertyRepo.save(p);
  await auditRepo.log(actor(req),"CREATE","property",p.id,null,p);
  res.status(201).json(p);
