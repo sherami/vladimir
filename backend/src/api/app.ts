@@ -14,6 +14,7 @@ import { applyEvidenceToProperty } from "../services/evidence.js";
 import { buildVerificationItems,isVerificationBlockerStillActive } from "../services/verification.js";
 import { validateNarrative,buildPublicationSnapshot } from "../services/publication.js";
 import { validateSourceInput } from "../services/source-validation.js";
+import { validateEvidenceSource } from "../services/evidence-source-validation.js";
 
 export const app=express();
 app.use(httpBoundary);
@@ -86,7 +87,12 @@ app.get("/api/v1/properties/:id/sources",async(req,res)=>res.json(await sourceRe
 
 app.post("/api/v1/properties/:id/evidence",allow("ADMIN","ANALYST"),async(req,res)=>{
  const p=await propertyRepo.get(routeParam(req.params.id)); if(!p)return res.status(404).json({error:"not_found"});
- if(req.body.sourceId && !(await sourceRepo.get(req.body.sourceId))) return res.status(400).json({error:"source_not_found"});
+ const linkedSource=req.body.sourceId?await sourceRepo.get(req.body.sourceId):undefined;
+ const sourceValidation=validateEvidenceSource(p.id,req.body.status,req.body.sourceId,linkedSource);
+ if(!sourceValidation.valid)return res.status(400).json({
+   error:sourceValidation.error,
+   message:"Verified evidence must link to a verified source owned by the same property."
+ });
  const e=await evidenceRepo.create({
    id:uuid(),propertyId:p.id,field:req.body.field,value:req.body.value,unit:req.body.unit,
    status:req.body.status,sourceId:req.body.sourceId,asOf:req.body.asOf,
