@@ -100,9 +100,9 @@ app.post("/api/v1/properties/:id/sources",allow("ADMIN","ANALYST"),async(req,res
  const p=await propertyRepo.get(routeParam(req.params.id)); if(!p)return res.status(404).json({error:"not_found"});
  const sourceValidation=validateSourceInput(req.body);
  if(!sourceValidation.valid)return res.status(400).json({
-   error:"verified_source_metadata_incomplete",
+   error:sourceValidation.error,
    fields:sourceValidation.missingOrInvalidFields,
-   message:"VERIFIED_DOCUMENT requires title, issuer, a valid sourceDate, and a stable URI or file identifier."
+   message:"Source records require a supported status and document type. VERIFIED_DOCUMENT also requires title, issuer, a valid sourceDate, and a stable URI or file identifier."
  });
  const source=await sourceRepo.create({
    id:uuid(),propertyId:p.id,documentType:req.body.documentType,issuer:req.body.issuer,
