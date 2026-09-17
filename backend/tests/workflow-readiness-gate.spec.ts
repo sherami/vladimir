@@ -15,7 +15,7 @@ describe("workflow calculation readiness gate",()=>{
   const decision=evaluateWorkflowTransition(property({purchasePrice:undefined}),"READY_TO_CALCULATE");
   expect(decision.allowed).toBe(false);
   expect(decision).toMatchObject({error:"validation_failed"});
-  if(!("validation" in decision))throw new Error("expected validation failure");
+  if(!decision.validation)throw new Error("expected validation failure");
   expect(decision.validation.issues.some(x=>x.code==="MISSING_PURCHASE_PRICE")).toBe(true);
  });
 
