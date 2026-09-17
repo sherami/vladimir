@@ -205,6 +205,18 @@ describe("workflow calculation readiness gate",()=>{
   expect(decision).toEqual({allowed:true});
  });
 
+ test("requires a reason when superseding a published version",()=>{
+  expect(evaluateWorkflowTransition(
+   property({workflow:"PUBLISHED"}),"SUPERSEDED",{supersessionReason:"   "}
+  )).toMatchObject({allowed:false,error:"supersession_reason_required"});
+ });
+
+ test("allows supersession when the reason is recorded",()=>{
+  expect(evaluateWorkflowTransition(
+   property({workflow:"PUBLISHED"}),"SUPERSEDED",{supersessionReason:"Replaced by corrected analysis v2"}
+  )).toEqual({allowed:true});
+ });
+
  test("still rejects transitions outside the state machine",()=>{
   expect(evaluateWorkflowTransition(property(),"PUBLISHED"))
    .toMatchObject({allowed:false,error:"invalid_transition"});
