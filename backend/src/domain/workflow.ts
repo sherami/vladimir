@@ -3,8 +3,8 @@ import { validateForCalculation } from "./validation.js";
 
 export const TRANSITIONS:Record<WorkflowState,WorkflowState[]>={
  DRAFT:["VERIFICATION"], VERIFICATION:["READY_TO_CALCULATE"],
- READY_TO_CALCULATE:["CALCULATED","VERIFICATION"], CALCULATED:["ANALYST_REVIEW"],
- ANALYST_REVIEW:["READY_TO_PUBLISH","VERIFICATION"], READY_TO_PUBLISH:["PUBLISHED","ANALYST_REVIEW"],
+ READY_TO_CALCULATE:["CALCULATED","VERIFICATION"], CALCULATED:["ANALYST_REVIEW","VERIFICATION"],
+ ANALYST_REVIEW:["READY_TO_PUBLISH","VERIFICATION"], READY_TO_PUBLISH:["PUBLISHED","ANALYST_REVIEW","VERIFICATION"],
  PUBLISHED:["SUPERSEDED"], SUPERSEDED:[]
 };
 
@@ -27,6 +27,20 @@ export interface WorkflowTransitionContext {
 
 export function canTransition(from:WorkflowState,to:WorkflowState){
  return TRANSITIONS[from].includes(to);
+}
+
+export function evaluateCalculationRequest(p:Property) {
+ if(p.workflow!=="READY_TO_CALCULATE")
+  return {
+   allowed:false as const,
+   error:"property_not_ready_to_calculate",
+   workflow:p.workflow,
+   message:"Move the property through verification to READY_TO_CALCULATE before running calculations."
+  };
+ const validation=validateForCalculation(p);
+ if(!validation.readyToCalculate)
+  return {allowed:false as const,error:"validation_failed",validation};
+ return {allowed:true as const};
 }
 
 export function evaluateWorkflowTransition(
