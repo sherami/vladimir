@@ -3,6 +3,7 @@ import { authenticate,allow } from "./auth.js";
 import { httpBoundary } from "./http-boundary.js";
 import { evaluateCalculationRequest,evaluateWorkflowTransition } from "../domain/workflow.js";
 import { validateCalculationReview } from "../domain/calculation-review.js";
+import { evaluateEvidenceMutation } from "../domain/evidence-mutation.js";
 import { readiness } from "./readiness.js";
 import { v4 as uuid } from "uuid";
 import {
@@ -114,6 +115,8 @@ app.get("/api/v1/properties/:id/sources",async(req,res)=>res.json(await sourceRe
 
 app.post("/api/v1/properties/:id/evidence",allow("ADMIN","ANALYST"),async(req,res)=>{
  const p=await propertyRepo.get(routeParam(req.params.id)); if(!p)return res.status(404).json({error:"not_found"});
+ const mutationDecision=evaluateEvidenceMutation(p);
+ if(!mutationDecision.allowed)return res.status(409).json(mutationDecision);
  const linkedSource=req.body.sourceId?await sourceRepo.get(req.body.sourceId):undefined;
  const sourceValidation=validateEvidenceSource(p.id,req.body.status,req.body.sourceId,linkedSource);
  if(!sourceValidation.valid)return res.status(400).json({
@@ -127,6 +130,12 @@ app.post("/api/v1/properties/:id/evidence",allow("ADMIN","ANALYST"),async(req,re
    createdBy:actor(req),supersedesId:req.body.supersedesId
  });
  await auditRepo.log(actor(req),"CREATE","evidence",e.id,null,e);
+ if(mutationDecision.nextWorkflow!==p.workflow){
+  const before={...p};
+  p.workflow=mutationDecision.nextWorkflow;
+  await propertyRepo.save(p);
+  await auditRepo.log(actor(req),"WORKFLOW_RESET_ON_EVIDENCE","property",p.id,before,p);
+ }
  res.status(201).json(e);
 });
 app.get("/api/v1/properties/:id/evidence",async(req,res)=>res.json(await evidenceRepo.listByProperty(routeParam(req.params.id))));
