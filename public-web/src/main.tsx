@@ -7,6 +7,10 @@ const fmt=(x:any)=>typeof x==="number"?new Intl.NumberFormat(language==="ru"?"ru
 const serviceError=language==="ru"?"Сервис аналитики временно недоступен. Попробуйте ещё раз.":"The analytics service is temporarily unavailable. Please try again.";
 const propertyError=language==="ru"?"Объект не опубликован или временно недоступен.":"The property is not published or is temporarily unavailable.";
 const retryLabel=language==="ru"?"Повторить":"Try again";
+const defaultDescription=language==="ru"?"Независимая аналитика недвижимости Пхукета: доходность, риски и сравнение объектов.":"Independent Phuket property analysis: returns, risks and comparisons.";
+function usePageMeta(title:string,description=defaultDescription){
+ useEffect(()=>{document.title=`${title} — PrivatePhuket`;document.querySelector('meta[name="description"]')?.setAttribute("content",description)},[title,description]);
+}
 function Badge({children}:{children:React.ReactNode}){return <span className="badge">{children}</span>}
 function RetryButton(){return <button className="retryButton" onClick={()=>location.reload()}>{retryLabel} <span>→</span></button>}
 function Header(){const params=new URLSearchParams(location.search),calculator=params.has("calculator");return <><header><a className="logo" href={pageHref()} aria-label="PrivatePhuket">PP <span>PrivatePhuket</span></a><nav className="nav" aria-label={language==="ru"?"Основная навигация":"Primary navigation"}><a aria-current={!calculator&&!params.has("id")&&!params.has("compare")?"page":undefined} href={pageHref()}>{c.catalog}</a><a aria-current={calculator?"page":undefined} href={pageHref("calculator=1")}>{c.calculator}</a><span className="language" aria-label={language==="ru"?"Выбор языка":"Language selection"}><a aria-current={language==="ru"?"page":undefined} className={language==="ru"?"active":""} href={languageHref("ru")}>RU</a><i aria-hidden="true">/</i><a aria-current={language==="en"?"page":undefined} className={language==="en"?"active":""} href={languageHref("en")}>EN</a></span></nav></header>{preview&&<div className="previewBar"><b>{c.preview}</b><span>{c.previewNote}</span></div>}</>}
@@ -14,6 +18,7 @@ const calculatorDefaults:PublicCalculatorInput={purchasePrice:10000000,acquisiti
 const money=(value:number)=>new Intl.NumberFormat(language==="ru"?"ru-RU":"en-US",{style:"currency",currency:"THB",maximumFractionDigits:0}).format(value);
 const percent=(value:number)=>new Intl.NumberFormat(language==="ru"?"ru-RU":"en-US",{style:"percent",minimumFractionDigits:2,maximumFractionDigits:2}).format(value);
 function Calculator(){
+ usePageMeta(language==="ru"?"Инвестиционный калькулятор":"Investment calculator",c.calculatorIntro);
  const [input,setInput]=useState(calculatorDefaults),[result,setResult]=useState<any>(),[err,setErr]=useState(""),[busy,setBusy]=useState(false);
  const numberField=(key:keyof PublicCalculatorInput)=>(event:React.ChangeEvent<HTMLInputElement>)=>setInput(current=>({...current,[key]:Number(event.target.value)}));
  const submit=async(event:FormEvent)=>{event.preventDefault();setBusy(true);setErr("");try{setResult(await calculatePublicScenario(input))}catch(e){setErr(language==="ru"?c.calculationError:e instanceof Error?e.message:c.calculationError)}finally{setBusy(false)}};
@@ -35,6 +40,7 @@ function Calculator(){
  </main><footer>PrivatePhuket · {c.platform} · {c.analyticsDisclaimer}</footer></>;
 }
 function Catalog(){
+ usePageMeta(language==="ru"?"Аналитика недвижимости Пхукета":"Phuket Property Intelligence",c.catalogIntro);
  const [items,setItems]=useState<any[]>(),[selected,setSelected]=useState<string[]>([]),[err,setErr]=useState("");
  useEffect(()=>{getPublishedProperties().then(setItems).catch(e=>setErr(e.message))},[]);
  const toggle=(id:string)=>setSelected(current=>current.includes(id)?current.filter(x=>x!==id):current.length<4?[...current,id]:current);
@@ -47,6 +53,7 @@ function Catalog(){
  </main><footer>PrivatePhuket · {c.platform} · {c.analyticsDisclaimer}</footer></>;
 }
 function Comparison({ids}:{ids:string[]}){
+ usePageMeta(language==="ru"?"Сравнение объектов":"Property comparison",c.compareIntro);
  const [items,setItems]=useState<any[]>(),[err,setErr]=useState("");
  useEffect(()=>{comparePublishedProperties(ids).then(x=>setItems(x.items)).catch(e=>setErr(e.message))},[ids.join(",")]);
  if(err)return <><Header/><main><h1 className="title">{c.comparisonUnavailable}</h1><p className="sub">{serviceError}</p><RetryButton/><a className="detailLink errorBack" href={pageHref()}>{c.back}</a></main></>;
@@ -64,10 +71,11 @@ function Comparison({ids}:{ids:string[]}){
 }
 function PropertyDetail({id}:{id:string}){
  const [data,setData]=useState<any>(),[err,setErr]=useState("");
+ const snap=data?.snapshot; const a=snap?.analytics??data?.analytics; const n=snap?.narrative;
+ usePageMeta(snap?.property?.project??(language==="ru"?"Аналитика объекта":"Property analysis"),n?.summary??c.detailIntro);
  useEffect(()=>{getPublishedProperty(id).then(setData).catch(e=>setErr(e.message))},[id]);
  if(err)return <><Header/><main><div className="eyebrow">PrivatePhuket</div><h1 className="title">{c.publishedOnly}</h1><p className="sub">{propertyError}</p><RetryButton/><a className="detailLink errorBack" href={pageHref()}>{c.back}</a></main></>;
  if(!data)return <><Header/><main className="loadingState">{c.loading}</main></>;
- const snap=data.snapshot; const a=snap?.analytics??data.analytics; const n=snap?.narrative;
  return <><Header/><main>
  {snap?.imageUrl&&<div className="detailImage" style={{backgroundImage:`url(${snap.imageUrl})`}}><span>{snap.property.project}<small>{snap.property.unit}</small></span></div>}
  <section className="hero"><div><div className="eyebrow">{c.propertyAnalysis}</div><h1 className="title">{n?.headline??c.decisionNotBrochure}</h1>
@@ -94,7 +102,6 @@ function App(){
  const params=new URLSearchParams(location.search);
  const id=params.get("id")??import.meta.env.VITE_DEMO_PROPERTY_ID;
  const compare=params.get("compare")?.split(",").filter(Boolean)??[];
- document.title=language==="ru"?"PrivatePhuket — аналитика недвижимости Пхукета":"PrivatePhuket — Phuket Property Intelligence";
  return params.has("calculator")?<Calculator/>:compare.length>=2?<Comparison ids={compare}/>:id?<PropertyDetail id={id}/>:<Catalog/>;
 }
 document.documentElement.lang=language;
