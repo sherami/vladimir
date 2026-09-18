@@ -3,8 +3,10 @@ import {createRoot} from "react-dom/client";
 import {calculatePublicScenario,comparePublishedProperties,getPublishedProperties,getPublishedProperty,PublicCalculatorInput} from "./lib/api";
 import "./styles.css";
 const fmt=(x:any)=>typeof x==="number"?new Intl.NumberFormat("en-US",{maximumFractionDigits:0}).format(x):"—";
+const preview=new URLSearchParams(location.search).has("preview");
+const pageHref=(query="")=>`/?${preview?"preview=1&":""}${query}`.replace(/[?&]$/,"");
 function Badge({children}:{children:React.ReactNode}){return <span className="badge">{children}</span>}
-function Header(){return <header><a className="logo" href="/">PP <span>PrivatePhuket</span></a><nav className="nav"><a href="/">Catalog</a><a href="/?calculator=1">Calculator</a></nav></header>}
+function Header(){return <><header><a className="logo" href={pageHref()}>PP <span>PrivatePhuket</span></a><nav className="nav"><a href={pageHref()}>Catalog</a><a href={pageHref("calculator=1")}>Calculator</a></nav></header>{preview&&<div className="previewBar"><b>DESIGN PREVIEW</b><span>Illustrative properties and analytics — not investment advice.</span></div>}</>}
 const calculatorDefaults:PublicCalculatorInput={purchasePrice:10000000,acquisitionCosts:300000,initialCapex:500000,annualNoi:900000,entryMarketValue:10000000,holdingYears:5,exitGrowthRate:.04,sellingCostRate:.05,requiredReturn:.1};
 const money=(value:number)=>new Intl.NumberFormat("en-US",{style:"currency",currency:"THB",maximumFractionDigits:0}).format(value);
 const percent=(value:number)=>new Intl.NumberFormat("en-US",{style:"percent",minimumFractionDigits:2,maximumFractionDigits:2}).format(value);
@@ -37,14 +39,14 @@ function Catalog(){
  if(!items)return <main>Loading published analyses…</main>;
  return <><Header/><main><section className="catalogHero"><div className="eyebrow">Independent Phuket real estate analysis</div><h1 className="title">Choose with numbers,<br/>not promises.</h1><p className="sub">Every object below has passed evidence verification, calculation and analyst review. Drafts and provisional models never appear here.</p></section>
  {items.length===0?<section className="empty"><div className="eyebrow">Publication gate active</div><h2>No analysis has reached publication yet.</h2><p className="sub">Objects will appear only after primary documents, exact payment dates and a final approved calculation are complete.</p></section>:<>
- <div className="catalogToolbar"><span>{items.length} published {items.length===1?"analysis":"analyses"}</span><a className={`compareButton ${selected.length<2?"disabled":""}`} href={selected.length>=2?`/?compare=${selected.join(",")}`:undefined}>Compare {selected.length>0?`(${selected.length})`:""}</a></div>
- <section className="catalogGrid">{items.map(item=><article className="propertyCard" key={item.id}><div className="cardTop"><div><div className="eyebrow">{item.project}</div><h2>{item.unit??item.headline??"Published analysis"}</h2></div><label className="select"><input type="checkbox" checked={selected.includes(item.id)} onChange={()=>toggle(item.id)} disabled={!selected.includes(item.id)&&selected.length>=4}/> Compare</label></div><p>{item.summary??"Independent analysis based on a frozen, approved calculation."}</p><div className="cardMetrics"><span><small>Score</small><b>{item.analytics.riskAdjustedScore?.toFixed?.(1)??"—"}</b></span><span><small>Net yield</small><b>{item.analytics.netYield==null?"—":`${(item.analytics.netYield*100).toFixed(2)}%`}</b></span><span><small>{item.analytics.productionReturnMetric??"Return"}</small><b>{item.analytics.productionReturn==null?"—":`${(item.analytics.productionReturn*100).toFixed(2)}%`}</b></span></div><a className="detailLink" href={`/?id=${item.id}`}>Open full analysis →</a></article>)}</section></>}
+ <div className="catalogToolbar"><span>{items.length} {preview?"preview":"published"} {items.length===1?"analysis":"analyses"}</span><a className={`compareButton ${selected.length<2?"disabled":""}`} href={selected.length>=2?pageHref(`compare=${selected.join(",")}`):undefined}>Compare {selected.length>0?`(${selected.length})`:""}</a></div>
+ <section className="catalogGrid">{items.map(item=><article className="propertyCard" key={item.id}>{item.imageUrl&&<div className="propertyImage" style={{backgroundImage:`url(${item.imageUrl})`}}><span>{preview?"Illustrative preview":"Published"}</span></div>}<div className="cardTop"><div><div className="eyebrow">{item.project}</div><h2>{item.unit??item.headline??"Published analysis"}</h2></div><label className="select"><input type="checkbox" checked={selected.includes(item.id)} onChange={()=>toggle(item.id)} disabled={!selected.includes(item.id)&&selected.length>=4}/> Compare</label></div><p>{item.summary??"Independent analysis based on a frozen, approved calculation."}</p><div className="cardMetrics"><span><small>Score</small><b>{item.analytics.riskAdjustedScore?.toFixed?.(1)??"—"}</b></span><span><small>Net yield</small><b>{item.analytics.netYield==null?"—":`${(item.analytics.netYield*100).toFixed(2)}%`}</b></span><span><small>{item.analytics.productionReturnMetric??"Return"}</small><b>{item.analytics.productionReturn==null?"—":`${(item.analytics.productionReturn*100).toFixed(2)}%`}</b></span></div><a className="detailLink" href={pageHref(`id=${item.id}`)}>Open full analysis →</a></article>)}</section></>}
  </main><footer>PrivatePhuket · Property Intelligence Platform · Analytics are decision support, not a guarantee of future returns.</footer></>;
 }
 function Comparison({ids}:{ids:string[]}){
  const [items,setItems]=useState<any[]>(),[err,setErr]=useState("");
  useEffect(()=>{comparePublishedProperties(ids).then(x=>setItems(x.items)).catch(e=>setErr(e.message))},[ids.join(",")]);
- if(err)return <><Header/><main><h1 className="title">Comparison unavailable.</h1><p className="sub">{err}</p><a className="detailLink" href="/">← Back to catalog</a></main></>;
+ if(err)return <><Header/><main><h1 className="title">Comparison unavailable.</h1><p className="sub">{err}</p><a className="detailLink" href={pageHref()}>← Back to catalog</a></main></>;
  if(!items)return <main>Loading comparison…</main>;
  const rows=[
   ["Total acquisition cost",(x:any)=>`${fmt(x.analytics.tac)} THB`],
@@ -54,15 +56,16 @@ function Comparison({ids}:{ids:string[]}){
   ["Data Confidence",(x:any)=>x.analytics.dataConfidence==null?"—":`${Number(x.analytics.dataConfidence).toFixed(0)}/100`],
   ["Verdict",(x:any)=>x.analytics.finalVerdict??"—"]
  ] as const;
- return <><Header/><main><div className="eyebrow">Side-by-side decision layer</div><h1 className="title">Compare published analysis.</h1><p className="sub">The same frozen methodology and approved outputs are shown for every object.</p><div className="compareTable"><div className="compareRow compareHead"><div>Metric</div>{items.map(x=><div key={x.id}><b>{x.project}</b><small>{x.unit??""}</small></div>)}</div>{rows.map(([label,value])=><div className="compareRow" key={label}><div>{label}</div>{items.map(x=><div key={x.id}>{value(x)}</div>)}</div>)}</div><a className="detailLink" href="/">← Back to catalog</a></main><footer>PrivatePhuket · Property Intelligence Platform</footer></>;
+ return <><Header/><main><div className="eyebrow">Side-by-side decision layer</div><h1 className="title">Compare published analysis.</h1><p className="sub">The same frozen methodology and approved outputs are shown for every object.</p><div className="compareTable"><div className="compareRow compareHead"><div>Metric</div>{items.map(x=><div key={x.id}><b>{x.project}</b><small>{x.unit??""}</small></div>)}</div>{rows.map(([label,value])=><div className="compareRow" key={label}><div>{label}</div>{items.map(x=><div key={x.id}>{value(x)}</div>)}</div>)}</div><a className="detailLink" href={pageHref()}>← Back to catalog</a></main><footer>PrivatePhuket · Property Intelligence Platform</footer></>;
 }
 function PropertyDetail({id}:{id:string}){
  const [data,setData]=useState<any>(),[err,setErr]=useState("");
  useEffect(()=>{getPublishedProperty(id).then(setData).catch(e=>setErr(e.message))},[id]);
- if(err)return <><Header/><main><div className="eyebrow">Property Intelligence</div><h1 className="title">Published analysis only.</h1><p className="sub">{err}. The public website does not render analyst drafts or provisional runs.</p><a className="detailLink" href="/">← Back to catalog</a></main></>;
+ if(err)return <><Header/><main><div className="eyebrow">Property Intelligence</div><h1 className="title">Published analysis only.</h1><p className="sub">{err}. The public website does not render analyst drafts or provisional runs.</p><a className="detailLink" href={pageHref()}>← Back to catalog</a></main></>;
  if(!data)return <main>Loading published analysis…</main>;
  const snap=data.snapshot; const a=snap?.analytics??data.analytics; const n=snap?.narrative;
  return <><Header/><main>
+ {snap?.imageUrl&&<div className="detailImage" style={{backgroundImage:`url(${snap.imageUrl})`}}><span>{snap.property.project}<small>{snap.property.unit}</small></span></div>}
  <section className="hero"><div><div className="eyebrow">Independent property analysis</div><h1 className="title">{n?.headline??<>Investment decision,<br/>not a sales brochure.</>}</h1>
  <p className="sub">{n?.summary??"PrivatePhuket separates property facts, model assumptions and analyst opinion. The figures below come from the exact calculation run approved for publication."}</p></div>
  <div className="scorebox"><div className="muted" style={{color:"#b9c0bc"}}>PRIVATEPHUKET INVESTMENT SCORE</div><div className="score">{a.riskAdjustedScore?.toFixed?.(1)??"—"} <small>/ 100</small></div><span className="badge darkbadge">{a.finalVerdict??"FINAL"}</span></div></section>
