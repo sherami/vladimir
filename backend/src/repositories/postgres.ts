@@ -149,6 +149,15 @@ export const publicationDraftRepo={
 };
 
 export const publicationRepo={
+ async listCurrent(){
+   const r=await pool.query(`select distinct on(pub.property_id)
+      pub.id,pub.property_id,pub.calculation_run_id,pub.published_at,pub.snapshot
+     from pp_publications pub
+     join pp_properties property on property.id=pub.property_id
+     where property.payload->>'workflow'='PUBLISHED'
+     order by pub.property_id,pub.published_at desc`);
+   return r.rows;
+ },
  async publishAtomically(propertyId:string,runId:string,actor:string,snapshot:any){
    const client=await pool.connect();
    try{
