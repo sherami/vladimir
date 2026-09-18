@@ -3,8 +3,11 @@ import {app} from "./app.js";
 import {httpBoundary} from "./http-boundary.js";
 import {issueWorkspaceSession,loginWorkspace} from "./auth.js";
 import {authenticateWorkspaceUser,bootstrapWorkspaceUser,workspaceUserCount} from "../services/workspace-auth.js";
+import {apiErrorHandler,requestObservability} from "./observability.js";
 
 export const rootApp=express();
+rootApp.set("trust proxy",1);
+rootApp.use(requestObservability());
 rootApp.use(httpBoundary);
 rootApp.use(express.json());
 
@@ -50,3 +53,4 @@ rootApp.post("/api/v1/auth/login",async(req,res)=>{
 });
 
 rootApp.use(app);
+rootApp.use(apiErrorHandler);
