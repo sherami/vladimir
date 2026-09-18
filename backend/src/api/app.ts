@@ -23,8 +23,10 @@ import { validateEvidenceSupersession } from "../services/evidence-supersession-
 import { prepareDraftProperty } from "../services/property-intake.js";
 import { buildPublicComparison,toPublicCatalogItem } from "../services/public-catalog.js";
 import { calculatePublicScenario,validatePublicCalculatorInput } from "../services/public-calculator.js";
+import {noStore,publicCache,publicCalculatorLimit,publicReadLimit} from "./public-api-policy.js";
 
 export const app=express();
+app.set("trust proxy",1);
 app.use(httpBoundary);
 app.use(express.json());
 
@@ -42,12 +44,12 @@ async function hydratedProperty(id:string){
 app.get("/api/v1/health",(_,res)=>res.json({status:"ok",version:"1.0.0-rc.5"}));
 app.get("/api/v1/ready",readiness);
 
-app.get("/api/v1/public/properties",async(_,res)=>{
+app.get("/api/v1/public/properties",publicReadLimit,publicCache,async(_,res)=>{
  const publications=await publicationRepo.listCurrent();
  res.json(publications.map(toPublicCatalogItem));
 });
 
-app.get("/api/v1/public/compare",async(req,res)=>{
+app.get("/api/v1/public/compare",publicReadLimit,publicCache,async(req,res)=>{
  const ids=String(req.query.ids??"").split(",").map(x=>x.trim()).filter(Boolean);
  const uniqueIds=[...new Set(ids)];
  if(uniqueIds.length<2||uniqueIds.length>4)
@@ -60,7 +62,7 @@ app.get("/api/v1/public/compare",async(req,res)=>{
  res.json({items:buildPublicComparison(selected as any[])});
 });
 
-app.post("/api/v1/public/calculator",(req,res)=>{
+app.post("/api/v1/public/calculator",publicCalculatorLimit,noStore,(req,res)=>{
  const validation=validatePublicCalculatorInput(req.body);
  if(!validation.valid)return res.status(400).json({error:"invalid_calculator_input",issues:validation.issues});
  try{return res.json(calculatePublicScenario(req.body));}
@@ -69,7 +71,7 @@ app.post("/api/v1/public/calculator",(req,res)=>{
 
 // Public read model is deliberately outside JWT middleware. It only returns a
 // frozen explicitly-published snapshot and never falls back to analyst drafts.
-app.get("/api/v1/properties/:id/public",async(req,res)=>{
+app.get("/api/v1/properties/:id/public",publicReadLimit,publicCache,async(req,res)=>{
  const id=routeParam(req.params.id);
  const pub=await publicationRepo.latest(id); if(!pub)return res.status(404).json({error:"not_published"});
  const property=await propertyRepo.get(id);
