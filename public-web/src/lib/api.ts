@@ -4,3 +4,13 @@ export async function getPublishedProperty(id:string){
  if(!r.ok) throw new Error(r.status===404?"Property is not published":await r.text());
  return r.json();
 }
+export async function getPublishedProperties(){
+ const r=await fetch(`${BASE}/public/properties`);
+ if(!r.ok) throw new Error("Published catalog is temporarily unavailable");
+ return r.json();
+}
+export async function comparePublishedProperties(ids:string[]){
+ const r=await fetch(`${BASE}/public/compare?ids=${encodeURIComponent(ids.join(","))}`);
+ if(!r.ok) throw new Error(r.status===404?"One or more properties are no longer published":"Comparison is temporarily unavailable");
+ return r.json();
+}
