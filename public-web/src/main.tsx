@@ -55,7 +55,8 @@ function Comparison({ids}:{ids:string[]}){
   [c.confidence,(x:any)=>x.analytics.dataConfidence==null?"—":`${Number(x.analytics.dataConfidence).toFixed(0)}/100`],
   [c.verdict,(x:any)=>x.analytics.finalVerdict??"—"]
  ] as const;
- return <><Header/><main><div className="eyebrow">{c.comparisonLayer}</div><h1 className="title">{c.compareTitle}</h1><p className="sub">{c.compareIntro}</p><div className="compareTable"><div className="compareRow compareHead"><div>{c.metric}</div>{items.map(x=><div key={x.id}><b>{x.project}</b><small>{x.unit??""}</small></div>)}</div>{rows.map(([label,value])=><div className="compareRow" key={label}><div>{label}</div>{items.map(x=><div key={x.id}>{value(x)}</div>)}</div>)}</div><a className="detailLink" href={pageHref()}>{c.back}</a></main><footer>PrivatePhuket · {c.platform}</footer></>;
+ const columns={gridTemplateColumns:`180px repeat(${items.length}, minmax(150px, 1fr))`};
+ return <><Header/><main><div className="eyebrow">{c.comparisonLayer}</div><h1 className="title">{c.compareTitle}</h1><p className="sub">{c.compareIntro}</p><div className="compareTable"><div className="compareRow compareHead" style={columns}><div>{c.metric}</div>{items.map(x=><div key={x.id}><a className="compareProperty" href={pageHref(`id=${x.id}`)}><b>{x.project}</b><small>{x.unit??""}</small></a></div>)}</div>{rows.map(([label,value])=><div className="compareRow" style={columns} key={label}><div>{label}</div>{items.map(x=><div key={x.id}>{value(x)}</div>)}</div>)}</div><a className="detailLink" href={pageHref()}>{c.back}</a></main><footer>PrivatePhuket · {c.platform}</footer></>;
 }
 function PropertyDetail({id}:{id:string}){
  const [data,setData]=useState<any>(),[err,setErr]=useState("");
