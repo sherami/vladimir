@@ -16,7 +16,7 @@ function Calculator(){
  const output=result?.outputs;
  return <><Header/><main><section className="calculatorHero"><div><div className="eyebrow">{c.independentModel}</div><h1 className="title">{c.testDeal}<br/>{c.beforeBuy}</h1><p className="sub">{c.calculatorIntro}</p></div><div className="scenarioLabel">{c.scenarioOnly}</div></section>
  <form className="calculatorLayout" onSubmit={submit}><section className="calculatorForm"><div className="formSection"><div className="formHeading"><span>01</span><div><h2>{c.acquisition}</h2><p>{c.acquisitionHint}</p></div></div><div className="fieldGrid">
- <label>{c.purchasePrice} <span>THB</span><input type="number" min="1" step="1000" value={input.purchasePrice} onChange={numberField("purchasePrice")} required/></label>
+ <label>{c.purchasePrice} <span>THB</span><input type="number" min="1000" step="1000" value={input.purchasePrice} onChange={numberField("purchasePrice")} required/></label>
  <label>{c.acquisitionCosts} <span>THB</span><input type="number" min="0" step="1000" value={input.acquisitionCosts} onChange={numberField("acquisitionCosts")} required/></label>
  <label>{c.initialCapex} <span>THB</span><input type="number" min="0" step="1000" value={input.initialCapex} onChange={numberField("initialCapex")} required/></label>
  <label>{c.entryMarketValue} <span>THB</span><input type="number" min="0" step="1000" value={input.entryMarketValue} onChange={numberField("entryMarketValue")} required/></label>
