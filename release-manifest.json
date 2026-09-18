@@ -44,9 +44,9 @@
     "Production Golden Dataset source closure"
   ],
   "lastVerifiedCiRun": {
-    "runNumber": 30,
-    "runId": 34566113665,
-    "url": "https://github.com/sherami/vladimir/actions/runs/34566113665"
+    "runNumber": 147,
+    "runId": 35316219221,
+    "url": "https://github.com/sherami/vladimir/actions/runs/35316219221"
   },
   "stagingEvidence": "release-evidence/RC5_RENDER_STAGING_EVIDENCE.md",
   "notes": "RC5 is deployed to Render staging. API, Analyst Workspace, Public Web and PostgreSQL passed live acceptance on 2026-09-17. Production Golden Dataset remains open pending primary-source evidence; provisional calculations must not be promoted to FINAL."

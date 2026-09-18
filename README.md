@@ -30,10 +30,10 @@ The GitHub CI pipeline executes against PostgreSQL 16 and now proves the current
 - Missing inputs remain missing; they are never silently converted to zero.
 - Publication is explicit and pins a frozen calculation snapshot.
 
-## Current limitations
+## Current deployment and limitations
 
-This repository does **not** claim a deployed cloud staging environment or a Production Golden Dataset object. Layan Verde remains a staging calibration fixture and includes PP_ESTIMATE / DEVELOPER_MODEL inputs that prevent a production-final evidence status.
+RC5 is deployed to Render staging with PostgreSQL, API, Analyst Workspace and Public Web. Live acceptance covers service availability, authentication, persistence and the public client flows for catalog, property analysis, comparison and calculator.
 
-At the RC5 code/CI level, the remaining release blockers are external rather than calculation-engine blockers: deploy the verified stack to a real cloud staging environment and close the Production Golden Dataset with primary-source evidence.
+The remaining production release blocker is the Production Golden Dataset. Layan Verde remains a staging calibration fixture and includes PP_ESTIMATE / DEVELOPER_MODEL inputs that prevent a production-final evidence status. Closing this gate requires primary-source evidence for the critical acquisition, cost, payment-timing and rental inputs.
 
 Canonical API contract: `contracts/openapi-v1.0-rc5.yaml`.
