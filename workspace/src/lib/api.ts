@@ -25,7 +25,7 @@ function calculationBlockerMessage(error:unknown){
  }catch{}
  return `Calculation could not be completed.\n\n${message}`;
 }
-function mutationErrorMessage(label:string,error:unknown){
+export function mutationErrorMessage(label:string,error:unknown){
  const message=error instanceof Error?error.message:String(error);
  const body=message.replace(/^\d+\s+/,"");
  try{
@@ -47,8 +47,7 @@ async function createSource(id:string,body:any){
  catch(error){window.alert(mutationErrorMessage("Source",error));throw error;}
 }
 async function createEvidence(id:string,body:any){
- try{return await request(`/properties/${id}/evidence`,{method:"POST",body:JSON.stringify(body)});}
- catch(error){window.alert(mutationErrorMessage("Evidence",error));throw error;}
+ return request(`/properties/${id}/evidence`,{method:"POST",body:JSON.stringify(body)});
 }
 export const api={
  setToken:(token:string)=>localStorage.setItem(TOKEN_KEY,token),
