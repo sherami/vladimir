@@ -24,9 +24,11 @@ import { prepareDraftProperty } from "../services/property-intake.js";
 import { buildPublicComparison,toPublicCatalogItem } from "../services/public-catalog.js";
 import { calculatePublicScenario,validatePublicCalculatorInput } from "../services/public-calculator.js";
 import {noStore,publicCache,publicCalculatorLimit,publicReadLimit} from "./public-api-policy.js";
+import {apiErrorHandler,requestObservability} from "./observability.js";
 
 export const app=express();
 app.set("trust proxy",1);
+app.use(requestObservability());
 app.use(httpBoundary);
 app.use(express.json());
 
@@ -336,3 +338,5 @@ app.post("/api/v1/properties/:id/publish",allow("ADMIN","EDITOR"),async(req,res)
  if(!result.ok)return res.status(result.error==="not_found"?404:409).json(result);
  res.status(201).json({publication:result.publication,property:result.property});
 });
+
+app.use(apiErrorHandler);
