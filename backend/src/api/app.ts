@@ -15,7 +15,7 @@ import { validateForCalculation } from "../domain/validation.js";
 import { calculateProperty,calculationInputSnapshotHash } from "../services/calculate.js";
 import { applyEvidenceToProperty } from "../services/evidence.js";
 import { buildVerificationItems,isVerificationBlockerStillActive } from "../services/verification.js";
-import { validateNarrative,buildPublicationSnapshot } from "../services/publication.js";
+import { validateNarrative,buildPublicationSnapshot,toPublicPublicationSnapshot } from "../services/publication.js";
 import { validateSourceInput } from "../services/source-validation.js";
 import { validateEvidenceSource } from "../services/evidence-source-validation.js";
 import { validateEvidenceInput } from "../services/evidence-input-validation.js";
@@ -76,9 +76,14 @@ app.get("/api/v1/properties/:id/public",async(req,res)=>{
  const lifecycle=property?.workflow==="SUPERSEDED"
   ? {status:"SUPERSEDED",supersededByPropertyId:property.supersededByPropertyId}
   : {status:"PUBLISHED"};
- if(pub.snapshot)return res.json({publication:pub,snapshot:pub.snapshot,lifecycle});
+ const publication={
+  id:pub.id,property_id:pub.property_id,calculation_run_id:pub.calculation_run_id,published_at:pub.published_at
+ };
+ if(pub.snapshot){
+  return res.json({publication,snapshot:toPublicPublicationSnapshot(pub.snapshot),lifecycle});
+ }
  const run=await calculationRunRepo.get(pub.calculation_run_id);
- res.json({publication:pub,analytics:run,lifecycle});
+ res.json({publication,snapshot:toPublicPublicationSnapshot({property,analytics:run}),lifecycle});
 });
 
 app.use("/api/v1",authenticate);

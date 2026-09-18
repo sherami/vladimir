@@ -1,5 +1,5 @@
 import {describe,expect,test} from "vitest";
-import {buildPublicationSnapshot,sanitizePublicDisclosure} from "../src/services/publication.js";
+import {buildPublicationSnapshot,sanitizePublicDisclosure,toPublicPublicationSnapshot} from "../src/services/publication.js";
 
 describe("public disclosure safety",()=>{
  test("removes private URI/path fields recursively",()=>{
@@ -19,5 +19,22 @@ describe("public disclosure safety",()=>{
      {headline:"H",summary:"S",why_buy:["x"],why_not_buy:["y"],best_for:[],not_suitable_for:[],source_disclosures:[{label:"Contract",uri:"file:///secret.pdf"}],scenario_disclosures:[]}
    );
    expect(snapshot.sourceDisclosures[0]).toEqual({label:"Contract"});
+ });
+ test("public read model allowlists analytics and evidence statuses",()=>{
+   const snapshot=toPublicPublicationSnapshot({
+    property:{id:"p1",project:"Test",purchasePrice:{value:10_000_000,status:"VERIFIED_DOCUMENT",sourceId:"secret-source"}},
+    analytics:{
+     calculationRunId:"r1",tac:10_300_000,productionReturn:.11,riskLabel:"MODERATE",
+     financialDataConfidence:84,inputSnapshot:{private:"must not leak"},
+     financialDataConfidenceBreakdown:{private:"must not leak"},riskScore:76,validation:{private:"must not leak"}
+    },
+    narrative:{summary:"Published"},sourceDisclosures:[],scenarioDisclosures:[]
+   });
+   expect(snapshot.property.purchasePrice).toEqual({value:10_000_000,status:"VERIFIED_DOCUMENT"});
+   expect(snapshot.analytics.dataConfidence).toBe(84);
+   expect(snapshot.analytics.riskLabel).toBe("MODERATE");
+   expect(JSON.stringify(snapshot)).not.toContain("must not leak");
+   expect(JSON.stringify(snapshot)).not.toContain("secret-source");
+   expect(snapshot.analytics).not.toHaveProperty("riskScore");
  });
 });

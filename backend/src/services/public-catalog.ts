@@ -24,7 +24,9 @@ export function toPublicCatalogItem(publication:PublicPublication){
    productionReturn:values.productionReturn??null,
    riskAdjustedScore:values.riskAdjustedScore??null,
    finalVerdict:values.finalVerdict??null,
-   dataConfidence:values.dataConfidence?.score??values.dataConfidence??null
+   dataConfidence:values.financialDataConfidence??values.dataConfidence?.score??values.dataConfidence??null,
+   riskLabel:values.riskLabel??null,
+   methodologyVersion:values.methodologyVersion??null
   }
  };
 }

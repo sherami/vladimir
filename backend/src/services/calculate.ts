@@ -9,6 +9,14 @@ import { xirr } from "../domain/xirr.js";
 export const ENGINE_VERSION="1.0.0-rc.5";
 export const METHODOLOGY_VERSION="1.0";
 
+function publicRiskLabel(risk:number|null){
+ if(risk==null)return null;
+ if(risk>=85)return "LOW";
+ if(risk>=70)return "MODERATE";
+ if(risk>=50)return "ELEVATED";
+ return "HIGH";
+}
+
 export function calculationInputSnapshotHash(p:Property){
  const {workflow:_workflow,...calculationInputs}=p;
  return createHash("sha256").update(JSON.stringify(calculationInputs)).digest("hex");
@@ -55,6 +63,7 @@ export function calculateProperty(p:Property) {
  }
 
  const score=p.scores?adjustedScore(p.scores):null;
+ const riskScore=p.scores?.riskScore??null;
  const confidence=p.dataConfidence??0;
  const provisional=score==null||productionReturn==null?null:
    provisionalVerdict(score,productionReturn,p.requiredReturn??.08);
@@ -70,7 +79,7 @@ export function calculateProperty(p:Property) {
    financialDataConfidence:confidence,
    financialDataConfidenceBreakdown:p.dataConfidenceBreakdown??null,
    criticalToVerify:!!p.criticalToVerify,
-   riskAdjustedScore:score, provisionalVerdict:provisional,
+   riskAdjustedScore:score, riskScore, riskLabel:publicRiskLabel(riskScore), provisionalVerdict:provisional,
    verdictStatus:vStatus, finalVerdict:vStatus==="FINAL"?provisional:null, validation
  };
 }
