@@ -21,6 +21,7 @@ import { validateEvidenceSource } from "../services/evidence-source-validation.j
 import { validateEvidenceInput } from "../services/evidence-input-validation.js";
 import { validateEvidenceSupersession } from "../services/evidence-supersession-validation.js";
 import { prepareDraftProperty } from "../services/property-intake.js";
+import { buildPublicComparison,toPublicCatalogItem } from "../services/public-catalog.js";
 
 export const app=express();
 app.use(httpBoundary);
@@ -39,6 +40,24 @@ async function hydratedProperty(id:string){
 
 app.get("/api/v1/health",(_,res)=>res.json({status:"ok",version:"1.0.0-rc.5"}));
 app.get("/api/v1/ready",readiness);
+
+app.get("/api/v1/public/properties",async(_,res)=>{
+ const publications=await publicationRepo.listCurrent();
+ res.json(publications.map(toPublicCatalogItem));
+});
+
+app.get("/api/v1/public/compare",async(req,res)=>{
+ const ids=String(req.query.ids??"").split(",").map(x=>x.trim()).filter(Boolean);
+ const uniqueIds=[...new Set(ids)];
+ if(uniqueIds.length<2||uniqueIds.length>4)
+  return res.status(400).json({error:"comparison_requires_2_to_4_unique_property_ids"});
+ const publications=await publicationRepo.listCurrent();
+ const byId=new Map(publications.map(x=>[x.property_id,x]));
+ const selected=uniqueIds.map(id=>byId.get(id));
+ const missing=uniqueIds.filter((_,index)=>!selected[index]);
+ if(missing.length)return res.status(404).json({error:"published_property_not_found",propertyIds:missing});
+ res.json({items:buildPublicComparison(selected as any[])});
+});
 
 // Public read model is deliberately outside JWT middleware. It only returns a
 // frozen explicitly-published snapshot and never falls back to analyst drafts.

@@ -1,0 +1,34 @@
+export type PublicPublication={
+ property_id:string;
+ published_at:string;
+ snapshot:any;
+};
+
+function analytics(snapshot:any){return snapshot?.analytics??{};}
+
+export function toPublicCatalogItem(publication:PublicPublication){
+ const snapshot=publication.snapshot??{};
+ const property=snapshot.property??{};
+ const values=analytics(snapshot);
+ return {
+  id:property.id??publication.property_id,
+  project:property.project??"Published property",
+  unit:property.unit??null,
+  headline:snapshot.narrative?.headline??null,
+  summary:snapshot.narrative?.summary??null,
+  publishedAt:publication.published_at,
+  analytics:{
+   tac:values.tac??null,
+   netYield:values.netYield??null,
+   productionReturnMetric:values.productionReturnMetric??null,
+   productionReturn:values.productionReturn??null,
+   riskAdjustedScore:values.riskAdjustedScore??null,
+   finalVerdict:values.finalVerdict??null,
+   dataConfidence:values.dataConfidence?.score??values.dataConfidence??null
+  }
+ };
+}
+
+export function buildPublicComparison(publications:PublicPublication[]){
+ return publications.map(toPublicCatalogItem);
+}
