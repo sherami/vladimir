@@ -4,7 +4,11 @@ import {calculatePublicScenario,comparePublishedProperties,getPublishedPropertie
 import {c,language,languageHref,pageHref,preview} from "./lib/i18n";
 import "./styles.css";
 const fmt=(x:any)=>typeof x==="number"?new Intl.NumberFormat(language==="ru"?"ru-RU":"en-US",{maximumFractionDigits:0}).format(x):"—";
+const serviceError=language==="ru"?"Сервис аналитики временно недоступен. Попробуйте ещё раз.":"The analytics service is temporarily unavailable. Please try again.";
+const propertyError=language==="ru"?"Объект не опубликован или временно недоступен.":"The property is not published or is temporarily unavailable.";
+const retryLabel=language==="ru"?"Повторить":"Try again";
 function Badge({children}:{children:React.ReactNode}){return <span className="badge">{children}</span>}
+function RetryButton(){return <button className="retryButton" onClick={()=>location.reload()}>{retryLabel} <span>→</span></button>}
 function Header(){const params=new URLSearchParams(location.search),calculator=params.has("calculator");return <><header><a className="logo" href={pageHref()} aria-label="PrivatePhuket">PP <span>PrivatePhuket</span></a><nav className="nav" aria-label={language==="ru"?"Основная навигация":"Primary navigation"}><a aria-current={!calculator&&!params.has("id")&&!params.has("compare")?"page":undefined} href={pageHref()}>{c.catalog}</a><a aria-current={calculator?"page":undefined} href={pageHref("calculator=1")}>{c.calculator}</a><span className="language" aria-label={language==="ru"?"Выбор языка":"Language selection"}><a aria-current={language==="ru"?"page":undefined} className={language==="ru"?"active":""} href={languageHref("ru")}>RU</a><i aria-hidden="true">/</i><a aria-current={language==="en"?"page":undefined} className={language==="en"?"active":""} href={languageHref("en")}>EN</a></span></nav></header>{preview&&<div className="previewBar"><b>{c.preview}</b><span>{c.previewNote}</span></div>}</>}
 const calculatorDefaults:PublicCalculatorInput={purchasePrice:10000000,acquisitionCosts:300000,initialCapex:500000,annualNoi:900000,entryMarketValue:10000000,holdingYears:5,exitGrowthRate:.04,sellingCostRate:.05,requiredReturn:.1};
 const money=(value:number)=>new Intl.NumberFormat(language==="ru"?"ru-RU":"en-US",{style:"currency",currency:"THB",maximumFractionDigits:0}).format(value);
@@ -12,7 +16,7 @@ const percent=(value:number)=>new Intl.NumberFormat(language==="ru"?"ru-RU":"en-
 function Calculator(){
  const [input,setInput]=useState(calculatorDefaults),[result,setResult]=useState<any>(),[err,setErr]=useState(""),[busy,setBusy]=useState(false);
  const numberField=(key:keyof PublicCalculatorInput)=>(event:React.ChangeEvent<HTMLInputElement>)=>setInput(current=>({...current,[key]:Number(event.target.value)}));
- const submit=async(event:FormEvent)=>{event.preventDefault();setBusy(true);setErr("");try{setResult(await calculatePublicScenario(input))}catch(e){setErr(e instanceof Error?e.message:c.calculationError)}finally{setBusy(false)}};
+ const submit=async(event:FormEvent)=>{event.preventDefault();setBusy(true);setErr("");try{setResult(await calculatePublicScenario(input))}catch(e){setErr(language==="ru"?c.calculationError:e instanceof Error?e.message:c.calculationError)}finally{setBusy(false)}};
  const output=result?.outputs;
  return <><Header/><main><section className="calculatorHero"><div><div className="eyebrow">{c.independentModel}</div><h1 className="title">{c.testDeal}<br/>{c.beforeBuy}</h1><p className="sub">{c.calculatorIntro}</p></div><div className="scenarioLabel">{c.scenarioOnly}</div></section>
  <form className="calculatorLayout" onSubmit={submit}><section className="calculatorForm"><div className="formSection"><div className="formHeading"><span>01</span><div><h2>{c.acquisition}</h2><p>{c.acquisitionHint}</p></div></div><div className="fieldGrid">
@@ -34,7 +38,7 @@ function Catalog(){
  const [items,setItems]=useState<any[]>(),[selected,setSelected]=useState<string[]>([]),[err,setErr]=useState("");
  useEffect(()=>{getPublishedProperties().then(setItems).catch(e=>setErr(e.message))},[]);
  const toggle=(id:string)=>setSelected(current=>current.includes(id)?current.filter(x=>x!==id):current.length<4?[...current,id]:current);
- if(err)return <><Header/><main><div className="eyebrow">PrivatePhuket</div><h1 className="title">{c.publishedOnly}</h1><p className="sub">{err}</p></main></>;
+ if(err)return <><Header/><main><div className="eyebrow">PrivatePhuket</div><h1 className="title">{c.publishedOnly}</h1><p className="sub">{serviceError}</p><RetryButton/></main></>;
  if(!items)return <><Header/><main className="loadingState">{c.loading}</main></>;
  return <><Header/><main><section className="catalogHero"><div className="eyebrow">{c.intelligence}</div><h1 className="title">{c.chooseNumbers}<br/>{c.notPromises}</h1><p className="sub">{c.catalogIntro}</p></section>
  {items.length===0?<section className="empty"><div className="eyebrow">{c.publicationGate}</div><h2>{c.nothingPublished}</h2><p className="sub">{c.nothingPublishedHint}</p></section>:<>
@@ -45,7 +49,7 @@ function Catalog(){
 function Comparison({ids}:{ids:string[]}){
  const [items,setItems]=useState<any[]>(),[err,setErr]=useState("");
  useEffect(()=>{comparePublishedProperties(ids).then(x=>setItems(x.items)).catch(e=>setErr(e.message))},[ids.join(",")]);
- if(err)return <><Header/><main><h1 className="title">{c.comparisonUnavailable}</h1><p className="sub">{err}</p><a className="detailLink" href={pageHref()}>{c.back}</a></main></>;
+ if(err)return <><Header/><main><h1 className="title">{c.comparisonUnavailable}</h1><p className="sub">{serviceError}</p><RetryButton/><a className="detailLink errorBack" href={pageHref()}>{c.back}</a></main></>;
  if(!items)return <><Header/><main className="loadingState">{c.loadingComparison}</main></>;
  const rows=[
   [c.tac,(x:any)=>`${fmt(x.analytics.tac)} THB`],
@@ -61,7 +65,7 @@ function Comparison({ids}:{ids:string[]}){
 function PropertyDetail({id}:{id:string}){
  const [data,setData]=useState<any>(),[err,setErr]=useState("");
  useEffect(()=>{getPublishedProperty(id).then(setData).catch(e=>setErr(e.message))},[id]);
- if(err)return <><Header/><main><div className="eyebrow">PrivatePhuket</div><h1 className="title">{c.publishedOnly}</h1><p className="sub">{err}. {c.publicErrorNote}</p><a className="detailLink" href={pageHref()}>{c.back}</a></main></>;
+ if(err)return <><Header/><main><div className="eyebrow">PrivatePhuket</div><h1 className="title">{c.publishedOnly}</h1><p className="sub">{propertyError}</p><RetryButton/><a className="detailLink errorBack" href={pageHref()}>{c.back}</a></main></>;
  if(!data)return <><Header/><main className="loadingState">{c.loading}</main></>;
  const snap=data.snapshot; const a=snap?.analytics??data.analytics; const n=snap?.narrative;
  return <><Header/><main>
