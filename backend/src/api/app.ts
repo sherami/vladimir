@@ -22,6 +22,7 @@ import { validateEvidenceInput } from "../services/evidence-input-validation.js"
 import { validateEvidenceSupersession } from "../services/evidence-supersession-validation.js";
 import { prepareDraftProperty } from "../services/property-intake.js";
 import { buildPublicComparison,toPublicCatalogItem } from "../services/public-catalog.js";
+import { calculatePublicScenario,validatePublicCalculatorInput } from "../services/public-calculator.js";
 
 export const app=express();
 app.use(httpBoundary);
@@ -57,6 +58,13 @@ app.get("/api/v1/public/compare",async(req,res)=>{
  const missing=uniqueIds.filter((_,index)=>!selected[index]);
  if(missing.length)return res.status(404).json({error:"published_property_not_found",propertyIds:missing});
  res.json({items:buildPublicComparison(selected as any[])});
+});
+
+app.post("/api/v1/public/calculator",(req,res)=>{
+ const validation=validatePublicCalculatorInput(req.body);
+ if(!validation.valid)return res.status(400).json({error:"invalid_calculator_input",issues:validation.issues});
+ try{return res.json(calculatePublicScenario(req.body));}
+ catch{return res.status(422).json({error:"scenario_could_not_be_calculated"});}
 });
 
 // Public read model is deliberately outside JWT middleware. It only returns a
