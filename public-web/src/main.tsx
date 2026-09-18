@@ -66,10 +66,12 @@ function PropertyDetail({id}:{id:string}){
  <section className="hero"><div><div className="eyebrow">Independent property analysis</div><h1 className="title">{n?.headline??<>Investment decision,<br/>not a sales brochure.</>}</h1>
  <p className="sub">{n?.summary??"PrivatePhuket separates property facts, model assumptions and analyst opinion. The figures below come from the exact calculation run approved for publication."}</p></div>
  <div className="scorebox"><div className="muted" style={{color:"#b9c0bc"}}>PRIVATEPHUKET INVESTMENT SCORE</div><div className="score">{a.riskAdjustedScore?.toFixed?.(1)??"—"} <small>/ 100</small></div><span className="badge darkbadge">{a.finalVerdict??"FINAL"}</span></div></section>
- <div className="metrics"><div className="metric"><span className="muted">TOTAL ACQUISITION COST</span><b>{fmt(a.tac)} THB</b></div>
+ <div className="metrics detailMetrics"><div className="metric"><span className="muted">PURCHASE PRICE</span><b>{fmt(snap?.property?.purchasePrice?.value)} THB</b><Badge>{snap?.property?.purchasePrice?.status??"NO DATA"}</Badge></div>
+ <div className="metric"><span className="muted">TOTAL ACQUISITION COST</span><b>{fmt(a.tac)} THB</b></div>
  <div className="metric"><span className="muted">NET YIELD</span><b>{a.netYield==null?"—":`${(a.netYield*100).toFixed(2)}%`}</b></div>
- <div className="metric"><span className="muted">RETURN METRIC</span><b>{a.productionReturnMetric??"—"}</b></div>
- <div className="metric"><span className="muted">METHODOLOGY</span><b>{a.methodologyVersion??"—"}</b></div></div>
+ <div className="metric"><span className="muted">{a.productionReturnMetric??"RETURN"}</span><b>{a.productionReturn==null?"—":`${(a.productionReturn*100).toFixed(2)}%`}</b></div>
+ <div className="metric"><span className="muted">RISK</span><b>{a.riskLabel??"—"}</b></div>
+ <div className="metric"><span className="muted">DATA CONFIDENCE</span><b>{a.dataConfidence==null?"—":`${Number(a.dataConfidence).toFixed(0)}/100`}</b></div></div>
  <section className="section"><div className="eyebrow">Decision layer</div><h2>What the numbers mean</h2><div className="cols">
  <div className="panel"><h3>Why consider</h3>{(n?.whyBuy??[]).map((x:string,i:number)=><p className="why" key={i}>— {x}</p>)}</div>
  <div className="panel risk"><h3>Why not buy</h3>{(n?.whyNotBuy??[]).map((x:string,i:number)=><p className="why" key={i}>— {x}</p>)}</div></div></section>
