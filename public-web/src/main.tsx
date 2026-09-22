@@ -15,25 +15,42 @@ function Badge({children}:{children:React.ReactNode}){return <span className="ba
 function publicVerdict(analytics:any){return analytics?.verdictStatus==="FINAL"?analytics.finalVerdict??c.noData:c.provisionalVerdict;}
 function RetryButton(){return <button className="retryButton" onClick={()=>location.reload()}>{retryLabel} <span>→</span></button>}
 function Header(){const params=new URLSearchParams(location.search),calculator=params.has("calculator");return <><header><a className="logo" href={pageHref()} aria-label="PrivatePhuket">PP <span>PrivatePhuket</span></a><nav className="nav" aria-label={language==="ru"?"Основная навигация":"Primary navigation"}><a aria-current={!calculator&&!params.has("id")&&!params.has("compare")?"page":undefined} href={pageHref()}>{c.catalog}</a><a aria-current={calculator?"page":undefined} href={pageHref("calculator=1")}>{c.calculator}</a><span className="language" aria-label={language==="ru"?"Выбор языка":"Language selection"}><a aria-current={language==="ru"?"page":undefined} className={language==="ru"?"active":""} href={languageHref("ru")}>RU</a><i aria-hidden="true">/</i><a aria-current={language==="en"?"page":undefined} className={language==="en"?"active":""} href={languageHref("en")}>EN</a></span></nav></header>{preview&&<div className="previewBar"><b>{c.preview}</b><span>{c.previewNote}</span></div>}</>}
-const calculatorDefaults:PublicCalculatorInput={purchasePrice:10000000,acquisitionCosts:300000,initialCapex:500000,annualNoi:900000,entryMarketValue:10000000,holdingYears:5,exitGrowthRate:.04,sellingCostRate:.05,requiredReturn:.1};
+type CalculatorDraft=Record<keyof PublicCalculatorInput,string>;
+const calculatorDefaults:CalculatorDraft={purchasePrice:"10000000",acquisitionCosts:"300000",initialCapex:"500000",annualNoi:"900000",entryMarketValue:"10000000",holdingYears:"5",exitGrowthRate:"4",sellingCostRate:"5",requiredReturn:"10"};
+function parseCalculatorDraft(draft:CalculatorDraft):PublicCalculatorInput|null{
+ if(Object.values(draft).some(value=>value.trim()===""))return null;
+ const input={
+  purchasePrice:Number(draft.purchasePrice),
+  acquisitionCosts:Number(draft.acquisitionCosts),
+  initialCapex:Number(draft.initialCapex),
+  annualNoi:Number(draft.annualNoi),
+  entryMarketValue:Number(draft.entryMarketValue),
+  holdingYears:Number(draft.holdingYears),
+  exitGrowthRate:Number(draft.exitGrowthRate)/100,
+  sellingCostRate:Number(draft.sellingCostRate)/100,
+  requiredReturn:Number(draft.requiredReturn)/100
+ };
+ return Object.values(input).every(Number.isFinite)?input:null;
+}
 const money=(value:number)=>new Intl.NumberFormat(language==="ru"?"ru-RU":"en-US",{style:"currency",currency:"THB",maximumFractionDigits:0}).format(value);
 const percent=(value:number)=>new Intl.NumberFormat(language==="ru"?"ru-RU":"en-US",{style:"percent",minimumFractionDigits:2,maximumFractionDigits:2}).format(value);
 function Calculator(){
  usePageMeta(language==="ru"?"Инвестиционный калькулятор":"Investment calculator",c.calculatorIntro);
  const [input,setInput]=useState(calculatorDefaults),[result,setResult]=useState<any>(),[err,setErr]=useState(""),[busy,setBusy]=useState(false);
  const requestVersion=useRef(0);
- const editInput=(key:keyof PublicCalculatorInput,value:number)=>{
+ const editInput=(key:keyof PublicCalculatorInput,value:string)=>{
   requestVersion.current+=1;
   setResult(undefined);
   setErr("");
   setBusy(false);
   setInput(current=>({...current,[key]:value}));
  };
- const numberField=(key:keyof PublicCalculatorInput)=>(event:React.ChangeEvent<HTMLInputElement>)=>editInput(key,Number(event.target.value));
+ const numberField=(key:keyof PublicCalculatorInput)=>(event:React.ChangeEvent<HTMLInputElement>)=>editInput(key,event.target.value);
  const submit=async(event:FormEvent)=>{
   event.preventDefault();
+  const submittedInput=parseCalculatorDraft(input);
+  if(!submittedInput){setErr(c.calculationError);return;}
   const version=++requestVersion.current;
-  const submittedInput={...input};
   setBusy(true);
   setResult(undefined);
   setErr("");
@@ -56,9 +73,9 @@ function Calculator(){
  </div></div><div className="formSection"><div className="formHeading"><span>02</span><div><h2>{c.operationsExit}</h2><p>{c.operationsHint}</p></div></div><div className="fieldGrid">
  <label>{c.annualNoi} <span>THB</span><input type="number" min="0" step="1000" value={input.annualNoi} onChange={numberField("annualNoi")} required/></label>
  <label>{c.holdingPeriod} <span>{c.years}</span><input type="number" min="1" max="30" step="1" value={input.holdingYears} onChange={numberField("holdingYears")} required/></label>
- <label>{c.exitGrowth} <span>%</span><input type="number" min="-99" max="100" step="0.1" value={input.exitGrowthRate*100} onChange={e=>editInput("exitGrowthRate",Number(e.target.value)/100)} required/></label>
- <label>{c.sellingCosts} <span>%</span><input type="number" min="0" max="99" step="0.1" value={input.sellingCostRate*100} onChange={e=>editInput("sellingCostRate",Number(e.target.value)/100)} required/></label>
- <label>{c.requiredReturn} <span>%</span><input type="number" min="-99" max="500" step="0.1" value={input.requiredReturn*100} onChange={e=>editInput("requiredReturn",Number(e.target.value)/100)} required/></label>
+ <label>{c.exitGrowth} <span>%</span><input type="number" min="-99" max="100" step="0.1" value={input.exitGrowthRate} onChange={numberField("exitGrowthRate")} required/></label>
+ <label>{c.sellingCosts} <span>%</span><input type="number" min="0" max="99" step="0.1" value={input.sellingCostRate} onChange={numberField("sellingCostRate")} required/></label>
+ <label>{c.requiredReturn} <span>%</span><input type="number" min="-99" max="500" step="0.1" value={input.requiredReturn} onChange={numberField("requiredReturn")} required/></label>
  </div></div>{err&&<div className="formError" role="alert">{err}</div>}<button className="calculateButton" disabled={busy}>{busy?c.calculating:c.calculate}<span>→</span></button></section>
  <aside className={`calculatorResults ${output?"hasResults":""}`} aria-live="polite"><div className="resultTop"><div><small>PRIVATEPHUKET SCENARIO</small><h2>{output?percent(output.productionReturn):"—"}</h2><p>{c.projectIrr}</p></div><Badge>{output?c.scenarioOnly:c.ready}</Badge></div>{output?<><div className="resultRows"><div><span>{c.tac}</span><b>{money(output.tac)}</b></div><div><span>{c.netYield}</span><b>{percent(output.netYield)}</b></div><div><span>{c.totalRoi}</span><b>{percent(output.roi)}</b></div><div><span>{c.returnGap}</span><b className={output.requiredReturnGap>=0?"positive":"negative"}>{output.requiredReturnGap>=0?"+":""}{percent(output.requiredReturnGap)}</b></div><div><span>{c.exitValue}</span><b>{money(output.exitValue)}</b></div><div><span>{c.netExit}</span><b>{money(output.netExitProceeds)}</b></div></div><div className="cashFlow"><small>{c.cashFlows}</small><div>{output.periodicCashFlows.map((value:number,index:number)=><span key={index}><i>{index===0?c.entry:`Y${index}`}</i><b>{money(value)}</b></span>)}</div></div></>:<div className="resultEmpty"><span>↗</span><p>{c.emptyResult}</p></div>}<p className="resultDisclosure">{c.calculatorDisclosure}</p></aside></form>
  </main><footer>PrivatePhuket · {c.platform} · {c.analyticsDisclaimer}</footer></>;
