@@ -8,7 +8,7 @@ const publication=(id:string,score:number)=>({
   property:{id,project:`Project ${id}`,unit:"A-01"},
   analytics:{
    tac:10_000_000,netYield:.071,productionReturnMetric:"IRR",productionReturn:.104,
-   riskAdjustedScore:score,finalVerdict:"BUY",dataConfidence:{score:83},riskLabel:"MODERATE",methodologyVersion:"1.0",
+   riskAdjustedScore:score,verdictStatus:"FINAL",finalVerdict:"BUY",dataConfidence:{score:83},riskLabel:"MODERATE",methodologyVersion:"1.0",
    inputSnapshot:{private:"must not leak"}
   },
   narrative:{headline:"Independent view",summary:"Published summary"},
@@ -21,11 +21,19 @@ describe("public catalog",()=>{
   const item=toPublicCatalogItem(publication("p1",78));
   expect(item.analytics).toEqual({
    tac:10_000_000,netYield:.071,productionReturnMetric:"IRR",productionReturn:.104,
-   riskAdjustedScore:78,finalVerdict:"BUY",dataConfidence:83,riskLabel:"MODERATE",methodologyVersion:"1.0"
+   riskAdjustedScore:78,verdictStatus:"FINAL",finalVerdict:"BUY",dataConfidence:83,riskLabel:"MODERATE",methodologyVersion:"1.0"
   });
   expect(item).not.toHaveProperty("snapshot");
   expect(JSON.stringify(item)).not.toContain("private");
   expect(JSON.stringify(item)).not.toContain("s3://");
+ });
+
+ test("does not expose a final verdict from a provisional snapshot",()=>{
+  const candidate=publication("provisional",68);
+  candidate.snapshot.analytics.verdictStatus="PROVISIONAL";
+  const item=toPublicCatalogItem(candidate);
+  expect(item.analytics.verdictStatus).toBe("PROVISIONAL");
+  expect(item.analytics.finalVerdict).toBeNull();
  });
 
  test("preserves caller order for deterministic comparisons",()=>{

@@ -23,7 +23,8 @@ export function toPublicCatalogItem(publication:PublicPublication){
    productionReturnMetric:values.productionReturnMetric??null,
    productionReturn:values.productionReturn??null,
    riskAdjustedScore:values.riskAdjustedScore??null,
-   finalVerdict:values.finalVerdict??null,
+   verdictStatus:values.verdictStatus??null,
+   finalVerdict:values.verdictStatus==="FINAL"?values.finalVerdict??null:null,
    dataConfidence:values.financialDataConfidence??values.dataConfidence?.score??values.dataConfidence??null,
    riskLabel:values.riskLabel??null,
    methodologyVersion:values.methodologyVersion??null
