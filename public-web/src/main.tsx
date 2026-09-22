@@ -12,8 +12,9 @@ function usePageMeta(title:string,description=defaultDescription){
  useEffect(()=>{document.title=`${title} — PrivatePhuket`;document.querySelector('meta[name="description"]')?.setAttribute("content",description)},[title,description]);
 }
 function Badge({children}:{children:React.ReactNode}){return <span className="badge">{children}</span>}
-function publicVerdict(analytics:any){return analytics?.verdictStatus==="FINAL"?analytics.finalVerdict??c.noData:c.provisionalVerdict;}
-function incomeStatus(status:string|undefined){return status?c.incomeStatuses[status as keyof typeof c.incomeStatuses]??c.noData:c.noData;}
+function localizedLabel(value:string|undefined,labels:Record<string,string>){return value?labels[value]??value:c.noData;}
+function publicVerdict(analytics:any){return analytics?.verdictStatus==="FINAL"?localizedLabel(analytics.finalVerdict,c.verdictLabels):c.provisionalVerdict;}
+function incomeStatus(status:string|undefined){return localizedLabel(status,c.incomeStatuses);}
 function RetryButton(){return <button className="retryButton" onClick={()=>location.reload()}>{retryLabel} <span>→</span></button>}
 function Header(){const params=new URLSearchParams(location.search),calculator=params.has("calculator");return <><header><a className="logo" href={pageHref()} aria-label="PrivatePhuket">PP <span>PrivatePhuket</span></a><nav className="nav" aria-label={language==="ru"?"Основная навигация":"Primary navigation"}><a aria-current={!calculator&&!params.has("id")&&!params.has("compare")?"page":undefined} href={pageHref()}>{c.catalog}</a><a aria-current={calculator?"page":undefined} href={pageHref("calculator=1")}>{c.calculator}</a><span className="language" aria-label={language==="ru"?"Выбор языка":"Language selection"}><a aria-current={language==="ru"?"page":undefined} className={language==="ru"?"active":""} href={languageHref("ru")}>RU</a><i aria-hidden="true">/</i><a aria-current={language==="en"?"page":undefined} className={language==="en"?"active":""} href={languageHref("en")}>EN</a></span></nav></header>{preview&&<div className="previewBar"><b>{c.preview}</b><span>{c.previewNote}</span></div>}</>}
 type CalculatorDraft=Record<keyof PublicCalculatorInput,string>;
@@ -124,17 +125,17 @@ function PropertyDetail({id}:{id:string}){
  <section className="hero"><div><div className="eyebrow">{c.propertyAnalysis}</div><h1 className="title">{n?.headline??c.decisionNotBrochure}</h1>
  <p className="sub">{n?.summary??c.detailIntro}</p></div>
  <div className="scorebox"><div className="muted" style={{color:"#b9c0bc"}}>PRIVATEPHUKET INVESTMENT SCORE</div><div className="score">{a.riskAdjustedScore?.toFixed?.(1)??"—"} <small>/ 100</small></div><span className="badge darkbadge">{publicVerdict(a)}</span></div></section>
- <div className="metrics detailMetrics"><div className="metric"><span className="muted">{c.purchasePrice.toUpperCase()}</span><b>{fmt(snap?.property?.purchasePrice?.value)} THB</b><Badge>{snap?.property?.purchasePrice?.status??c.noData}</Badge></div>
+ <div className="metrics detailMetrics"><div className="metric"><span className="muted">{c.purchasePrice.toUpperCase()}</span><b>{fmt(snap?.property?.purchasePrice?.value)} THB</b><Badge>{incomeStatus(snap?.property?.purchasePrice?.status)}</Badge></div>
  <div className="metric"><span className="muted">{c.tac.toUpperCase()}</span><b>{fmt(a.tac)} THB</b></div>
  <div className="metric"><span className="muted">{c.netYield.toUpperCase()}</span><b>{a.netYield==null?"—":`${(a.netYield*100).toFixed(2)}%`}</b><div className="incomeBasis">{c.annualNoi}: {snap?.property?.annualNoi?.value==null?"—":`${fmt(snap.property.annualNoi.value)} THB`}</div><Badge>{incomeStatus(snap?.property?.annualNoi?.status)}</Badge></div>
  <div className="metric"><span className="muted">{a.productionReturnMetric??c.return.toUpperCase()}</span><b>{a.productionReturn==null?"—":`${(a.productionReturn*100).toFixed(2)}%`}</b></div>
- <div className="metric"><span className="muted">{c.risk}</span><b>{a.riskLabel??"—"}</b></div>
+ <div className="metric"><span className="muted">{c.risk}</span><b>{localizedLabel(a.riskLabel,c.riskLabels)}</b></div>
  <div className="metric"><span className="muted">{c.confidence.toUpperCase()}</span><b>{a.dataConfidence==null?"—":`${Number(a.dataConfidence).toFixed(0)}/100`}</b></div></div>
  <section className="section"><div className="eyebrow">{c.decisionLayer}</div><h2>{c.numbersMeaning}</h2><div className="cols">
  <div className="panel"><h3>{c.whyConsider}</h3>{(n?.whyBuy??[]).map((x:string,i:number)=><p className="why" key={i}>— {x}</p>)}</div>
  <div className="panel risk"><h3>{c.whyNot}</h3>{(n?.whyNotBuy??[]).map((x:string,i:number)=><p className="why" key={i}>— {x}</p>)}</div></div></section>
  <section className="section"><div className="eyebrow">{c.evidenceScenarios}</div><h2>{c.factOrModel}</h2><div className="cols">
- <div className="panel"><h3>{c.sources}</h3>{(snap?.sourceDisclosures??[]).map((x:any,i:number)=><p className="why" key={i}><Badge>{x.status??"SOURCE"}</Badge> {x.label??x.text??String(x)}</p>)}</div>
+ <div className="panel"><h3>{c.sources}</h3>{(snap?.sourceDisclosures??[]).map((x:any,i:number)=><p className="why" key={i}><Badge>{incomeStatus(x.status)}</Badge> {x.label??x.text??String(x)}</p>)}</div>
  <div className="panel"><h3>{c.scenarioAssumptions}</h3>{(snap?.scenarioDisclosures??[]).map((x:any,i:number)=><p className="why" key={i}><b>{x.name??c.scenario}</b> — {x.text??String(x)}</p>)}</div>
  </div></section>
  <section className="section"><div className="eyebrow">{c.transparency}</div><h2>{c.provenance}</h2>
