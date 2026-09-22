@@ -17,7 +17,7 @@ const russian:Record<string,any>={
 
 const localized=(item:any)=>language==="ru"?{...item,...russian[item.id]}:item;
 
-export const demoCatalog=seeds.map(seed=>{const {price,priceStatus,noiStatus,whyBuy,whyNotBuy,sources,scenarios,...item}=localized(seed);return {...item,annualNoi:{value:item.analytics.tac*item.analytics.netYield,status:noiStatus},analytics:{...item.analytics,verdictStatus:"PROVISIONAL",finalVerdict:undefined}}});
+export const demoCatalog=seeds.map(seed=>{const {price,priceStatus,noiStatus,whyBuy,whyNotBuy,sources,scenarios,...item}=localized(seed);return {...item,purchasePrice:{value:price,status:priceStatus},annualNoi:{value:item.analytics.tac*item.analytics.netYield,status:noiStatus},analytics:{...item.analytics,verdictStatus:"PROVISIONAL",finalVerdict:undefined}}});
 
 export function demoProperty(id:string){
  const seed=seeds.find(x=>x.id===id); if(!seed)return undefined; const item=localized(seed);
