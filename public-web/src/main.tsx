@@ -25,6 +25,14 @@ function RetryButton(){return <button className="retryButton" onClick={()=>locat
 function Header(){const params=new URLSearchParams(location.search),calculator=params.has("calculator");return <><header><a className="logo" href={pageHref()} aria-label="PrivatePhuket">PP <span>PrivatePhuket</span></a><nav className="nav" aria-label={language==="ru"?"Основная навигация":"Primary navigation"}><a aria-current={!calculator&&!params.has("id")&&!params.has("compare")?"page":undefined} href={pageHref()}>{c.catalog}</a><a aria-current={calculator?"page":undefined} href={pageHref("calculator=1")}>{c.calculator}</a><span className="language" aria-label={language==="ru"?"Выбор языка":"Language selection"}><a aria-current={language==="ru"?"page":undefined} className={language==="ru"?"active":""} href={languageHref("ru")}>RU</a><i aria-hidden="true">/</i><a aria-current={language==="en"?"page":undefined} className={language==="en"?"active":""} href={languageHref("en")}>EN</a></span></nav></header>{preview&&<div className="previewBar"><b>{c.preview}</b><span>{c.previewNote}</span></div>}</>}
 type CalculatorDraft=Record<keyof PublicCalculatorInput,string>;
 const calculatorDefaults:CalculatorDraft={purchasePrice:"10000000",acquisitionCosts:"300000",initialCapex:"500000",annualNoi:"900000",entryMarketValue:"10000000",holdingYears:"5",exitGrowthRate:"4",sellingCostRate:"5",requiredReturn:"10"};
+function importedCalculatorDraft():CalculatorDraft|null{
+ const params=new URLSearchParams(location.search);
+ if(params.get("source")!=="property"||!params.has("purchasePrice")||!params.has("annualNoi"))return null;
+ const purchasePrice=Number(params.get("purchasePrice")),annualNoi=Number(params.get("annualNoi"));
+ if(!Number.isFinite(purchasePrice)||purchasePrice<=0||!Number.isFinite(annualNoi)||annualNoi<0)return null;
+ return {...calculatorDefaults,purchasePrice:String(purchasePrice),annualNoi:String(annualNoi),entryMarketValue:""};
+}
+const importedDraft=importedCalculatorDraft();
 function parseCalculatorDraft(draft:CalculatorDraft):PublicCalculatorInput|null{
  if(Object.values(draft).some(value=>value.trim()===""))return null;
  const input={
@@ -44,7 +52,7 @@ const money=(value:number)=>new Intl.NumberFormat(language==="ru"?"ru-RU":"en-US
 const percent=(value:number)=>new Intl.NumberFormat(language==="ru"?"ru-RU":"en-US",{style:"percent",minimumFractionDigits:2,maximumFractionDigits:2}).format(value);
 function Calculator(){
  usePageMeta(language==="ru"?"Инвестиционный калькулятор":"Investment calculator",c.calculatorIntro);
- const [input,setInput]=useState(calculatorDefaults),[result,setResult]=useState<any>(),[err,setErr]=useState(""),[busy,setBusy]=useState(false);
+ const [input,setInput]=useState(importedDraft??calculatorDefaults),[result,setResult]=useState<any>(),[err,setErr]=useState(""),[busy,setBusy]=useState(false);
  const requestVersion=useRef(0);
  const editInput=(key:keyof PublicCalculatorInput,value:string)=>{
   requestVersion.current+=1;
@@ -73,6 +81,7 @@ function Calculator(){
  };
  const output=result?.outputs;
  return <><Header/><main><section className="calculatorHero"><div><div className="eyebrow">{c.independentModel}</div><h1 className="title">{c.testDeal}<br/>{c.beforeBuy}</h1><p className="sub">{c.calculatorIntro}</p></div><div className="scenarioLabel">{c.scenarioOnly}</div></section>
+ {importedDraft&&<p className="calculatorImportNote" role="note">{c.importedScenarioNote}</p>}
  <form className="calculatorLayout" onSubmit={submit}><section className="calculatorForm"><div className="formSection"><div className="formHeading"><span>01</span><div><h2>{c.acquisition}</h2><p>{c.acquisitionHint}</p></div></div><div className="fieldGrid">
  <label>{c.purchasePrice} <span>THB</span><input type="number" min="1000" step="1000" value={input.purchasePrice} onChange={numberField("purchasePrice")} required/></label>
  <label>{c.acquisitionCosts} <span>THB</span><input type="number" min="0" step="1000" value={input.acquisitionCosts} onChange={numberField("acquisitionCosts")} required/></label>
@@ -127,6 +136,9 @@ function PropertyDetail({id}:{id:string}){
  useEffect(()=>{getPublishedProperty(id).then(setData).catch(e=>setErr(e.message))},[id]);
  if(err)return <><Header/><main><div className="eyebrow">PrivatePhuket</div><h1 className="title">{c.publishedOnly}</h1><p className="sub">{propertyError}</p><RetryButton/><a className="detailLink errorBack" href={pageHref()}>{c.back}</a></main></>;
  if(!data)return <><Header/><main className="loadingState">{c.loading}</main></>;
+ const price=snap?.property?.purchasePrice?.value,noi=snap?.property?.annualNoi?.value;
+ const hasScenarioInputs=typeof price==="number"&&Number.isFinite(price)&&price>0&&typeof noi==="number"&&Number.isFinite(noi)&&noi>=0;
+ const scenarioQuery=hasScenarioInputs?new URLSearchParams({calculator:"1",source:"property",purchasePrice:String(price),annualNoi:String(noi)}).toString():"";
  return <><Header/><main>
  {data.lifecycle?.status==="SUPERSEDED"&&<aside className="supersededNotice" role="status"><div><strong>{c.supersededTitle}</strong><p>{c.supersededExplanation}</p></div>{data.lifecycle.supersededByPropertyId&&<a href={pageHref(`id=${encodeURIComponent(data.lifecycle.supersededByPropertyId)}`)}>{c.openSuccessor} →</a>}</aside>}
  {snap?.imageUrl&&<div className="detailImage" style={{backgroundImage:`url(${snap.imageUrl})`}}><span>{snap.property.project}<small>{snap.property.unit}</small></span></div>}
@@ -139,6 +151,7 @@ function PropertyDetail({id}:{id:string}){
  <div className="metric"><span className="muted">{a.productionReturnMetric??c.return.toUpperCase()}</span><b>{a.productionReturn==null?"—":`${(a.productionReturn*100).toFixed(2)}%`}</b></div>
  <div className="metric"><span className="muted">{c.risk}</span><b>{localizedLabel(a.riskLabel,c.riskLabels)}</b></div>
  <div className="metric"><span className="muted">{c.confidence.toUpperCase()}</span><b>{confidence==null?"—":`${confidence.toFixed(0)}/100`}</b></div></div>
+ {hasScenarioInputs&&<a className="scenarioFromProperty" href={pageHref(scenarioQuery)}>{c.modelThisProperty} <span>→</span></a>}
  <section className="section"><div className="eyebrow">{c.decisionLayer}</div><h2>{c.numbersMeaning}</h2><div className="cols">
  <div className="panel"><h3>{c.whyConsider}</h3>{(n?.whyBuy??[]).map((x:string,i:number)=><p className="why" key={i}>— {x}</p>)}</div>
  <div className="panel risk"><h3>{c.whyNot}</h3>{(n?.whyNotBuy??[]).map((x:string,i:number)=><p className="why" key={i}>— {x}</p>)}</div></div></section>
