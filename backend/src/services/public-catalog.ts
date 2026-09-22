@@ -17,6 +17,7 @@ export function toPublicCatalogItem(publication:PublicPublication){
   headline:snapshot.narrative?.headline??null,
   summary:snapshot.narrative?.summary??null,
   publishedAt:publication.published_at,
+  purchasePrice:{value:property.purchasePrice?.value??null,status:property.purchasePrice?.status??null},
   annualNoi:{value:property.annualNoi?.value??null,status:property.annualNoi?.status??null},
   analytics:{
    tac:values.tac??null,
