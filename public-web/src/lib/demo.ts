@@ -17,10 +17,10 @@ const russian:Record<string,any>={
 
 const localized=(item:any)=>language==="ru"?{...item,...russian[item.id]}:item;
 
-export const demoCatalog=seeds.map(seed=>{const {price,priceStatus,noiStatus,whyBuy,whyNotBuy,sources,scenarios,...item}=localized(seed);return item});
+export const demoCatalog=seeds.map(seed=>{const {price,priceStatus,noiStatus,whyBuy,whyNotBuy,sources,scenarios,...item}=localized(seed);return {...item,analytics:{...item.analytics,verdictStatus:"PROVISIONAL",finalVerdict:undefined}}});
 
 export function demoProperty(id:string){
  const seed=seeds.find(x=>x.id===id); if(!seed)return undefined; const item=localized(seed);
- return {publication:{id:`publication-${item.id}`,property_id:item.id,calculation_run_id:`preview-${item.id}`,published_at:"2026-09-18T00:00:00.000Z"},lifecycle:{status:"DESIGN_PREVIEW"},snapshot:{property:{id:item.id,project:item.project,unit:item.unit,purchasePrice:{value:item.price,status:item.priceStatus},annualNoi:{value:item.analytics.tac*item.analytics.netYield,status:item.noiStatus}},analytics:{...item.analytics,calculationRunId:`preview-${item.id}`,engineVersion:"preview-1.0",inputSnapshotHash:"illustrative-preview-data",verdictStatus:item.analytics.dataConfidence>=75?"FINAL":"PROVISIONAL"},narrative:{headline:item.headline,summary:item.summary,whyBuy:item.whyBuy,whyNotBuy:item.whyNotBuy},sourceDisclosures:item.sources,scenarioDisclosures:item.scenarios,frozenAt:"2026-09-18T00:00:00.000Z",imageUrl:item.imageUrl}};
+ return {publication:{id:`publication-${item.id}`,property_id:item.id,calculation_run_id:`preview-${item.id}`,published_at:"2026-09-18T00:00:00.000Z"},lifecycle:{status:"DESIGN_PREVIEW"},snapshot:{property:{id:item.id,project:item.project,unit:item.unit,purchasePrice:{value:item.price,status:item.priceStatus},annualNoi:{value:item.analytics.tac*item.analytics.netYield,status:item.noiStatus}},analytics:{...item.analytics,finalVerdict:undefined,calculationRunId:`preview-${item.id}`,engineVersion:"preview-1.0",inputSnapshotHash:"illustrative-preview-data",verdictStatus:"PROVISIONAL"},narrative:{headline:item.headline,summary:item.summary,whyBuy:item.whyBuy,whyNotBuy:item.whyNotBuy},sourceDisclosures:item.sources,scenarioDisclosures:item.scenarios,frozenAt:"2026-09-18T00:00:00.000Z",imageUrl:item.imageUrl}};
 }
 import {language} from "./i18n";
