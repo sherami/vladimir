@@ -15,6 +15,12 @@ function Badge({children}:{children:React.ReactNode}){return <span className="ba
 function localizedLabel(value:string|undefined,labels:Record<string,string>){return value?labels[value]??value:c.noData;}
 function publicVerdict(analytics:any){return analytics?.verdictStatus==="FINAL"?localizedLabel(analytics.finalVerdict,c.verdictLabels):c.provisionalVerdict;}
 function incomeStatus(status:string|undefined){return localizedLabel(status,c.incomeStatuses);}
+function confidenceScore(analytics:any):number|null{
+ const raw=analytics?.financialDataConfidence??analytics?.dataConfidence?.score??analytics?.dataConfidence;
+ if(raw==null)return null;
+ const score=Number(raw);
+ return Number.isFinite(score)?score:null;
+}
 function RetryButton(){return <button className="retryButton" onClick={()=>location.reload()}>{retryLabel} <span>→</span></button>}
 function Header(){const params=new URLSearchParams(location.search),calculator=params.has("calculator");return <><header><a className="logo" href={pageHref()} aria-label="PrivatePhuket">PP <span>PrivatePhuket</span></a><nav className="nav" aria-label={language==="ru"?"Основная навигация":"Primary navigation"}><a aria-current={!calculator&&!params.has("id")&&!params.has("compare")?"page":undefined} href={pageHref()}>{c.catalog}</a><a aria-current={calculator?"page":undefined} href={pageHref("calculator=1")}>{c.calculator}</a><span className="language" aria-label={language==="ru"?"Выбор языка":"Language selection"}><a aria-current={language==="ru"?"page":undefined} className={language==="ru"?"active":""} href={languageHref("ru")}>RU</a><i aria-hidden="true">/</i><a aria-current={language==="en"?"page":undefined} className={language==="en"?"active":""} href={languageHref("en")}>EN</a></span></nav></header>{preview&&<div className="previewBar"><b>{c.preview}</b><span>{c.previewNote}</span></div>}</>}
 type CalculatorDraft=Record<keyof PublicCalculatorInput,string>;
@@ -115,6 +121,7 @@ function Comparison({ids}:{ids:string[]}){
 function PropertyDetail({id}:{id:string}){
  const [data,setData]=useState<any>(),[err,setErr]=useState("");
  const snap=data?.snapshot; const a=snap?.analytics??data?.analytics; const n=snap?.narrative;
+ const confidence=confidenceScore(a);
  usePageMeta(snap?.property?.project??(language==="ru"?"Аналитика объекта":"Property analysis"),n?.summary??c.detailIntro);
  useEffect(()=>{getPublishedProperty(id).then(setData).catch(e=>setErr(e.message))},[id]);
  if(err)return <><Header/><main><div className="eyebrow">PrivatePhuket</div><h1 className="title">{c.publishedOnly}</h1><p className="sub">{propertyError}</p><RetryButton/><a className="detailLink errorBack" href={pageHref()}>{c.back}</a></main></>;
@@ -130,7 +137,7 @@ function PropertyDetail({id}:{id:string}){
  <div className="metric"><span className="muted">{c.netYield.toUpperCase()}</span><b>{a.netYield==null?"—":`${(a.netYield*100).toFixed(2)}%`}</b><div className="incomeBasis">{c.annualNoi}: {snap?.property?.annualNoi?.value==null?"—":`${fmt(snap.property.annualNoi.value)} THB`}</div><Badge>{incomeStatus(snap?.property?.annualNoi?.status)}</Badge></div>
  <div className="metric"><span className="muted">{a.productionReturnMetric??c.return.toUpperCase()}</span><b>{a.productionReturn==null?"—":`${(a.productionReturn*100).toFixed(2)}%`}</b></div>
  <div className="metric"><span className="muted">{c.risk}</span><b>{localizedLabel(a.riskLabel,c.riskLabels)}</b></div>
- <div className="metric"><span className="muted">{c.confidence.toUpperCase()}</span><b>{a.dataConfidence==null?"—":`${Number(a.dataConfidence).toFixed(0)}/100`}</b></div></div>
+ <div className="metric"><span className="muted">{c.confidence.toUpperCase()}</span><b>{confidence==null?"—":`${confidence.toFixed(0)}/100`}</b></div></div>
  <section className="section"><div className="eyebrow">{c.decisionLayer}</div><h2>{c.numbersMeaning}</h2><div className="cols">
  <div className="panel"><h3>{c.whyConsider}</h3>{(n?.whyBuy??[]).map((x:string,i:number)=><p className="why" key={i}>— {x}</p>)}</div>
  <div className="panel risk"><h3>{c.whyNot}</h3>{(n?.whyNotBuy??[]).map((x:string,i:number)=><p className="why" key={i}>— {x}</p>)}</div></div></section>
