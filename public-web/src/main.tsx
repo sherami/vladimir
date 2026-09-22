@@ -116,8 +116,8 @@ function Comparison({ids}:{ids:string[]}){
   [c.confidence,(x:any)=>x.analytics.dataConfidence==null?"—":`${Number(x.analytics.dataConfidence).toFixed(0)}/100`],
   [c.verdict,(x:any)=>publicVerdict(x.analytics)]
  ] as const;
- const columns={gridTemplateColumns:`180px repeat(${items.length}, minmax(150px, 1fr))`};
- return <><Header/><main><div className="eyebrow">{c.comparisonLayer}</div><h1 className="title">{preview?c.previewCompareTitle:c.compareTitle}</h1><p className="sub">{preview?c.previewCompareIntro:c.compareIntro}</p><div className="compareTable"><div className="compareRow compareHead" style={columns}><div>{c.metric}</div>{items.map(x=><div key={x.id}><a className="compareProperty" href={pageHref(`id=${x.id}`)}><b>{x.project}</b><small>{x.unit??""}</small></a></div>)}</div>{rows.map(([label,value])=><div className="compareRow" style={columns} key={label}><div>{label}</div>{items.map(x=><div key={x.id}>{value(x)}</div>)}</div>)}</div><a className="detailLink" href={pageHref()}>{c.back}</a></main><footer>PrivatePhuket · {c.platform}</footer></>;
+ const columns={gridTemplateColumns:`180px repeat(${items.length}, minmax(150px, 1fr))`,minWidth:`${180+150*items.length}px`};
+ return <><Header/><main><div className="eyebrow">{c.comparisonLayer}</div><h1 className="title">{preview?c.previewCompareTitle:c.compareTitle}</h1><p className="sub">{preview?c.previewCompareIntro:c.compareIntro}</p><div className="compareTable" role="region" aria-label={preview?c.previewCompareTitle:c.compareTitle} tabIndex={0}><div className="compareRow compareHead" style={columns}><div>{c.metric}</div>{items.map(x=><div key={x.id}><a className="compareProperty" href={pageHref(`id=${x.id}`)}><b>{x.project}</b><small>{x.unit??""}</small></a></div>)}</div>{rows.map(([label,value])=><div className="compareRow" style={columns} key={label}><div>{label}</div>{items.map(x=><div key={x.id}>{value(x)}</div>)}</div>)}</div><a className="detailLink" href={pageHref()}>{c.back}</a></main><footer>PrivatePhuket · {c.platform}</footer></>;
 }
 function PropertyDetail({id}:{id:string}){
  const [data,setData]=useState<any>(),[err,setErr]=useState("");
