@@ -5,7 +5,7 @@ const publication=(id:string,score:number)=>({
  property_id:id,
  published_at:"2026-09-18T00:00:00.000Z",
  snapshot:{
-  property:{id,project:`Project ${id}`,unit:"A-01",annualNoi:{value:710_000,status:"MARKET_DATA",privateNote:"do not disclose"}},
+  property:{id,project:`Project ${id}`,unit:"A-01",purchasePrice:{value:9_500_000,status:"VERIFIED_DOCUMENT",internalSource:"private-file"},annualNoi:{value:710_000,status:"MARKET_DATA",privateNote:"do not disclose"}},
   analytics:{
    tac:10_000_000,netYield:.071,productionReturnMetric:"IRR",productionReturn:.104,
    riskAdjustedScore:score,verdictStatus:"FINAL",finalVerdict:"BUY",dataConfidence:{score:83},riskLabel:"MODERATE",methodologyVersion:"1.0",
@@ -23,10 +23,12 @@ describe("public catalog",()=>{
    tac:10_000_000,netYield:.071,productionReturnMetric:"IRR",productionReturn:.104,
    riskAdjustedScore:78,verdictStatus:"FINAL",finalVerdict:"BUY",dataConfidence:83,riskLabel:"MODERATE",methodologyVersion:"1.0"
   });
+  expect(item.purchasePrice).toEqual({value:9_500_000,status:"VERIFIED_DOCUMENT"});
   expect(item.annualNoi).toEqual({value:710_000,status:"MARKET_DATA"});
   expect(item).not.toHaveProperty("snapshot");
   expect(JSON.stringify(item)).not.toContain("private");
   expect(JSON.stringify(item)).not.toContain("do not disclose");
+  expect(JSON.stringify(item)).not.toContain("private-file");
   expect(JSON.stringify(item)).not.toContain("s3://");
  });
 
