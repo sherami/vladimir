@@ -81,7 +81,7 @@ function Calculator(){
  };
  const output=result?.outputs;
  return <><Header/><main><section className="calculatorHero"><div><div className="eyebrow">{c.independentModel}</div><h1 className="title">{c.testDeal}<br/>{c.beforeBuy}</h1><p className="sub">{c.calculatorIntro}</p></div><div className="scenarioLabel">{c.scenarioOnly}</div></section>
- {importedDraft&&<p className="calculatorImportNote" role="note">{c.importedScenarioNote}</p>}
+ {importedDraft&&<p className="calculatorImportNote" role="note">{c.importedScenarioNote} {new URLSearchParams(location.search).get("propertyId")&&<a href={pageHref(`id=${encodeURIComponent(new URLSearchParams(location.search).get("propertyId")!)}`)}>{c.backToProperty}</a>}</p>}
  <form className="calculatorLayout" onSubmit={submit}><section className="calculatorForm"><div className="formSection"><div className="formHeading"><span>01</span><div><h2>{c.acquisition}</h2><p>{c.acquisitionHint}</p></div></div><div className="fieldGrid">
  <label>{c.purchasePrice} <span>THB</span><input type="number" min="1000" step="1000" value={input.purchasePrice} onChange={numberField("purchasePrice")} required/></label>
  <label>{c.acquisitionCosts} <span>THB</span><input type="number" min="0" step="1000" value={input.acquisitionCosts} onChange={numberField("acquisitionCosts")} required/></label>
@@ -138,7 +138,7 @@ function PropertyDetail({id}:{id:string}){
  if(!data)return <><Header/><main className="loadingState">{c.loading}</main></>;
  const price=snap?.property?.purchasePrice?.value,noi=snap?.property?.annualNoi?.value;
  const hasScenarioInputs=typeof price==="number"&&Number.isFinite(price)&&price>0&&typeof noi==="number"&&Number.isFinite(noi)&&noi>=0;
- const scenarioQuery=hasScenarioInputs?new URLSearchParams({calculator:"1",source:"property",purchasePrice:String(price),annualNoi:String(noi)}).toString():"";
+ const scenarioQuery=hasScenarioInputs?new URLSearchParams({calculator:"1",source:"property",propertyId:id,purchasePrice:String(price),annualNoi:String(noi)}).toString():"";
  return <><Header/><main>
  {data.lifecycle?.status==="SUPERSEDED"&&<aside className="supersededNotice" role="status"><div><strong>{c.supersededTitle}</strong><p>{c.supersededExplanation}</p></div>{data.lifecycle.supersededByPropertyId&&<a href={pageHref(`id=${encodeURIComponent(data.lifecycle.supersededByPropertyId)}`)}>{c.openSuccessor} →</a>}</aside>}
  {snap?.imageUrl&&<div className="detailImage" style={{backgroundImage:`url(${snap.imageUrl})`}}><span>{snap.property.project}<small>{snap.property.unit}</small></span></div>}
