@@ -110,6 +110,7 @@ function Comparison({ids}:{ids:string[]}){
  const rows=[
   [c.tac,(x:any)=>`${fmt(x.analytics.tac)} THB`],
   [c.netYield,(x:any)=>x.analytics.netYield==null?"—":`${(x.analytics.netYield*100).toFixed(2)}%`],
+  [c.annualNoi,(x:any)=><>{x.annualNoi?.value==null?"—":`${fmt(x.annualNoi.value)} THB`}<small className="compareIncomeStatus">{incomeStatus(x.annualNoi?.status)}</small></>],
   [c.return,(x:any)=>x.analytics.productionReturn==null?"—":`${(x.analytics.productionReturn*100).toFixed(2)}% ${x.analytics.productionReturnMetric??""}`],
   [c.investmentScore,(x:any)=>x.analytics.riskAdjustedScore?.toFixed?.(1)??"—"],
   [c.confidence,(x:any)=>x.analytics.dataConfidence==null?"—":`${Number(x.analytics.dataConfidence).toFixed(0)}/100`],
