@@ -1,4 +1,4 @@
-import React,{FormEvent,useEffect,useState} from "react";
+import React,{FormEvent,useEffect,useRef,useState} from "react";
 import {createRoot} from "react-dom/client";
 import {calculatePublicScenario,comparePublishedProperties,getPublishedProperties,getPublishedProperty,PublicCalculatorInput} from "./lib/api";
 import {c,language,languageHref,pageHref,preview} from "./lib/i18n";
@@ -21,8 +21,31 @@ const percent=(value:number)=>new Intl.NumberFormat(language==="ru"?"ru-RU":"en-
 function Calculator(){
  usePageMeta(language==="ru"?"Инвестиционный калькулятор":"Investment calculator",c.calculatorIntro);
  const [input,setInput]=useState(calculatorDefaults),[result,setResult]=useState<any>(),[err,setErr]=useState(""),[busy,setBusy]=useState(false);
- const numberField=(key:keyof PublicCalculatorInput)=>(event:React.ChangeEvent<HTMLInputElement>)=>setInput(current=>({...current,[key]:Number(event.target.value)}));
- const submit=async(event:FormEvent)=>{event.preventDefault();setBusy(true);setErr("");try{setResult(await calculatePublicScenario(input))}catch(e){setErr(language==="ru"?c.calculationError:e instanceof Error?e.message:c.calculationError)}finally{setBusy(false)}};
+ const requestVersion=useRef(0);
+ const editInput=(key:keyof PublicCalculatorInput,value:number)=>{
+  requestVersion.current+=1;
+  setResult(undefined);
+  setErr("");
+  setBusy(false);
+  setInput(current=>({...current,[key]:value}));
+ };
+ const numberField=(key:keyof PublicCalculatorInput)=>(event:React.ChangeEvent<HTMLInputElement>)=>editInput(key,Number(event.target.value));
+ const submit=async(event:FormEvent)=>{
+  event.preventDefault();
+  const version=++requestVersion.current;
+  const submittedInput={...input};
+  setBusy(true);
+  setResult(undefined);
+  setErr("");
+  try{
+   const nextResult=await calculatePublicScenario(submittedInput);
+   if(requestVersion.current===version)setResult(nextResult);
+  }catch(e){
+   if(requestVersion.current===version)setErr(language==="ru"?c.calculationError:e instanceof Error?e.message:c.calculationError);
+  }finally{
+   if(requestVersion.current===version)setBusy(false);
+  }
+ };
  const output=result?.outputs;
  return <><Header/><main><section className="calculatorHero"><div><div className="eyebrow">{c.independentModel}</div><h1 className="title">{c.testDeal}<br/>{c.beforeBuy}</h1><p className="sub">{c.calculatorIntro}</p></div><div className="scenarioLabel">{c.scenarioOnly}</div></section>
  <form className="calculatorLayout" onSubmit={submit}><section className="calculatorForm"><div className="formSection"><div className="formHeading"><span>01</span><div><h2>{c.acquisition}</h2><p>{c.acquisitionHint}</p></div></div><div className="fieldGrid">
@@ -33,9 +56,9 @@ function Calculator(){
  </div></div><div className="formSection"><div className="formHeading"><span>02</span><div><h2>{c.operationsExit}</h2><p>{c.operationsHint}</p></div></div><div className="fieldGrid">
  <label>{c.annualNoi} <span>THB</span><input type="number" min="0" step="1000" value={input.annualNoi} onChange={numberField("annualNoi")} required/></label>
  <label>{c.holdingPeriod} <span>{c.years}</span><input type="number" min="1" max="30" step="1" value={input.holdingYears} onChange={numberField("holdingYears")} required/></label>
- <label>{c.exitGrowth} <span>%</span><input type="number" min="-99" max="100" step="0.1" value={input.exitGrowthRate*100} onChange={e=>setInput(current=>({...current,exitGrowthRate:Number(e.target.value)/100}))} required/></label>
- <label>{c.sellingCosts} <span>%</span><input type="number" min="0" max="99" step="0.1" value={input.sellingCostRate*100} onChange={e=>setInput(current=>({...current,sellingCostRate:Number(e.target.value)/100}))} required/></label>
- <label>{c.requiredReturn} <span>%</span><input type="number" min="-99" max="500" step="0.1" value={input.requiredReturn*100} onChange={e=>setInput(current=>({...current,requiredReturn:Number(e.target.value)/100}))} required/></label>
+ <label>{c.exitGrowth} <span>%</span><input type="number" min="-99" max="100" step="0.1" value={input.exitGrowthRate*100} onChange={e=>editInput("exitGrowthRate",Number(e.target.value)/100)} required/></label>
+ <label>{c.sellingCosts} <span>%</span><input type="number" min="0" max="99" step="0.1" value={input.sellingCostRate*100} onChange={e=>editInput("sellingCostRate",Number(e.target.value)/100)} required/></label>
+ <label>{c.requiredReturn} <span>%</span><input type="number" min="-99" max="500" step="0.1" value={input.requiredReturn*100} onChange={e=>editInput("requiredReturn",Number(e.target.value)/100)} required/></label>
  </div></div>{err&&<div className="formError" role="alert">{err}</div>}<button className="calculateButton" disabled={busy}>{busy?c.calculating:c.calculate}<span>→</span></button></section>
  <aside className={`calculatorResults ${output?"hasResults":""}`} aria-live="polite"><div className="resultTop"><div><small>PRIVATEPHUKET SCENARIO</small><h2>{output?percent(output.productionReturn):"—"}</h2><p>{c.projectIrr}</p></div><Badge>{output?c.scenarioOnly:c.ready}</Badge></div>{output?<><div className="resultRows"><div><span>{c.tac}</span><b>{money(output.tac)}</b></div><div><span>{c.netYield}</span><b>{percent(output.netYield)}</b></div><div><span>{c.totalRoi}</span><b>{percent(output.roi)}</b></div><div><span>{c.returnGap}</span><b className={output.requiredReturnGap>=0?"positive":"negative"}>{output.requiredReturnGap>=0?"+":""}{percent(output.requiredReturnGap)}</b></div><div><span>{c.exitValue}</span><b>{money(output.exitValue)}</b></div><div><span>{c.netExit}</span><b>{money(output.netExitProceeds)}</b></div></div><div className="cashFlow"><small>{c.cashFlows}</small><div>{output.periodicCashFlows.map((value:number,index:number)=><span key={index}><i>{index===0?c.entry:`Y${index}`}</i><b>{money(value)}</b></span>)}</div></div></>:<div className="resultEmpty"><span>↗</span><p>{c.emptyResult}</p></div>}<p className="resultDisclosure">{c.calculatorDisclosure}</p></aside></form>
  </main><footer>PrivatePhuket · {c.platform} · {c.analyticsDisclaimer}</footer></>;
