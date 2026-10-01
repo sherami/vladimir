@@ -25,12 +25,12 @@ const seeds = [
     unit: "B3-301 · Studio 38.63 sqm · Garden view",
     imageUrl: "/assets/b3-301/interior.webp",
     media: [
-      { src: "/assets/b3-301/masterplan.webp", label: "Master plan", kind: "Project" },
-      { src: "/assets/b3-301/floorplan.webp", label: "B3-301 floor plan · 38.63 sqm", kind: "Unit" },
-      { src: "/assets/b3-301/amenities.webp", label: "Project amenity render", kind: "Project" },
-      { src: "/assets/b3-301/architecture.webp", label: "Landscape architecture", kind: "Project" },
-      { src: "/assets/b3-301/interior-storage.webp", label: "Built-in storage", kind: "Interior" },
-      { src: "/assets/b3-301/interior-bathroom.webp", label: "Bathroom finish", kind: "Interior" },
+      { src: "/assets/b3-301/masterplan.webp", label: "Master plan", kind: "Project", gallery: "masterplan", galleryLabel: "Master plan" },
+      { src: "/assets/b3-301/floorplan.webp", label: "B3-301 floor plan · 38.63 sqm", kind: "Unit", gallery: "floorplan", galleryLabel: "B3-301 floor plan · 38.63 sqm" },
+      { src: "/assets/b3-301/amenities.webp", label: "Project amenity render", kind: "Project", gallery: "visuals", galleryLabel: "Infrastructure visualisation" },
+      { src: "/assets/b3-301/architecture.webp", label: "Landscape architecture", kind: "Project", gallery: "visuals", galleryLabel: "Infrastructure visualisation" },
+      { src: "/assets/b3-301/interior-storage.webp", label: "Built-in storage", kind: "Interior", gallery: "visuals", galleryLabel: "Infrastructure visualisation" },
+      { src: "/assets/b3-301/interior-bathroom.webp", label: "Bathroom finish", kind: "Interior", gallery: "visuals", galleryLabel: "Infrastructure visualisation" },
     ],
     headline:
       "A documented entry price, with the return still dependent on assumptions.",
@@ -230,12 +230,12 @@ const russian: Record<string, any> = {
   "preview-layan-verde-b3-301": {
     unit: "B3-301 · студия 38,63 м² · вид на сад",
     media: [
-      { src: "/assets/b3-301/masterplan.webp", label: "Генеральный план", kind: "Проект" },
-      { src: "/assets/b3-301/floorplan.webp", label: "Планировка B3-301 · 38,63 м²", kind: "Квартира" },
-      { src: "/assets/b3-301/amenities.webp", label: "Визуализация инфраструктуры", kind: "Проект" },
-      { src: "/assets/b3-301/architecture.webp", label: "Архитектура и озеленение", kind: "Проект" },
-      { src: "/assets/b3-301/interior-storage.webp", label: "Встроенная система хранения", kind: "Интерьер" },
-      { src: "/assets/b3-301/interior-bathroom.webp", label: "Отделка ванной комнаты", kind: "Интерьер" },
+      { src: "/assets/b3-301/masterplan.webp", label: "Генеральный план", kind: "Проект", gallery: "masterplan", galleryLabel: "Генеральный план" },
+      { src: "/assets/b3-301/floorplan.webp", label: "Планировка B3-301 · 38,63 м²", kind: "Квартира", gallery: "floorplan", galleryLabel: "Планировка B3-301 · 38,63 м²" },
+      { src: "/assets/b3-301/amenities.webp", label: "Зона отдыха и бассейн", kind: "Проект", gallery: "visuals", galleryLabel: "Визуализация инфраструктуры" },
+      { src: "/assets/b3-301/architecture.webp", label: "Архитектура и озеленение", kind: "Проект", gallery: "visuals", galleryLabel: "Визуализация инфраструктуры" },
+      { src: "/assets/b3-301/interior-storage.webp", label: "Встроенная система хранения", kind: "Интерьер", gallery: "visuals", galleryLabel: "Визуализация инфраструктуры" },
+      { src: "/assets/b3-301/interior-bathroom.webp", label: "Отделка ванной комнаты", kind: "Интерьер", gallery: "visuals", galleryLabel: "Визуализация инфраструктуры" },
     ],
     headline: "Цена входа подтверждена. Доходность пока нужно доказать.",
     summary:
