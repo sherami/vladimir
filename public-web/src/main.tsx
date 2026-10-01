@@ -5,6 +5,7 @@ import {c,language,languageHref,pageHref,preview} from "./lib/i18n";
 import "./styles.css";
 import {Landing,SiteNavigation,Journey} from "./Landing";
 import {CatalogControls,catalogItems,catalogHref} from "./catalog-context";
+import {scenarioDraftKey,restoreScenarioDraft,saveScenarioDraft} from "./lib/scenario-draft";
 const fmt=(x:any)=>typeof x==="number"?new Intl.NumberFormat(language==="ru"?"ru-RU":"en-US",{maximumFractionDigits:0}).format(x):"—";
 const serviceError=language==="ru"?"Сервис аналитики временно недоступен. Попробуйте ещё раз.":"The analytics service is temporarily unavailable. Please try again.";
 const propertyError=language==="ru"?"Объект не опубликован или временно недоступен.":"The property is not published or is temporarily unavailable.";
@@ -41,6 +42,9 @@ function importedCalculatorDraft():CalculatorDraft|null{
  return {...calculatorDefaults,purchasePrice:String(Math.round(purchasePrice)),annualNoi:String(Math.round(annualNoi)),entryMarketValue:""};
 }
 const importedDraft=importedCalculatorDraft();
+const initialCalculatorDraft=importedDraft??calculatorDefaults;
+const draftKey=scenarioDraftKey(new URLSearchParams(location.search).get("propertyId")??"standalone",initialCalculatorDraft);
+const restoredDraft=preview?restoreScenarioDraft(draftKey,initialCalculatorDraft):null;
 function parseCalculatorDraft(draft:CalculatorDraft):PublicCalculatorInput|null{
  if(Object.values(draft).some(value=>value.trim()===""))return null;
  const input={
@@ -60,7 +64,9 @@ const money=(value:number)=>`${fmt(value)} THB`;
 const percent=(value:number)=>new Intl.NumberFormat(language==="ru"?"ru-RU":"en-US",{style:"percent",minimumFractionDigits:2,maximumFractionDigits:2}).format(value);
 function Calculator(){
  usePageMeta(language==="ru"?"Инвестиционный калькулятор":"Investment calculator",c.calculatorIntro);
- const [input,setInput]=useState(importedDraft??calculatorDefaults),[result,setResult]=useState<any>(),[err,setErr]=useState(""),[busy,setBusy]=useState(false);
+ const [input,setInput]=useState(restoredDraft??initialCalculatorDraft),[result,setResult]=useState<any>(),[err,setErr]=useState(""),[busy,setBusy]=useState(false);
+ const [draftSaved,setDraftSaved]=useState(false);
+ useEffect(()=>{if(preview)setDraftSaved(saveScenarioDraft(draftKey,input))},[input]);
  const requestVersion=useRef(0);
  const editInput=(key:keyof PublicCalculatorInput,value:string)=>{
   requestVersion.current+=1;
@@ -70,6 +76,7 @@ function Calculator(){
   setInput(current=>({...current,[key]:value}));
  };
  const numberField=(key:keyof PublicCalculatorInput)=>(event:React.ChangeEvent<HTMLInputElement>)=>editInput(key,event.target.value);
+ const resetDraft=()=>{requestVersion.current+=1;setResult(undefined);setErr("");setBusy(false);setInput({...initialCalculatorDraft})};
  const submit=async(event:FormEvent)=>{
   event.preventDefault();
   const submittedInput=parseCalculatorDraft(input);
@@ -90,6 +97,7 @@ function Calculator(){
  const output=result?.outputs;
  return <><Header/><main><section className="calculatorHero"><div><div className="eyebrow">{c.independentModel}</div><h1 className="title">{c.testDeal}<br/>{c.beforeBuy}</h1><p className="sub">{c.calculatorIntro}</p></div><div className="scenarioLabel">{c.scenarioOnly}</div></section>
  {importedDraft&&<p className="calculatorImportNote" role="note"><strong className="calculatorSource">{language==="ru"?"Сценарий объекта":"Property scenario"}{new URLSearchParams(location.search).get("propertyName")?`: ${new URLSearchParams(location.search).get("propertyName")}`:""}</strong>{c.importedScenarioNote} {new URLSearchParams(location.search).get("propertyId")&&<a href={catalogHref(`id=${encodeURIComponent(new URLSearchParams(location.search).get("propertyId")!)}`)}>{c.backToProperty}</a>}</p>}
+ {preview&&<div className="calculatorDraftBar"><span role="status">{draftSaved?(language==="ru"?"Значения сохранены в этой вкладке. Для каждого объекта — отдельный сценарий.":"Inputs saved in this tab. Each property has a separate scenario."):(language==="ru"?"Ваш сценарий":"Your scenario")}</span><button type="button" onClick={resetDraft}>{language==="ru"?"Вернуть исходные значения":"Reset to initial inputs"} ↺</button></div>}
  <form className="calculatorLayout" onSubmit={submit}><section className="calculatorForm"><div className="formSection"><div className="formHeading"><span>01</span><div><h2>{c.acquisition}</h2><p>{c.acquisitionHint}</p></div></div><div className="fieldGrid">
  <label>{c.purchasePrice} <span>THB</span><input type="number" min="1000" step="1" value={input.purchasePrice} onChange={numberField("purchasePrice")} required/></label>
  <label>{c.acquisitionCosts} <span>THB</span><input type="number" min="0" step="1000" value={input.acquisitionCosts} onChange={numberField("acquisitionCosts")} required/></label>
