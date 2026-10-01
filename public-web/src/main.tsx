@@ -128,6 +128,22 @@ function Comparison({ids}:{ids:string[]}){
  const columns={gridTemplateColumns:`180px repeat(${items.length}, minmax(150px, 1fr))`,minWidth:`${180+150*items.length}px`};
  return <><Header/><main><div className="eyebrow">{c.comparisonLayer}</div><h1 className="title">{preview?c.previewCompareTitle:c.compareTitle}</h1><p className="sub">{preview?c.previewCompareIntro:c.compareIntro}</p><div className="compareTable" role="region" aria-label={preview?c.previewCompareTitle:c.compareTitle} tabIndex={0}><div className="compareRow compareHead" style={columns}><div>{c.metric}</div>{items.map(x=><div key={x.id}><a className="compareProperty" href={pageHref(`id=${x.id}`)}><b>{x.project}</b><small>{x.unit??""}</small></a></div>)}</div>{rows.map(([label,value])=><div className="compareRow" style={columns} key={label}><div>{label}</div>{items.map(x=><div key={x.id}>{value(x)}</div>)}</div>)}</div><a className="detailLink" href={pageHref()}>{c.back}</a></main><footer>PrivatePhuket · {c.platform}</footer></>;
 }
+function PropertyGallery({items}:{items:any[]}){
+ const [active,setActive]=useState<number|null>(null);
+ const rail=useRef<HTMLElement>(null);
+ const move=(direction:-1|1)=>rail.current?.scrollBy({left:direction*rail.current.clientWidth*.82,behavior:"smooth"});
+ const change=(direction:-1|1)=>setActive(current=>current==null?null:(current+direction+items.length)%items.length);
+ useEffect(()=>{
+  if(active==null)return;
+  const previousOverflow=document.body.style.overflow;
+  document.body.style.overflow="hidden";
+  const onKey=(event:KeyboardEvent)=>{if(event.key==="Escape")setActive(null);if(event.key==="ArrowLeft")change(-1);if(event.key==="ArrowRight")change(1)};
+  addEventListener("keydown",onKey);
+  return()=>{document.body.style.overflow=previousOverflow;removeEventListener("keydown",onKey)};
+ },[active,items.length]);
+ if(items.length===0)return null;
+ return <><div className="galleryTop"><div className="eyebrow">{language==="ru"?"МАТЕРИАЛЫ ПО ОБЪЕКТУ":"PROPERTY MEDIA"}</div><div className="galleryControls"><button onClick={()=>move(-1)} aria-label={language==="ru"?"Предыдущие изображения":"Previous images"}>←</button><span>{items.length} {language==="ru"?"изображений":"images"}</span><button onClick={()=>move(1)} aria-label={language==="ru"?"Следующие изображения":"Next images"}>→</button></div></div><section ref={rail} className="propertyMedia" aria-label={language==="ru"?"Материалы по объекту":"Property media"}>{items.map((item,index)=><button className={`mediaCard ${item.src.includes("floorplan")?"floorplanCard":""}`} onClick={()=>setActive(index)} key={item.src} aria-label={`${language==="ru"?"Увеличить":"Enlarge"}: ${item.label}`}><img src={item.src} alt={item.label}/><span className="mediaCaption"><small>{item.kind}</small><b>{item.label}</b><i>{language==="ru"?"Открыть":"Open"} ↗</i></span></button>)}</section>{active!=null&&<div className="lightbox" role="dialog" aria-modal="true" aria-label={items[active].label} onClick={event=>{if(event.target===event.currentTarget)setActive(null)}}><button className="lightboxClose" onClick={()=>setActive(null)} aria-label={language==="ru"?"Закрыть":"Close"}>×</button><button className="lightboxArrow lightboxPrev" onClick={()=>change(-1)} aria-label={language==="ru"?"Предыдущее изображение":"Previous image"}>←</button><figure><img src={items[active].src} alt={items[active].label}/><figcaption><span>{items[active].kind}</span><b>{items[active].label}</b><small>{active+1} / {items.length}</small></figcaption></figure><button className="lightboxArrow lightboxNext" onClick={()=>change(1)} aria-label={language==="ru"?"Следующее изображение":"Next image"}>→</button></div>}</>;
+}
 function PropertyDetail({id}:{id:string}){
  const [data,setData]=useState<any>(),[err,setErr]=useState("");
  const snap=data?.snapshot; const a=snap?.analytics??data?.analytics; const n=snap?.narrative;
@@ -151,7 +167,7 @@ function PropertyDetail({id}:{id:string}){
  <p className="sub">{n?.summary??c.detailIntro}</p></div>
  <div className={`scorebox ${score==null?"confidenceBox":""}`}><div className="muted" style={{color:"#b9c0bc"}}>{primaryIndicatorLabel}</div><div className="score">{primaryIndicator==null?"—":primaryIndicator.toFixed(score==null?0:1)} <small>/ 100</small></div><span className="badge darkbadge">{publicVerdict(a)}</span>{score==null&&<p className="scoreNote">{language==="ru"?"Инвестиционный рейтинг появится после подтверждения всех критичных исходных данных.":"The investment score will appear after all critical inputs are verified."}</p>}</div></section>
  {snap?.dealFacts?.length>0&&<section className="dealFacts" aria-label={language==="ru"?"Ключевые условия сделки":"Key deal terms"}>{snap.dealFacts.map((fact:any)=><div key={fact.label}><span>{fact.label}</span><b>{fact.value}</b></div>)}</section>}
- {snap?.media?.length>0&&<section className="propertyMedia" aria-label={language==="ru"?"Материалы по объекту":"Property media"}>{snap.media.map((item:any,index:number)=><figure className={index===1?"floorplanCard":""} key={item.src}><img src={item.src} alt={item.label}/><figcaption><span>{item.kind}</span><b>{item.label}</b></figcaption></figure>)}</section>}
+ {snap?.media?.length>0&&<PropertyGallery items={snap.media}/>}
  <div className="metrics detailMetrics"><div className="metric"><span className="muted">{c.purchasePrice.toUpperCase()}</span><b>{fmt(snap?.property?.purchasePrice?.value)} THB</b><Badge>{incomeStatus(snap?.property?.purchasePrice?.status)}</Badge></div>
  <div className="metric"><span className="muted">{c.tac.toUpperCase()}</span><b>{fmt(a.tac)} THB</b></div>
  <div className="metric"><span className="muted">{c.netYield.toUpperCase()}</span><b>{a.netYield==null?"—":`${(a.netYield*100).toFixed(2)}%`}</b><div className="incomeBasis">{c.annualNoi}: {snap?.property?.annualNoi?.value==null?"—":`${fmt(snap.property.annualNoi.value)} THB`}</div><Badge>{incomeStatus(snap?.property?.annualNoi?.status)}</Badge></div>
