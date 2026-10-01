@@ -4,6 +4,7 @@ import {calculatePublicScenario,comparePublishedProperties,getPublishedPropertie
 import {c,language,languageHref,pageHref,preview} from "./lib/i18n";
 import "./styles.css";
 import {Landing,SiteNavigation,Journey} from "./Landing";
+import {CatalogControls,catalogItems,catalogHref} from "./catalog-context";
 const fmt=(x:any)=>typeof x==="number"?new Intl.NumberFormat(language==="ru"?"ru-RU":"en-US",{maximumFractionDigits:0}).format(x):"—";
 const serviceError=language==="ru"?"Сервис аналитики временно недоступен. Попробуйте ещё раз.":"The analytics service is temporarily unavailable. Please try again.";
 const propertyError=language==="ru"?"Объект не опубликован или временно недоступен.":"The property is not published or is temporarily unavailable.";
@@ -102,20 +103,22 @@ function Catalog(){
  usePageMeta(language==="ru"?"Аналитика недвижимости Пхукета":"Phuket Property Intelligence",preview?c.previewCatalogIntro:c.catalogIntro);
  const [items,setItems]=useState<any[]>(),[selected,setSelected]=useState<string[]>([]),[err,setErr]=useState("");
  useEffect(()=>{getPublishedProperties().then(setItems).catch(e=>setErr(e.message))},[]);
+ const visibleItems=items?(preview?catalogItems(items):items):[];
  const toggle=(id:string)=>setSelected(current=>current.includes(id)?current.filter(x=>x!==id):current.length<4?[...current,id]:current);
  if(err)return <><Header/><main><div className="eyebrow">PrivatePhuket</div><h1 className="title">{c.publishedOnly}</h1><p className="sub">{serviceError}</p><RetryButton/></main></>;
  if(!items)return <><Header/><main className="loadingState">{c.loading}</main></>;
  return <><Header/><main><section className="catalogHero"><div className="eyebrow">{c.intelligence}</div><h1 className="title">{c.chooseNumbers}<br/>{c.notPromises}</h1><p className="sub">{preview?c.previewCatalogIntro:c.catalogIntro}</p></section>
- {items.length===0?<section className="empty"><div className="eyebrow">{c.publicationGate}</div><h2>{c.nothingPublished}</h2><p className="sub">{c.nothingPublishedHint}</p></section>:<>
- <div className="catalogToolbar"><span>{items.length} {preview?c.previewAnalysis:c.publishedAnalysis}</span><a className={`compareButton ${selected.length<2?"disabled":""}`} href={selected.length>=2?pageHref(`compare=${selected.join(",")}`):undefined}>{c.compare} {selected.length>0?`(${selected.length})`:""}</a></div>
- <section className="catalogGrid">{items.map(item=><article className="propertyCard" key={item.id}>{item.imageUrl&&<div className="propertyImage" style={{backgroundImage:`url(${item.imageUrl})`}}><span>{preview?c.illustrative:c.published}</span></div>}<div className="cardTop"><div><div className="eyebrow">{item.project}</div><h2>{item.unit??item.headline??c.publishedOnly}</h2></div><label className="select"><input type="checkbox" checked={selected.includes(item.id)} onChange={()=>toggle(item.id)} disabled={!selected.includes(item.id)&&selected.length>=4}/> {c.select}</label></div><p>{item.summary??c.detailIntro}</p><div className="catalogPrice"><span>{c.purchasePrice}</span><b>{item.purchasePrice?.value==null?"—":`${fmt(item.purchasePrice.value)} THB`}</b><small>{incomeStatus(item.purchasePrice?.status)}</small></div><div className="cardMetrics"><span><small>{c.score}</small><b>{item.analytics.riskAdjustedScore?.toFixed?.(1)??"—"}</b></span><span><small>{c.netYield}</small><b>{item.analytics.netYield==null?"—":`${(item.analytics.netYield*100).toFixed(2)}%`}</b></span><span><small>{item.analytics.productionReturnMetric??c.return}</small><b>{item.analytics.productionReturn==null?"—":`${(item.analytics.productionReturn*100).toFixed(2)}%`}</b></span></div><div className="catalogVerdict">{c.verdict}: <b>{publicVerdict(item.analytics)}</b></div><a className="detailLink" href={pageHref(`id=${item.id}`)}>{c.openAnalysis}</a></article>)}</section></>}
+ {preview&&<CatalogControls/>}
+ {visibleItems.length===0?<section className="empty"><div className="eyebrow">{c.publicationGate}</div><h2>{preview?(language==="ru"?"Нет объектов по этим условиям.":"No matching properties."):c.nothingPublished}</h2><p className="sub">{preview?(language==="ru"?"Измените тип или бюджет, либо сбросьте фильтры.":"Change type or budget, or reset the filters."):c.nothingPublishedHint}</p></section>:<>
+ <div className="catalogToolbar"><span>{visibleItems.length} {preview?c.previewAnalysis:c.publishedAnalysis}</span><a className={`compareButton ${selected.length<2?"disabled":""}`} href={selected.length>=2?catalogHref(`compare=${selected.join(",")}`):undefined}>{c.compare} {selected.length>0?`(${selected.length})`:""}</a></div>
+ <section className="catalogGrid">{visibleItems.map(item=><article className="propertyCard" key={item.id}>{item.imageUrl&&<div className="propertyImage" style={{backgroundImage:`url(${item.imageUrl})`}}><span>{preview?c.illustrative:c.published}</span></div>}<div className="cardTop"><div><div className="eyebrow">{item.project}</div><h2>{item.unit??item.headline??c.publishedOnly}</h2></div><label className="select"><input type="checkbox" checked={selected.includes(item.id)} onChange={()=>toggle(item.id)} disabled={!selected.includes(item.id)&&selected.length>=4}/> {c.select}</label></div><p>{item.summary??c.detailIntro}</p><div className="catalogPrice"><span>{c.purchasePrice}</span><b>{item.purchasePrice?.value==null?"—":`${fmt(item.purchasePrice.value)} THB`}</b><small>{incomeStatus(item.purchasePrice?.status)}</small></div><div className="cardMetrics"><span><small>{c.score}</small><b>{item.analytics.riskAdjustedScore?.toFixed?.(1)??"—"}</b></span><span><small>{c.netYield}</small><b>{item.analytics.netYield==null?"—":`${(item.analytics.netYield*100).toFixed(2)}%`}</b></span><span><small>{item.analytics.productionReturnMetric??c.return}</small><b>{item.analytics.productionReturn==null?"—":`${(item.analytics.productionReturn*100).toFixed(2)}%`}</b></span></div><div className="catalogVerdict">{c.verdict}: <b>{publicVerdict(item.analytics)}</b></div><a className="detailLink" href={catalogHref(`id=${item.id}`)}>{c.openAnalysis}</a></article>)}</section></>}
  </main><footer>PrivatePhuket · {c.platform} · {c.analyticsDisclaimer}</footer></>;
 }
 function Comparison({ids}:{ids:string[]}){
  usePageMeta(language==="ru"?"Сравнение объектов":"Property comparison",preview?c.previewCompareIntro:c.compareIntro);
  const [items,setItems]=useState<any[]>(),[err,setErr]=useState("");
  useEffect(()=>{comparePublishedProperties(ids).then(x=>setItems(x.items)).catch(e=>setErr(e.message))},[ids.join(",")]);
- if(err)return <><Header/><main><h1 className="title">{c.comparisonUnavailable}</h1><p className="sub">{serviceError}</p><RetryButton/><a className="detailLink errorBack" href={pageHref(preview?"page=catalog":"")}>{c.back}</a></main></>;
+ if(err)return <><Header/><main><h1 className="title">{c.comparisonUnavailable}</h1><p className="sub">{serviceError}</p><RetryButton/><a className="detailLink errorBack" href={preview?catalogHref():pageHref()}>{c.back}</a></main></>;
  if(!items)return <><Header/><main className="loadingState">{c.loadingComparison}</main></>;
  const rows=[
   [c.tac,(x:any)=>`${fmt(x.analytics.tac)} THB`],
@@ -127,7 +130,7 @@ function Comparison({ids}:{ids:string[]}){
   [c.verdict,(x:any)=>publicVerdict(x.analytics)]
  ] as const;
  const columns={gridTemplateColumns:`180px repeat(${items.length}, minmax(150px, 1fr))`,minWidth:`${180+150*items.length}px`};
- return <><Header/><main><div className="eyebrow">{c.comparisonLayer}</div><h1 className="title">{preview?c.previewCompareTitle:c.compareTitle}</h1><p className="sub">{preview?c.previewCompareIntro:c.compareIntro}</p><div className="compareTable" role="region" aria-label={preview?c.previewCompareTitle:c.compareTitle} tabIndex={0}><div className="compareRow compareHead" style={columns}><div>{c.metric}</div>{items.map(x=><div key={x.id}><a className="compareProperty" href={pageHref(`id=${x.id}`)}><b>{x.project}</b><small>{x.unit??""}</small></a></div>)}</div>{rows.map(([label,value])=><div className="compareRow" style={columns} key={label}><div>{label}</div>{items.map(x=><div key={x.id}>{value(x)}</div>)}</div>)}</div><a className="detailLink" href={pageHref(preview?"page=catalog":"")}>{c.back}</a></main><footer>PrivatePhuket · {c.platform}</footer></>;
+ return <><Header/><main><div className="eyebrow">{c.comparisonLayer}</div><h1 className="title">{preview?c.previewCompareTitle:c.compareTitle}</h1><p className="sub">{preview?c.previewCompareIntro:c.compareIntro}</p><div className="compareTable" role="region" aria-label={preview?c.previewCompareTitle:c.compareTitle} tabIndex={0}><div className="compareRow compareHead" style={columns}><div>{c.metric}</div>{items.map(x=><div key={x.id}><a className="compareProperty" href={pageHref(`id=${x.id}`)}><b>{x.project}</b><small>{x.unit??""}</small></a></div>)}</div>{rows.map(([label,value])=><div className="compareRow" style={columns} key={label}><div>{label}</div>{items.map(x=><div key={x.id}>{value(x)}</div>)}</div>)}</div><a className="detailLink" href={preview?catalogHref():pageHref()}>{c.back}</a></main><footer>PrivatePhuket · {c.platform}</footer></>;
 }
 function PropertyGallery({items}:{items:any[]}){
  const galleries=items.reduce((result:any[],item:any)=>{const id=item.gallery??item.src;const existing=result.find(group=>group.id===id);if(existing)existing.items.push(item);else result.push({id,label:item.galleryLabel??item.label,kind:item.kind,items:[item]});return result},[]);
@@ -174,12 +177,13 @@ function PropertyDetail({id}:{id:string}){
   :(language==="ru"?"ИНВЕСТИЦИОННЫЙ РЕЙТИНГ PRIVATEPHUKET":"PRIVATEPHUKET INVESTMENT SCORE");
  usePageMeta(snap?.property?.project??(language==="ru"?"Аналитика объекта":"Property analysis"),n?.summary??c.detailIntro);
  useEffect(()=>{getPublishedProperty(id).then(setData).catch(e=>setErr(e.message))},[id]);
- if(err)return <><Header/><main><div className="eyebrow">PrivatePhuket</div><h1 className="title">{c.publishedOnly}</h1><p className="sub">{propertyError}</p><RetryButton/><a className="detailLink errorBack" href={pageHref(preview?"page=catalog":"")}>{c.back}</a></main></>;
+ if(err)return <><Header/><main><div className="eyebrow">PrivatePhuket</div><h1 className="title">{c.publishedOnly}</h1><p className="sub">{propertyError}</p><RetryButton/><a className="detailLink errorBack" href={preview?catalogHref():pageHref()}>{c.back}</a></main></>;
  if(!data)return <><Header/><main className="loadingState">{c.loading}</main></>;
  const price=snap?.property?.purchasePrice?.value,noi=snap?.property?.annualNoi?.value;
  const hasScenarioInputs=typeof price==="number"&&Number.isFinite(price)&&price>0&&typeof noi==="number"&&Number.isFinite(noi)&&noi>=0;
  const scenarioQuery=hasScenarioInputs?new URLSearchParams({calculator:"1",source:"property",propertyId:id,purchasePrice:String(price),annualNoi:String(noi)}).toString():"";
  return <><Header/><main>
+ {preview&&<a className="detailLink propertyBack" href={catalogHref()}>{c.back}</a>}
  {data.lifecycle?.status==="SUPERSEDED"&&<aside className="supersededNotice" role="status"><div><strong>{c.supersededTitle}</strong><p>{c.supersededExplanation}</p></div>{data.lifecycle.supersededByPropertyId&&<a href={pageHref(`id=${encodeURIComponent(data.lifecycle.supersededByPropertyId)}`)}>{c.openSuccessor} →</a>}</aside>}
  {snap?.imageUrl&&<div className="detailImage" style={{backgroundImage:`url(${snap.imageUrl})`}}><span>{snap.property.project}<small>{snap.property.unit}</small></span></div>}
  <section className="hero"><div><div className="eyebrow">{c.propertyAnalysis}</div><div className="propertyIdentity"><b>{snap?.property?.project}</b><span>{snap?.property?.unit}</span></div><h1 className="title">{n?.headline??c.decisionNotBrochure}</h1>
