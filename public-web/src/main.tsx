@@ -3,6 +3,7 @@ import {createRoot} from "react-dom/client";
 import {calculatePublicScenario,comparePublishedProperties,getPublishedProperties,getPublishedProperty,PublicCalculatorInput} from "./lib/api";
 import {c,language,languageHref,pageHref,preview} from "./lib/i18n";
 import "./styles.css";
+import {Landing,SiteNavigation,Journey} from "./Landing";
 const fmt=(x:any)=>typeof x==="number"?new Intl.NumberFormat(language==="ru"?"ru-RU":"en-US",{maximumFractionDigits:0}).format(x):"—";
 const serviceError=language==="ru"?"Сервис аналитики временно недоступен. Попробуйте ещё раз.":"The analytics service is temporarily unavailable. Please try again.";
 const propertyError=language==="ru"?"Объект не опубликован или временно недоступен.":"The property is not published or is temporarily unavailable.";
@@ -22,7 +23,7 @@ function confidenceScore(analytics:any):number|null{
  return Number.isFinite(score)?score:null;
 }
 function RetryButton(){return <button className="retryButton" onClick={()=>location.reload()}>{retryLabel} <span>→</span></button>}
-function Header(){const params=new URLSearchParams(location.search),calculator=params.has("calculator");return <><header><a className="logo" href={pageHref()} aria-label="PrivatePhuket">PP <span>PrivatePhuket</span></a><nav className="nav" aria-label={language==="ru"?"Основная навигация":"Primary navigation"}><a aria-current={!calculator&&!params.has("id")&&!params.has("compare")?"page":undefined} href={pageHref()}>{c.catalog}</a><a aria-current={calculator?"page":undefined} href={pageHref("calculator=1")}>{c.calculator}</a><span className="language" aria-label={language==="ru"?"Выбор языка":"Language selection"}><a aria-current={language==="ru"?"page":undefined} className={language==="ru"?"active":""} href={languageHref("ru")}>RU</a><i aria-hidden="true">/</i><a aria-current={language==="en"?"page":undefined} className={language==="en"?"active":""} href={languageHref("en")}>EN</a></span></nav></header>{preview&&<div className="previewBar"><b>{c.preview}</b><span>{c.previewNote}</span></div>}</>}
+function Header(){const params=new URLSearchParams(location.search),calculator=params.has("calculator");return <><header><a className="logo" href={pageHref()} aria-label="PrivatePhuket">PP <span>PrivatePhuket</span></a><nav className="nav" aria-label={language==="ru"?"Основная навигация":"Primary navigation"}>{preview?<SiteNavigation/>:<a aria-current={!calculator&&!params.has("id")&&!params.has("compare")?"page":undefined} href={pageHref()}>{c.catalog}</a>}<a aria-current={calculator?"page":undefined} href={pageHref("calculator=1")}>{c.calculator}</a><span className="language" aria-label={language==="ru"?"Выбор языка":"Language selection"}><a aria-current={language==="ru"?"page":undefined} className={language==="ru"?"active":""} href={languageHref("ru")}>RU</a><i aria-hidden="true">/</i><a aria-current={language==="en"?"page":undefined} className={language==="en"?"active":""} href={languageHref("en")}>EN</a></span></nav></header>{preview&&<div className="previewBar"><b>{c.preview}</b><span>{c.previewNote}</span></div>}</>}
 type CalculatorDraft=Record<keyof PublicCalculatorInput,string>;
 const calculatorDefaults:CalculatorDraft={purchasePrice:"10000000",acquisitionCosts:"300000",initialCapex:"500000",annualNoi:"900000",entryMarketValue:"10000000",holdingYears:"5",exitGrowthRate:"4",sellingCostRate:"5",requiredReturn:"10"};
 function importedCalculatorDraft():CalculatorDraft|null{
@@ -114,7 +115,7 @@ function Comparison({ids}:{ids:string[]}){
  usePageMeta(language==="ru"?"Сравнение объектов":"Property comparison",preview?c.previewCompareIntro:c.compareIntro);
  const [items,setItems]=useState<any[]>(),[err,setErr]=useState("");
  useEffect(()=>{comparePublishedProperties(ids).then(x=>setItems(x.items)).catch(e=>setErr(e.message))},[ids.join(",")]);
- if(err)return <><Header/><main><h1 className="title">{c.comparisonUnavailable}</h1><p className="sub">{serviceError}</p><RetryButton/><a className="detailLink errorBack" href={pageHref()}>{c.back}</a></main></>;
+ if(err)return <><Header/><main><h1 className="title">{c.comparisonUnavailable}</h1><p className="sub">{serviceError}</p><RetryButton/><a className="detailLink errorBack" href={pageHref(preview?"page=catalog":"")}>{c.back}</a></main></>;
  if(!items)return <><Header/><main className="loadingState">{c.loadingComparison}</main></>;
  const rows=[
   [c.tac,(x:any)=>`${fmt(x.analytics.tac)} THB`],
@@ -126,7 +127,7 @@ function Comparison({ids}:{ids:string[]}){
   [c.verdict,(x:any)=>publicVerdict(x.analytics)]
  ] as const;
  const columns={gridTemplateColumns:`180px repeat(${items.length}, minmax(150px, 1fr))`,minWidth:`${180+150*items.length}px`};
- return <><Header/><main><div className="eyebrow">{c.comparisonLayer}</div><h1 className="title">{preview?c.previewCompareTitle:c.compareTitle}</h1><p className="sub">{preview?c.previewCompareIntro:c.compareIntro}</p><div className="compareTable" role="region" aria-label={preview?c.previewCompareTitle:c.compareTitle} tabIndex={0}><div className="compareRow compareHead" style={columns}><div>{c.metric}</div>{items.map(x=><div key={x.id}><a className="compareProperty" href={pageHref(`id=${x.id}`)}><b>{x.project}</b><small>{x.unit??""}</small></a></div>)}</div>{rows.map(([label,value])=><div className="compareRow" style={columns} key={label}><div>{label}</div>{items.map(x=><div key={x.id}>{value(x)}</div>)}</div>)}</div><a className="detailLink" href={pageHref()}>{c.back}</a></main><footer>PrivatePhuket · {c.platform}</footer></>;
+ return <><Header/><main><div className="eyebrow">{c.comparisonLayer}</div><h1 className="title">{preview?c.previewCompareTitle:c.compareTitle}</h1><p className="sub">{preview?c.previewCompareIntro:c.compareIntro}</p><div className="compareTable" role="region" aria-label={preview?c.previewCompareTitle:c.compareTitle} tabIndex={0}><div className="compareRow compareHead" style={columns}><div>{c.metric}</div>{items.map(x=><div key={x.id}><a className="compareProperty" href={pageHref(`id=${x.id}`)}><b>{x.project}</b><small>{x.unit??""}</small></a></div>)}</div>{rows.map(([label,value])=><div className="compareRow" style={columns} key={label}><div>{label}</div>{items.map(x=><div key={x.id}>{value(x)}</div>)}</div>)}</div><a className="detailLink" href={pageHref(preview?"page=catalog":"")}>{c.back}</a></main><footer>PrivatePhuket · {c.platform}</footer></>;
 }
 function PropertyGallery({items}:{items:any[]}){
  const galleries=items.reduce((result:any[],item:any)=>{const id=item.gallery??item.src;const existing=result.find(group=>group.id===id);if(existing)existing.items.push(item);else result.push({id,label:item.galleryLabel??item.label,kind:item.kind,items:[item]});return result},[]);
@@ -173,7 +174,7 @@ function PropertyDetail({id}:{id:string}){
   :(language==="ru"?"ИНВЕСТИЦИОННЫЙ РЕЙТИНГ PRIVATEPHUKET":"PRIVATEPHUKET INVESTMENT SCORE");
  usePageMeta(snap?.property?.project??(language==="ru"?"Аналитика объекта":"Property analysis"),n?.summary??c.detailIntro);
  useEffect(()=>{getPublishedProperty(id).then(setData).catch(e=>setErr(e.message))},[id]);
- if(err)return <><Header/><main><div className="eyebrow">PrivatePhuket</div><h1 className="title">{c.publishedOnly}</h1><p className="sub">{propertyError}</p><RetryButton/><a className="detailLink errorBack" href={pageHref()}>{c.back}</a></main></>;
+ if(err)return <><Header/><main><div className="eyebrow">PrivatePhuket</div><h1 className="title">{c.publishedOnly}</h1><p className="sub">{propertyError}</p><RetryButton/><a className="detailLink errorBack" href={pageHref(preview?"page=catalog":"")}>{c.back}</a></main></>;
  if(!data)return <><Header/><main className="loadingState">{c.loading}</main></>;
  const price=snap?.property?.purchasePrice?.value,noi=snap?.property?.annualNoi?.value;
  const hasScenarioInputs=typeof price==="number"&&Number.isFinite(price)&&price>0&&typeof noi==="number"&&Number.isFinite(noi)&&noi>=0;
@@ -207,9 +208,11 @@ function PropertyDetail({id}:{id:string}){
 }
 function App(){
  const params=new URLSearchParams(location.search);
- const id=params.get("id")??import.meta.env.VITE_DEMO_PROPERTY_ID;
+ const id=params.get("id")??(preview?undefined:import.meta.env.VITE_DEMO_PROPERTY_ID);
  const compare=params.get("compare")?.split(",").filter(Boolean)??[];
- return params.has("calculator")?<Calculator/>:compare.length>=2?<Comparison ids={compare}/>:id?<PropertyDetail id={id}/>:<Catalog/>;
+ const page=params.get("page");
+ const journey=page&&["rent","living","villas"].includes(page)?page as Journey:undefined;
+ return params.has("calculator")?<Calculator/>:compare.length>=2?<Comparison ids={compare}/>:id?<PropertyDetail id={id}/>:preview&&page!=="catalog"?<><Header/><Landing journey={journey}/><footer>PrivatePhuket · {c.platform} · {c.analyticsDisclaimer}</footer></>:<Catalog/>;
 }
 document.documentElement.lang=language;
 createRoot(document.getElementById("root")!).render(<App/>);
