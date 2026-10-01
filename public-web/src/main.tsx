@@ -132,6 +132,11 @@ function PropertyDetail({id}:{id:string}){
  const [data,setData]=useState<any>(),[err,setErr]=useState("");
  const snap=data?.snapshot; const a=snap?.analytics??data?.analytics; const n=snap?.narrative;
  const confidence=confidenceScore(a);
+ const score=typeof a?.riskAdjustedScore==="number"&&Number.isFinite(a.riskAdjustedScore)?a.riskAdjustedScore:null;
+ const primaryIndicator=score==null?confidence:score;
+ const primaryIndicatorLabel=score==null
+  ?(language==="ru"?"ДОСТОВЕРНОСТЬ ДАННЫХ":"DATA CONFIDENCE")
+  :"PRIVATEPHUKET INVESTMENT SCORE";
  usePageMeta(snap?.property?.project??(language==="ru"?"Аналитика объекта":"Property analysis"),n?.summary??c.detailIntro);
  useEffect(()=>{getPublishedProperty(id).then(setData).catch(e=>setErr(e.message))},[id]);
  if(err)return <><Header/><main><div className="eyebrow">PrivatePhuket</div><h1 className="title">{c.publishedOnly}</h1><p className="sub">{propertyError}</p><RetryButton/><a className="detailLink errorBack" href={pageHref()}>{c.back}</a></main></>;
@@ -142,14 +147,14 @@ function PropertyDetail({id}:{id:string}){
  return <><Header/><main>
  {data.lifecycle?.status==="SUPERSEDED"&&<aside className="supersededNotice" role="status"><div><strong>{c.supersededTitle}</strong><p>{c.supersededExplanation}</p></div>{data.lifecycle.supersededByPropertyId&&<a href={pageHref(`id=${encodeURIComponent(data.lifecycle.supersededByPropertyId)}`)}>{c.openSuccessor} →</a>}</aside>}
  {snap?.imageUrl&&<div className="detailImage" style={{backgroundImage:`url(${snap.imageUrl})`}}><span>{snap.property.project}<small>{snap.property.unit}</small></span></div>}
- <section className="hero"><div><div className="eyebrow">{c.propertyAnalysis}</div><h1 className="title">{n?.headline??c.decisionNotBrochure}</h1>
+ <section className="hero"><div><div className="eyebrow">{c.propertyAnalysis}</div><div className="propertyIdentity"><b>{snap?.property?.project}</b><span>{snap?.property?.unit}</span></div><h1 className="title">{n?.headline??c.decisionNotBrochure}</h1>
  <p className="sub">{n?.summary??c.detailIntro}</p></div>
- <div className="scorebox"><div className="muted" style={{color:"#b9c0bc"}}>PRIVATEPHUKET INVESTMENT SCORE</div><div className="score">{a.riskAdjustedScore?.toFixed?.(1)??"—"} <small>/ 100</small></div><span className="badge darkbadge">{publicVerdict(a)}</span></div></section>
+ <div className={`scorebox ${score==null?"confidenceBox":""}`}><div className="muted" style={{color:"#b9c0bc"}}>{primaryIndicatorLabel}</div><div className="score">{primaryIndicator==null?"—":primaryIndicator.toFixed(score==null?0:1)} <small>/ 100</small></div><span className="badge darkbadge">{publicVerdict(a)}</span>{score==null&&<p className="scoreNote">{language==="ru"?"Инвестиционный рейтинг появится после подтверждения всех критичных исходных данных.":"The investment score will appear after all critical inputs are verified."}</p>}</div></section>
  <div className="metrics detailMetrics"><div className="metric"><span className="muted">{c.purchasePrice.toUpperCase()}</span><b>{fmt(snap?.property?.purchasePrice?.value)} THB</b><Badge>{incomeStatus(snap?.property?.purchasePrice?.status)}</Badge></div>
  <div className="metric"><span className="muted">{c.tac.toUpperCase()}</span><b>{fmt(a.tac)} THB</b></div>
  <div className="metric"><span className="muted">{c.netYield.toUpperCase()}</span><b>{a.netYield==null?"—":`${(a.netYield*100).toFixed(2)}%`}</b><div className="incomeBasis">{c.annualNoi}: {snap?.property?.annualNoi?.value==null?"—":`${fmt(snap.property.annualNoi.value)} THB`}</div><Badge>{incomeStatus(snap?.property?.annualNoi?.status)}</Badge></div>
  <div className="metric"><span className="muted">{a.productionReturnMetric??c.return.toUpperCase()}</span><b>{a.productionReturn==null?"—":`${(a.productionReturn*100).toFixed(2)}%`}</b></div>
- <div className="metric"><span className="muted">{c.risk}</span><b>{localizedLabel(a.riskLabel,c.riskLabels)}</b></div>
+ <div className="metric"><span className="muted">{c.risk}</span><b>{a.riskLabel?localizedLabel(a.riskLabel,c.riskLabels):(language==="ru"?"НА ПРОВЕРКЕ":"UNDER REVIEW")}</b></div>
  <div className="metric"><span className="muted">{c.confidence.toUpperCase()}</span><b>{confidence==null?"—":`${confidence.toFixed(0)}/100`}</b></div></div>
  {hasScenarioInputs&&<a className="scenarioFromProperty" href={pageHref(scenarioQuery)}>{c.modelThisProperty} <span>→</span></a>}
  <section className="section"><div className="eyebrow">{c.decisionLayer}</div><h2>{c.numbersMeaning}</h2><div className="cols">
