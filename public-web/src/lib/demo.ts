@@ -21,6 +21,7 @@ const analytics = (
 const seeds = [
   {
     id: "preview-layan-verde-b3-301",
+    propertyType: "CONDO",
     project: "Layan Verde",
     unit: "B3-301 · Studio 38.63 sqm · Garden view",
     imageUrl: "/assets/b3-301/interior.webp",
@@ -104,6 +105,7 @@ const seeds = [
   },
   {
     id: "demo-layan-01",
+    propertyType: "VILLA",
     project: "Layan Ridge Residences",
     unit: "Villa L-07",
     headline: "Privacy with a disciplined entry price.",
@@ -141,6 +143,7 @@ const seeds = [
   },
   {
     id: "demo-bangtao-02",
+    propertyType: "CONDO",
     project: "Bang Tao Courtyard",
     unit: "Residence C-12",
     headline: "The strongest income profile in the shortlist.",
@@ -189,6 +192,7 @@ const seeds = [
   },
   {
     id: "demo-naiyang-03",
+    propertyType: "CONDO",
     project: "Nai Yang Garden Suites",
     unit: "Suite B-34",
     headline: "Lower entry cost, higher location concentration.",
