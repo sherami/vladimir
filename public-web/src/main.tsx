@@ -89,7 +89,7 @@ function Calculator(){
  };
  const output=result?.outputs;
  return <><Header/><main><section className="calculatorHero"><div><div className="eyebrow">{c.independentModel}</div><h1 className="title">{c.testDeal}<br/>{c.beforeBuy}</h1><p className="sub">{c.calculatorIntro}</p></div><div className="scenarioLabel">{c.scenarioOnly}</div></section>
- {importedDraft&&<p className="calculatorImportNote" role="note">{c.importedScenarioNote} {new URLSearchParams(location.search).get("propertyId")&&<a href={pageHref(`id=${encodeURIComponent(new URLSearchParams(location.search).get("propertyId")!)}`)}>{c.backToProperty}</a>}</p>}
+ {importedDraft&&<p className="calculatorImportNote" role="note"><strong className="calculatorSource">{language==="ru"?"Сценарий объекта":"Property scenario"}{new URLSearchParams(location.search).get("propertyName")?`: ${new URLSearchParams(location.search).get("propertyName")}`:""}</strong>{c.importedScenarioNote} {new URLSearchParams(location.search).get("propertyId")&&<a href={catalogHref(`id=${encodeURIComponent(new URLSearchParams(location.search).get("propertyId")!)}`)}>{c.backToProperty}</a>}</p>}
  <form className="calculatorLayout" onSubmit={submit}><section className="calculatorForm"><div className="formSection"><div className="formHeading"><span>01</span><div><h2>{c.acquisition}</h2><p>{c.acquisitionHint}</p></div></div><div className="fieldGrid">
  <label>{c.purchasePrice} <span>THB</span><input type="number" min="1000" step="1" value={input.purchasePrice} onChange={numberField("purchasePrice")} required/></label>
  <label>{c.acquisitionCosts} <span>THB</span><input type="number" min="0" step="1000" value={input.acquisitionCosts} onChange={numberField("acquisitionCosts")} required/></label>
@@ -187,7 +187,7 @@ function PropertyDetail({id}:{id:string}){
  if(!data)return <><Header/><main className="loadingState">{c.loading}</main></>;
  const price=snap?.property?.purchasePrice?.value,noi=snap?.property?.annualNoi?.value;
  const hasScenarioInputs=typeof price==="number"&&Number.isFinite(price)&&price>0&&typeof noi==="number"&&Number.isFinite(noi)&&noi>=0;
- const scenarioQuery=hasScenarioInputs?new URLSearchParams({calculator:"1",source:"property",propertyId:id,purchasePrice:String(price),annualNoi:String(noi)}).toString():"";
+ const scenarioQuery=hasScenarioInputs?new URLSearchParams({calculator:"1",source:"property",propertyId:id,propertyName:String(snap?.property?.project??""),purchasePrice:String(price),annualNoi:String(noi)}).toString():"";
  return <><Header/><main>
  {preview&&<a className="detailLink propertyBack" href={catalogHref()}>{c.back}</a>}
  {data.lifecycle?.status==="SUPERSEDED"&&<aside className="supersededNotice" role="status"><div><strong>{c.supersededTitle}</strong><p>{c.supersededExplanation}</p></div>{data.lifecycle.supersededByPropertyId&&<a href={pageHref(`id=${encodeURIComponent(data.lifecycle.supersededByPropertyId)}`)}>{c.openSuccessor} →</a>}</aside>}
@@ -204,7 +204,7 @@ function PropertyDetail({id}:{id:string}){
  <div className="metric"><span className="muted">{c.risk}</span><b>{a.riskLabel?localizedLabel(a.riskLabel,c.riskLabels):(language==="ru"?"НА ПРОВЕРКЕ":"UNDER REVIEW")}</b></div>
  <div className="metric"><span className="muted">{c.confidence.toUpperCase()}</span><b>{confidence==null?"—":`${confidence.toFixed(0)}/100`}</b></div></div>
  {snap?.paymentSchedule?.length>0&&<section className="paymentBlock"><div className="paymentHeading"><div><div className="eyebrow">{language==="ru"?"СЦЕНАРИЙ ОПЛАТЫ 35%":"35% PAYMENT SCENARIO"}</div><h2>{language==="ru"?"Когда и сколько платить":"When each payment is due"}</h2></div><Badge>{language==="ru"?"Даты предварительные":"Provisional dates"}</Badge></div><div className="paymentTimeline">{snap.paymentSchedule.map((payment:any,index:number)=><div className="paymentStep" key={`${payment.date}-${payment.label}`}><span className="paymentIndex">{String(index+1).padStart(2,"0")}</span><div><small>{payment.date}</small><b>{payment.label}</b></div><strong>{fmt(payment.amount)} THB</strong></div>)}</div><p className="paymentNote">{language==="ru"?"Даты рассчитаны от условной даты бронирования 1 октября 2026 года. В договоре их необходимо заменить на фактические.":"Dates are modelled from an assumed reservation date of 1 October 2026 and must be replaced with actual contract dates."}</p></section>}
- {hasScenarioInputs&&<a className="scenarioFromProperty" href={pageHref(scenarioQuery)}>{c.modelThisProperty} <span>→</span></a>}
+ {hasScenarioInputs&&<a className="scenarioFromProperty" href={catalogHref(scenarioQuery)}>{c.modelThisProperty} <span>→</span></a>}
  <section className="section"><div className="eyebrow">{c.decisionLayer}</div><h2>{c.numbersMeaning}</h2><div className="cols">
  <div className="panel"><h3>{c.whyConsider}</h3>{(n?.whyBuy??[]).map((x:string,i:number)=><p className="why" key={i}>— {x}</p>)}</div>
  <div className="panel risk"><h3>{c.whyNot}</h3>{(n?.whyNotBuy??[]).map((x:string,i:number)=><p className="why" key={i}>— {x}</p>)}</div></div></section>
