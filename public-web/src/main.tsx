@@ -131,6 +131,23 @@ function Comparison({ids}:{ids:string[]}){
 function PropertyGallery({items}:{items:any[]}){
  const galleries=items.reduce((result:any[],item:any)=>{const id=item.gallery??item.src;const existing=result.find(group=>group.id===id);if(existing)existing.items.push(item);else result.push({id,label:item.galleryLabel??item.label,kind:item.kind,items:[item]});return result},[]);
  const [active,setActive]=useState<{gallery:number;image:number}|null>(null);
+ const dialogRef=useRef<HTMLDivElement>(null);
+ const isOpen=active!=null;
+ useEffect(()=>{
+  if(!isOpen)return;
+  const opener=document.activeElement as HTMLElement|null;
+  const dialog=dialogRef.current;
+  dialog?.querySelector<HTMLButtonElement>("button")?.focus();
+  const trapFocus=(event:KeyboardEvent)=>{
+   if(event.key!=="Tab"||!dialog)return;
+   const buttons=Array.from(dialog.querySelectorAll<HTMLButtonElement>("button"));
+   const first=buttons[0],last=buttons[buttons.length-1];
+   if(event.shiftKey&&document.activeElement===first){event.preventDefault();last?.focus()}
+   else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first?.focus()}
+  };
+  document.addEventListener("keydown",trapFocus);
+  return()=>{document.removeEventListener("keydown",trapFocus);opener?.focus()};
+ },[isOpen]);
  const activeGallery=active==null?null:galleries[active.gallery];
  const activeItem=activeGallery&&active!=null?activeGallery.items[active.image]:null;
  const change=(direction:-1|1)=>setActive(current=>{if(current==null)return null;const count=galleries[current.gallery].items.length;return {...current,image:(current.image+direction+count)%count}});
@@ -143,7 +160,7 @@ function PropertyGallery({items}:{items:any[]}){
   return()=>{document.body.style.overflow=previousOverflow;removeEventListener("keydown",onKey)};
  },[active,galleries]);
  if(items.length===0)return null;
- return <><div className="galleryTop"><div className="eyebrow">{language==="ru"?"МАТЕРИАЛЫ ПО ОБЪЕКТУ":"PROPERTY MEDIA"}</div></div><section className="propertyMedia" aria-label={language==="ru"?"Материалы по объекту":"Property media"}>{galleries.map((gallery,index)=>{const cover=gallery.items[0];return <button className={`mediaCard ${cover.src.includes("floorplan")?"floorplanCard":""}`} onClick={()=>setActive({gallery:index,image:0})} key={gallery.id} aria-label={`${language==="ru"?"Открыть галерею":"Open gallery"}: ${gallery.label}`}><img src={cover.src} alt={gallery.label}/><span className="mediaCaption"><small>{gallery.kind}</small><b>{gallery.label}</b><i>{gallery.items.length>1?`${gallery.items.length} ${language==="ru"?"фото":"photos"}`:language==="ru"?"Открыть ↗":"Open ↗"}</i></span></button>})}</section>{activeItem&&activeGallery&&active!=null&&<div className="lightbox" role="dialog" aria-modal="true" aria-label={activeGallery.label} onClick={event=>{if(event.target===event.currentTarget)setActive(null)}}><button autoFocus className="lightboxClose" onClick={()=>setActive(null)} aria-label={language==="ru"?"Закрыть":"Close"}>×</button>{activeGallery.items.length>1&&<button className="lightboxArrow lightboxPrev" onClick={()=>change(-1)} aria-label={language==="ru"?"Предыдущее изображение":"Previous image"}>←</button>}<figure><img src={activeItem.src} alt={activeItem.label}/><figcaption><span>{activeItem.kind}</span><b>{activeItem.label}</b><small>{active.image+1} / {activeGallery.items.length}</small></figcaption></figure>{activeGallery.items.length>1&&<button className="lightboxArrow lightboxNext" onClick={()=>change(1)} aria-label={language==="ru"?"Следующее изображение":"Next image"}>→</button>}</div>}</>;
+ return <><div className="galleryTop"><div className="eyebrow">{language==="ru"?"МАТЕРИАЛЫ ПО ОБЪЕКТУ":"PROPERTY MEDIA"}</div></div><section className="propertyMedia" aria-label={language==="ru"?"Материалы по объекту":"Property media"}>{galleries.map((gallery,index)=>{const cover=gallery.items[0];return <button className={`mediaCard ${cover.src.includes("floorplan")?"floorplanCard":""}`} onClick={()=>setActive({gallery:index,image:0})} key={gallery.id} aria-label={`${language==="ru"?"Открыть галерею":"Open gallery"}: ${gallery.label}`}><img src={cover.src} alt={gallery.label}/><span className="mediaCaption"><small>{gallery.kind}</small><b>{gallery.label}</b><i>{gallery.items.length>1?`${gallery.items.length} ${language==="ru"?"фото":"photos"}`:language==="ru"?"Открыть ↗":"Open ↗"}</i></span></button>})}</section>{activeItem&&activeGallery&&active!=null&&<div ref={dialogRef} className="lightbox" role="dialog" aria-modal="true" aria-label={activeGallery.label} onClick={event=>{if(event.target===event.currentTarget)setActive(null)}}><button className="lightboxClose" onClick={()=>setActive(null)} aria-label={language==="ru"?"Закрыть":"Close"}>×</button>{activeGallery.items.length>1&&<button className="lightboxArrow lightboxPrev" onClick={()=>change(-1)} aria-label={language==="ru"?"Предыдущее изображение":"Previous image"}>←</button>}<figure><img src={activeItem.src} alt={activeItem.label}/><figcaption><span>{activeItem.kind}</span><b>{activeItem.label}</b><small>{active.image+1} / {activeGallery.items.length}</small></figcaption></figure>{activeGallery.items.length>1&&<button className="lightboxArrow lightboxNext" onClick={()=>change(1)} aria-label={language==="ru"?"Следующее изображение":"Next image"}>→</button>}</div>}</>;
 }
 function PropertyDetail({id}:{id:string}){
  const [data,setData]=useState<any>(),[err,setErr]=useState("");
