@@ -1,0 +1,140 @@
+[
+  {
+    "field": "isOffPlan",
+    "value": true,
+    "status": "VERIFIED_DOCUMENT",
+    "sourceKey": "leasehold_draft",
+    "isCritical": true,
+    "analystComment": "The draft states that construction is in progress and targets completion by the end of Q4 2028."
+  },
+  {
+    "field": "purchasePrice",
+    "value": 10009033,
+    "unit": "THB",
+    "status": "VERIFIED_DOCUMENT",
+    "sourceKey": "current_offer",
+    "asOf": "2026-10-01",
+    "isCritical": true,
+    "analystComment": "Current B3-301 offer; furniture package is included. Offer valid through 2026-10-25."
+  },
+  {
+    "field": "ownershipType",
+    "value": "LEASEHOLD",
+    "status": "VERIFIED_DOCUMENT",
+    "sourceKey": "current_offer",
+    "isCritical": true,
+    "analystComment": "B3-301 is offered as Leasehold. The supplied agreement is an unexecuted template."
+  },
+  {
+    "field": "initialCapex",
+    "value": 0,
+    "unit": "THB",
+    "status": "VERIFIED_DOCUMENT",
+    "sourceKey": "current_offer",
+    "isCritical": false,
+    "analystComment": "Furniture package is included in the apartment price; optional decor is excluded."
+  },
+  {
+    "field": "acquisitionCosts",
+    "value": 157935,
+    "unit": "THB",
+    "status": "VERIFIED_DOCUMENT",
+    "sourceKey": "current_offer",
+    "isCritical": true,
+    "analystComment": "15,000 meters + 32,836 sinking fund + 110,099 Leasehold registration. Excludes independent legal due diligence."
+  },
+  {
+    "field": "operatingExpenses",
+    "value": {
+      "commonAreaFeeAnnual": 34767,
+      "currency": "THB"
+    },
+    "unit": "THB/year",
+    "status": "VERIFIED_DOCUMENT",
+    "sourceKey": "current_offer",
+    "isCritical": false,
+    "analystComment": "Annual common-area fee; kept outside TAC."
+  },
+  {
+    "field": "paymentOptions",
+    "value": {
+      "fullPayment": [200000, 9809033],
+      "fiftyPercent": [200000, 4904517, 980903, 980903, 980903, 980903, 980904],
+      "thirtyFivePercent": [200000, 3433162, 1275174, 1275174, 1275174, 1275174, 1275175]
+    },
+    "unit": "THB",
+    "status": "VERIFIED_DOCUMENT",
+    "sourceKey": "current_offer",
+    "isCritical": false,
+    "analystComment": "All three offer schedules reconcile exactly to 10,009,033 THB."
+  },
+  {
+    "field": "paymentSchedule",
+    "value": [
+      { "date": "2026-10-01", "amount": -200000, "dateStatus": "TO_VERIFY" },
+      { "date": "2026-10-15", "amount": -3433162, "dateStatus": "TO_VERIFY" },
+      { "date": "2027-04-15", "amount": -1275174, "dateStatus": "TO_VERIFY" },
+      { "date": "2027-10-15", "amount": -1275174, "dateStatus": "TO_VERIFY" },
+      { "date": "2028-04-15", "amount": -1275174, "dateStatus": "TO_VERIFY" },
+      { "date": "2028-10-15", "amount": -1275174, "dateStatus": "TO_VERIFY" },
+      { "date": "2029-04-15", "amount": -1275175, "dateStatus": "TO_VERIFY" }
+    ],
+    "unit": "THB",
+    "status": "TO_VERIFY",
+    "sourceKey": "current_offer",
+    "isCritical": true,
+    "analystComment": "35% option selected for provisional modelling. Dates assume reservation on 2026-10-01, first payment after 14 days and later payments every six months. The executed Annex B must supply exact dates and resolve the post-completion final instalment."
+  },
+  {
+    "field": "rentalPoolSplit",
+    "value": {
+      "managementCompany": 0.4,
+      "owner": 0.6,
+      "basis": "profit"
+    },
+    "status": "TO_VERIFY",
+    "sourceKey": "current_offer",
+    "isCritical": true,
+    "analystComment": "Analyst confirms 40% of profit to management and 60% to owner. The offer prints 40%-60% without party labels; the detailed rental-pool agreement remains outstanding."
+  },
+  {
+    "field": "annualNoi",
+    "value": 660853,
+    "unit": "THB/year",
+    "status": "PP_ESTIMATE",
+    "isCritical": true,
+    "analystComment": "Midpoint of the PrivatePhuket 6%-7% owner net-yield scenario on document-backed TAC. Not actual performance and not a guarantee."
+  },
+  {
+    "field": "completionDate",
+    "value": "2028-12-31",
+    "status": "DEVELOPER_CLAIM",
+    "sourceKey": "leasehold_draft",
+    "isCritical": true,
+    "analystComment": "Contract target is the end of Q4 2028. The draft permits force-majeure extensions and a separate extension of up to 12 months after suspension."
+  },
+  {
+    "field": "holdingYears",
+    "value": 5,
+    "unit": "years",
+    "status": "ASSUMPTION",
+    "isCritical": false,
+    "analystComment": "Temporary scenario horizon only; client exit horizon is not yet confirmed."
+  },
+  {
+    "field": "exitGrowthRate",
+    "value": 0.0371372893,
+    "unit": "decimal/year",
+    "status": "PP_ESTIMATE",
+    "isCritical": false,
+    "analystComment": "Annualized equivalent of the PrivatePhuket +20% total-growth cap over the temporary five-year scenario."
+  },
+  {
+    "field": "sellingCostRate",
+    "value": 0.061,
+    "unit": "decimal",
+    "status": "PP_ESTIMATE",
+    "isCritical": true,
+    "analystComment": "Provisional 5% agent commission plus 1.1% Leasehold transfer-tax assumption. The separate approximately 100,000 THB re-registration estimate is not included and requires legal verification."
+  }
+]

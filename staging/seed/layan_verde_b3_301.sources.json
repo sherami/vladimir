@@ -1,0 +1,28 @@
+[
+  {
+    "key": "current_offer",
+    "documentType": "COMMERCIAL_OFFER",
+    "title": "Layan Verde commercial offer B3-301",
+    "issuer": "Layan Verde / developer sales",
+    "status": "VERIFIED_DOCUMENT",
+    "sourceDate": "2026-10-01",
+    "uri": "library:libfile_0f4e3d21236081919fd4d9cee6298fef",
+    "metadata": {
+      "validThrough": "2026-10-25",
+      "unit": "B3-301"
+    }
+  },
+  {
+    "key": "leasehold_draft",
+    "documentType": "LEASEHOLD_AGREEMENT_DRAFT",
+    "title": "Layan Verde Premium Leasehold agreement draft B2/B3/B9",
+    "issuer": "Layan Best View Company Limited",
+    "status": "VERIFIED_DOCUMENT",
+    "sourceDate": "2026-07-13",
+    "uri": "library:libfile_a7d548598aa08191918e10b0517ab725",
+    "metadata": {
+      "template": true,
+      "executed": false
+    }
+  }
+]
