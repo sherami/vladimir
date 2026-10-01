@@ -153,7 +153,7 @@ function PropertyDetail({id}:{id:string}){
  const primaryIndicator=score==null?confidence:score;
  const primaryIndicatorLabel=score==null
   ?(language==="ru"?"ДОСТОВЕРНОСТЬ ДАННЫХ":"DATA CONFIDENCE")
-  :"PRIVATEPHUKET INVESTMENT SCORE";
+  :(language==="ru"?"ИНВЕСТИЦИОННЫЙ РЕЙТИНГ PRIVATEPHUKET":"PRIVATEPHUKET INVESTMENT SCORE");
  usePageMeta(snap?.property?.project??(language==="ru"?"Аналитика объекта":"Property analysis"),n?.summary??c.detailIntro);
  useEffect(()=>{getPublishedProperty(id).then(setData).catch(e=>setErr(e.message))},[id]);
  if(err)return <><Header/><main><div className="eyebrow">PrivatePhuket</div><h1 className="title">{c.publishedOnly}</h1><p className="sub">{propertyError}</p><RetryButton/><a className="detailLink errorBack" href={pageHref()}>{c.back}</a></main></>;
