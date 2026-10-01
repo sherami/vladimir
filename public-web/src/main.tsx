@@ -30,7 +30,7 @@ function importedCalculatorDraft():CalculatorDraft|null{
  if(params.get("source")!=="property"||!params.has("purchasePrice")||!params.has("annualNoi"))return null;
  const purchasePrice=Number(params.get("purchasePrice")),annualNoi=Number(params.get("annualNoi"));
  if(!Number.isFinite(purchasePrice)||purchasePrice<=0||!Number.isFinite(annualNoi)||annualNoi<0)return null;
- return {...calculatorDefaults,purchasePrice:String(purchasePrice),annualNoi:String(annualNoi),entryMarketValue:""};
+ return {...calculatorDefaults,purchasePrice:String(Math.round(purchasePrice)),annualNoi:String(Math.round(annualNoi)),entryMarketValue:""};
 }
 const importedDraft=importedCalculatorDraft();
 function parseCalculatorDraft(draft:CalculatorDraft):PublicCalculatorInput|null{
@@ -88,7 +88,7 @@ function Calculator(){
  <label>{c.initialCapex} <span>THB</span><input type="number" min="0" step="1000" value={input.initialCapex} onChange={numberField("initialCapex")} required/></label>
  <label>{c.entryMarketValue} <span>THB</span><input type="number" min="0" step="1000" value={input.entryMarketValue} onChange={numberField("entryMarketValue")} required/></label>
  </div></div><div className="formSection"><div className="formHeading"><span>02</span><div><h2>{c.operationsExit}</h2><p>{c.operationsHint}</p></div></div><div className="fieldGrid">
- <label>{c.annualNoi} <span>THB</span><input type="number" min="0" step="1000" value={input.annualNoi} onChange={numberField("annualNoi")} required/></label>
+ <label>{c.annualNoi} <span>THB</span><input type="number" min="0" step="1" value={input.annualNoi} onChange={numberField("annualNoi")} required/></label>
  <label>{c.holdingPeriod} <span>{c.years}</span><input type="number" min="1" max="30" step="1" value={input.holdingYears} onChange={numberField("holdingYears")} required/></label>
  <label>{c.exitGrowth} <span>%</span><input type="number" min="-99" max="100" step="0.1" value={input.exitGrowthRate} onChange={numberField("exitGrowthRate")} required/></label>
  <label>{c.sellingCosts} <span>%</span><input type="number" min="0" max="99" step="0.1" value={input.sellingCostRate} onChange={numberField("sellingCostRate")} required/></label>
