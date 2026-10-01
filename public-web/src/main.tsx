@@ -86,7 +86,7 @@ function Calculator(){
  <label>{c.purchasePrice} <span>THB</span><input type="number" min="1000" step="1" value={input.purchasePrice} onChange={numberField("purchasePrice")} required/></label>
  <label>{c.acquisitionCosts} <span>THB</span><input type="number" min="0" step="1000" value={input.acquisitionCosts} onChange={numberField("acquisitionCosts")} required/></label>
  <label>{c.initialCapex} <span>THB</span><input type="number" min="0" step="1000" value={input.initialCapex} onChange={numberField("initialCapex")} required/></label>
- <label>{c.entryMarketValue} <span>THB</span><input type="number" min="0" step="1000" value={input.entryMarketValue} onChange={numberField("entryMarketValue")} required/></label>
+ <label>{c.entryMarketValue} <span>THB</span><input type="number" min="0" step="1" value={input.entryMarketValue} onChange={numberField("entryMarketValue")} required/></label>
  </div></div><div className="formSection"><div className="formHeading"><span>02</span><div><h2>{c.operationsExit}</h2><p>{c.operationsHint}</p></div></div><div className="fieldGrid">
  <label>{c.annualNoi} <span>THB</span><input type="number" min="0" step="1" value={input.annualNoi} onChange={numberField("annualNoi")} required/></label>
  <label>{c.holdingPeriod} <span>{c.years}</span><input type="number" min="1" max="30" step="1" value={input.holdingYears} onChange={numberField("holdingYears")} required/></label>
