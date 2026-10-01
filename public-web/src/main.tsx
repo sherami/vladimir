@@ -48,7 +48,7 @@ function parseCalculatorDraft(draft:CalculatorDraft):PublicCalculatorInput|null{
  };
  return Object.values(input).every(Number.isFinite)?input:null;
 }
-const money=(value:number)=>new Intl.NumberFormat(language==="ru"?"ru-RU":"en-US",{style:"currency",currency:"THB",maximumFractionDigits:0}).format(value);
+const money=(value:number)=>`${fmt(value)} THB`;
 const percent=(value:number)=>new Intl.NumberFormat(language==="ru"?"ru-RU":"en-US",{style:"percent",minimumFractionDigits:2,maximumFractionDigits:2}).format(value);
 function Calculator(){
  usePageMeta(language==="ru"?"Инвестиционный калькулятор":"Investment calculator",c.calculatorIntro);
