@@ -1,0 +1,358 @@
+{
+  "reviewedAt": "2026-10-16",
+  "phase": 1,
+  "assets": [
+    {
+      "asset": "interior-1br-00.webp",
+      "source": "1. ГОСТИНАЯ - 1-спальная 45.4 м2.jpg"
+    },
+    {
+      "asset": "interior-2br-01.webp",
+      "source": "1. ГОСТИНАЯ - 2-спальная 91.1 м².jpg"
+    },
+    {
+      "asset": "interior-studio-02.webp",
+      "source": "1. ОБЕДЕННАЯ ЗОНА - студия 30.3 м2.jpg"
+    },
+    {
+      "asset": "interior-1br-03.webp",
+      "source": "10. САНУЗЕЛ - 1-спальная 45.4 м2.jpg"
+    },
+    {
+      "asset": "interior-1br-04.webp",
+      "source": "11. САНУЗЕЛ - 1-спальная 45.4 м2.jpg"
+    },
+    {
+      "asset": "interior-1br-05.webp",
+      "source": "12. САНУЗЕЛ - 1-спальная 45.4 м2.jpg"
+    },
+    {
+      "asset": "interior-3br-06.webp",
+      "source": "13. BATHROOM - - 3 BEDROOM - 121m2.jpg"
+    },
+    {
+      "asset": "interior-1br-07.webp",
+      "source": "13. САНУЗЕЛ - 1-спальная 45.4 м2.jpg"
+    },
+    {
+      "asset": "interior-3br-08.webp",
+      "source": "14. GENERAL VIEW BEDROOM - 3 BEDROOM - 121m2.jpg"
+    },
+    {
+      "asset": "interior-3br-09.webp",
+      "source": "15. BEDROOM - 3 BEDROOM - 121m2.jpg"
+    },
+    {
+      "asset": "interior-1br-10.webp",
+      "source": "15. КУХОННАЯ ЗОНА - 1-спальная 45.4 м2.jpg"
+    },
+    {
+      "asset": "interior-3br-11.webp",
+      "source": "16. Bathroom - 3 BEDROOM - 121m2.jpg"
+    },
+    {
+      "asset": "interior-3br-12.webp",
+      "source": "17. BEDROOM - 3 BEDROOM - 121m2.jpg"
+    },
+    {
+      "asset": "interior-3br-13.webp",
+      "source": "18. BEDROOM - 3 BEDROOM - 121m2.jpg"
+    },
+    {
+      "asset": "interior-3br-14.webp",
+      "source": "19. BEDROOM - 3 BEDROOM - 121m2.jpg"
+    },
+    {
+      "asset": "interior-2br-15.webp",
+      "source": "2. ГОСТИНАЯ - 2-спальная 91.1 м².jpg"
+    },
+    {
+      "asset": "interior-studio-16.webp",
+      "source": "2. КУХНЯ - студия 30.3 м2.jpg"
+    },
+    {
+      "asset": "interior-1br-17.webp",
+      "source": "2. КУХОННАЯ ЗОНА И ГОСТИНАЯ - 1-спальная 45.4 м2.jpg"
+    },
+    {
+      "asset": "interior-3br-18.webp",
+      "source": "20. BEDROOM - 3 BEDROOM - 121m2.jpg"
+    },
+    {
+      "asset": "interior-3br-19.webp",
+      "source": "22. BEDROOM - 3 BEDROOM - 121m2.jpg"
+    },
+    {
+      "asset": "interior-3br-20.webp",
+      "source": "24. BEDROOM - 3 BEDROOM - 121m2.jpg"
+    },
+    {
+      "asset": "interior-3br-21.webp",
+      "source": "25. BATHROOM - 3 BEDROOM - 121m2.jpg"
+    },
+    {
+      "asset": "interior-3br-22.webp",
+      "source": "26. BATHROOM - 3 BEDROOM - 121m2.jpg"
+    },
+    {
+      "asset": "interior-3br-23.webp",
+      "source": "27. BATHROOM - 3 BEDROOM - 121m2.jpg"
+    },
+    {
+      "asset": "interior-3br-24.webp",
+      "source": "28. BATHROOM - 3 BEDROOM - 121m2.jpg"
+    },
+    {
+      "asset": "interior-3br-25.webp",
+      "source": "29. BATHROOM - 3 BEDROOM - 121m2.jpg"
+    },
+    {
+      "asset": "interior-1br-26.webp",
+      "source": "3. КУХОННАЯ ЗОНА И ГОСТИНАЯ - 1-спальная 45.4 м2.jpg"
+    },
+    {
+      "asset": "interior-studio-27.webp",
+      "source": "3. РАБОЧАЯ ЗОНА - студия 30.3 м2.jpg"
+    },
+    {
+      "asset": "interior-2br-28.webp",
+      "source": "3. СПАЛЬНЯ - 2-спальная 91.1 м².jpg"
+    },
+    {
+      "asset": "interior-3br-29.webp",
+      "source": "30. BATHROOM - 3 BEDROOM - 121m2.jpg"
+    },
+    {
+      "asset": "floorplan-2br-30.webp",
+      "source": "3D ЗДАНИЕ B (144.00) - 2-спальная с террасой и джакузи.png"
+    },
+    {
+      "asset": "floorplan-3br-31.webp",
+      "source": "3D ЗДАНИЕ В (126.64) - 3-спальная с выходом к главному бассейну (первый этаж).png"
+    },
+    {
+      "asset": "floorplan-3br-32.webp",
+      "source": "3D ЗДАНИЕ В (130.48) - 3-спальная с выходом к главному бассейну (первый этаж).png"
+    },
+    {
+      "asset": "floorplan-studio-33.webp",
+      "source": "3D ЗДАНИЕ В (30.30) - студия с выходом к главному бассейну (первый этаж).png"
+    },
+    {
+      "asset": "floorplan-1br-34.webp",
+      "source": "3D ЗДАНИЕ В (47.91) - 1-спальная с выходом к главному бассейну (первый этаж).png"
+    },
+    {
+      "asset": "floorplan-studio-35.webp",
+      "source": "3D ЗДАНИЕ В (48.24) - студия с террасой и джакузи (первый этаж).png"
+    },
+    {
+      "asset": "floorplan-1br-36.webp",
+      "source": "3D ЗДАНИЕ В (72.22) - 1-спальная с террасой и джакузи (первый этаж).png"
+    },
+    {
+      "asset": "floorplan-studio-37.webp",
+      "source": "3D ЗДАНИЕ С (40.37) - студия с террасой и джакузи (первый этаж)(2).png"
+    },
+    {
+      "asset": "floorplan-1br-38.webp",
+      "source": "3D ЗДАНИЕ С (47.67) - 1-спальная с выходом к главному бассейну (первый этаж).png"
+    },
+    {
+      "asset": "floorplan-1br-39.webp",
+      "source": "3D ЗДАНИЕ С (61.20) - 1-спальная с террасой и личным бассейном (первый этаж).png"
+    },
+    {
+      "asset": "floorplan-2br-40.webp",
+      "source": "3D ЗДАНИЕ С (93.55) - 2-спальная с выходом к главному бассейну (первый этаж).png"
+    },
+    {
+      "asset": "floorplan-3br-41.webp",
+      "source": "3D ТИП D (120.90) - стандартная 3-спальная.png"
+    },
+    {
+      "asset": "floorplan-duplex-42.webp",
+      "source": "3D ТИП E_ ДУПЛЕКС А (109.00) - с выходом в бассейн.png"
+    },
+    {
+      "asset": "floorplan-duplex-43.webp",
+      "source": "3D ТИП E_ ДУПЛЕКС В (108.81) - с выходом в бассейн.png"
+    },
+    {
+      "asset": "floorplan-studio-44.webp",
+      "source": "3D ТИП А (30.32) - стандартная студия(2).png"
+    },
+    {
+      "asset": "floorplan-1br-45.webp",
+      "source": "3D ТИП В (45.40) - стандартная 1-спальная.jpg"
+    },
+    {
+      "asset": "floorplan-2br-46.webp",
+      "source": "3D ТИП С (91.05) - стандартная 2-спальная.png"
+    },
+    {
+      "asset": "interior-1br-47.webp",
+      "source": "4. КУХОННАЯ ЗОНА И ГОСТИНАЯ - 1-спальная 45.4 м2.jpg"
+    },
+    {
+      "asset": "interior-studio-48.webp",
+      "source": "4. ОБЩИЙ ВИД - студия 30.3 м2.jpg"
+    },
+    {
+      "asset": "interior-2br-49.webp",
+      "source": "4. СПАЛЬНЯ - 2-спальная 91.1 м².jpg"
+    },
+    {
+      "asset": "interior-studio-50.webp",
+      "source": "5. БАЛКОН - студия 30.3 м2.jpg"
+    },
+    {
+      "asset": "interior-duplex-51.webp",
+      "source": "5. ДУПЛЕКС - Вид на бассейн.jpg"
+    },
+    {
+      "asset": "interior-1br-52.webp",
+      "source": "5. КУХОННАЯ ЗОНА И ГОСТИНАЯ - 1-спальная 45.4 м2.jpg"
+    },
+    {
+      "asset": "interior-2br-53.webp",
+      "source": "5. СПАЛЬНЯ - 2-спальная 91.1 м².jpg"
+    },
+    {
+      "asset": "interior-1br-54.webp",
+      "source": "6. КУХОННАЯ ЗОНА - 1-спальная 45.4 м2.jpg"
+    },
+    {
+      "asset": "interior-2br-55.webp",
+      "source": "6. САНУЗЕЛ - 2-спальная 91.1 м².jpg"
+    },
+    {
+      "asset": "interior-studio-56.webp",
+      "source": "6. САНУЗЕЛ - студия 30.3 м2.jpg"
+    },
+    {
+      "asset": "interior-2br-57.webp",
+      "source": "7. САНУЗЕЛ - 2-спальная 91.1 м².jpg"
+    },
+    {
+      "asset": "interior-studio-58.webp",
+      "source": "7. САНУЗЕЛ - студия 30.3 м2.jpg"
+    },
+    {
+      "asset": "interior-1br-59.webp",
+      "source": "7. СПАЛЬНЯ - 1-спальная 45.4 м2.jpg"
+    },
+    {
+      "asset": "interior-1br-60.webp",
+      "source": "8. СПАЛЬНЯ - 1-спальная 45.4 м2.jpg"
+    },
+    {
+      "asset": "interior-studio-61.webp",
+      "source": "8. СПАЛЬНЯ - студия 30.3 м2.jpg"
+    },
+    {
+      "asset": "interior-1br-62.webp",
+      "source": "9. БАЛКОН - 1-спальная 45.4 м2.jpg"
+    },
+    {
+      "asset": "interior-duplex-63.webp",
+      "source": "ДУПЛЕКС - Ванная комната (1).jpeg"
+    },
+    {
+      "asset": "interior-duplex-64.webp",
+      "source": "ДУПЛЕКС - Ванная комната (2).jpeg"
+    },
+    {
+      "asset": "interior-duplex-65.webp",
+      "source": "ДУПЛЕКС - Ванная комната (3).jpeg"
+    },
+    {
+      "asset": "interior-duplex-66.webp",
+      "source": "ДУПЛЕКС - Ванная комната (4).jpeg"
+    },
+    {
+      "asset": "interior-duplex-67.webp",
+      "source": "ДУПЛЕКС - Ванная комната.jpeg"
+    },
+    {
+      "asset": "interior-duplex-68.webp",
+      "source": "ДУПЛЕКС - Главный вид.jpeg"
+    },
+    {
+      "asset": "interior-duplex-69.webp",
+      "source": "ДУПЛЕКС - Гостиная (1).jpeg"
+    },
+    {
+      "asset": "interior-duplex-70.webp",
+      "source": "ДУПЛЕКС - Гостиная.jpeg"
+    },
+    {
+      "asset": "interior-duplex-71.webp",
+      "source": "ДУПЛЕКС - Кухня.jpeg"
+    },
+    {
+      "asset": "interior-duplex-72.webp",
+      "source": "ДУПЛЕКС - Обеденная зона.jpeg"
+    },
+    {
+      "asset": "interior-duplex-73.webp",
+      "source": "ДУПЛЕКС - Рабочая зона (1).jpeg"
+    },
+    {
+      "asset": "interior-duplex-74.webp",
+      "source": "ДУПЛЕКС - Рабочая зона.jpeg"
+    },
+    {
+      "asset": "interior-duplex-75.webp",
+      "source": "ДУПЛЕКС - Спальня (1).jpeg"
+    },
+    {
+      "asset": "interior-duplex-76.webp",
+      "source": "ДУПЛЕКС - Спальня (2).jpeg"
+    },
+    {
+      "asset": "interior-duplex-77.webp",
+      "source": "ДУПЛЕКС - Спальня (3).jpeg"
+    },
+    {
+      "asset": "interior-duplex-78.webp",
+      "source": "ДУПЛЕКС - Спальня (4).jpeg"
+    },
+    {
+      "asset": "interior-duplex-79.webp",
+      "source": "ДУПЛЕКС - Спальня.jpeg"
+    },
+    {
+      "asset": "interior-duplex-80.webp",
+      "source": "ДУПЛЕКС - Туалетная комната.jpg"
+    },
+    {
+      "asset": "rental-pool-template-2023.pdf",
+      "source": "3. Пример доп. соглашения Freehold - Rental Pool 40%  60%.pdf"
+    },
+    {
+      "asset": "inspection-options.pdf",
+      "source": "Варианты Инспекции .pdf"
+    },
+    {
+      "asset": "handover-guide.pdf",
+      "source": "Руководство по приемке.pdf"
+    },
+    {
+      "asset": "edge-building-a-2024.pdf",
+      "source": "Сертификат EDGE - Здание A.pdf"
+    },
+    {
+      "asset": "edge-building-b-2024.pdf",
+      "source": "Сертификат EDGE - Здание B.pdf"
+    },
+    {
+      "asset": "edge-building-c-2024.pdf",
+      "source": "Сертификат EDGE - Здание C.pdf"
+    },
+    {
+      "asset": "edge-building-d-2024.pdf",
+      "source": "Сертификат EDGE - Здание D.pdf"
+    }
+  ]
+}

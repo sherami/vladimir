@@ -1,0 +1,569 @@
+[
+  {
+    "src": "/assets/lgp-phase1/floorplan-3br-41.webp",
+    "label": "3D ТИП D (120.90) - стандартная 3-спальная",
+    "group": "3br",
+    "plan": true,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/floorplan-studio-44.webp",
+    "label": "3D ТИП А (30.32) - стандартная студия",
+    "group": "studio",
+    "plan": true,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/floorplan-1br-45.webp",
+    "label": "3D ТИП В (45.40) - стандартная 1-спальная",
+    "group": "1br",
+    "plan": true,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/floorplan-2br-46.webp",
+    "label": "3D ТИП С (91.05) - стандартная 2-спальная",
+    "group": "2br",
+    "plan": true,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/floorplan-2br-30.webp",
+    "label": "3D ЗДАНИЕ B (144.00) - 2-спальная с террасой и джакузи",
+    "group": "2br",
+    "plan": true,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/floorplan-3br-31.webp",
+    "label": "3D ЗДАНИЕ В (126.64) - 3-спальная с выходом к главному бассейну (первый этаж)",
+    "group": "3br",
+    "plan": true,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/floorplan-3br-32.webp",
+    "label": "3D ЗДАНИЕ В (130.48) - 3-спальная с выходом к главному бассейну (первый этаж)",
+    "group": "3br",
+    "plan": true,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/floorplan-studio-33.webp",
+    "label": "3D ЗДАНИЕ В (30.30) - студия с выходом к главному бассейну (первый этаж)",
+    "group": "studio",
+    "plan": true,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/floorplan-1br-34.webp",
+    "label": "3D ЗДАНИЕ В (47.91) - 1-спальная с выходом к главному бассейну (первый этаж)",
+    "group": "1br",
+    "plan": true,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/floorplan-studio-35.webp",
+    "label": "3D ЗДАНИЕ В (48.24) - студия с террасой и джакузи (первый этаж)",
+    "group": "studio",
+    "plan": true,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/floorplan-1br-36.webp",
+    "label": "3D ЗДАНИЕ В (72.22) - 1-спальная с террасой и джакузи (первый этаж)",
+    "group": "1br",
+    "plan": true,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/floorplan-studio-37.webp",
+    "label": "3D ЗДАНИЕ С (40.37) - студия с террасой и джакузи (первый этаж)",
+    "group": "studio",
+    "plan": true,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/floorplan-1br-38.webp",
+    "label": "3D ЗДАНИЕ С (47.67) - 1-спальная с выходом к главному бассейну (первый этаж)",
+    "group": "1br",
+    "plan": true,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/floorplan-1br-39.webp",
+    "label": "3D ЗДАНИЕ С (61.20) - 1-спальная с террасой и личным бассейном (первый этаж)",
+    "group": "1br",
+    "plan": true,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/floorplan-2br-40.webp",
+    "label": "3D ЗДАНИЕ С (93.55) - 2-спальная с выходом к главному бассейну (первый этаж)",
+    "group": "2br",
+    "plan": true,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/floorplan-duplex-42.webp",
+    "label": "3D ТИП E_ ДУПЛЕКС А (109.00) - с выходом в бассейн",
+    "group": "duplex",
+    "plan": true,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/floorplan-duplex-43.webp",
+    "label": "3D ТИП E_ ДУПЛЕКС В (108.81) - с выходом в бассейн",
+    "group": "duplex",
+    "plan": true,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-3br-08.webp",
+    "label": "14. GENERAL VIEW BEDROOM - 3 BEDROOM - 121m2",
+    "group": "3br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-3br-09.webp",
+    "label": "15. BEDROOM - 3 BEDROOM - 121m2",
+    "group": "3br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-3br-11.webp",
+    "label": "16. Bathroom - 3 BEDROOM - 121m2",
+    "group": "3br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-3br-12.webp",
+    "label": "17. BEDROOM - 3 BEDROOM - 121m2",
+    "group": "3br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-3br-13.webp",
+    "label": "18. BEDROOM - 3 BEDROOM - 121m2",
+    "group": "3br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-3br-14.webp",
+    "label": "19. BEDROOM - 3 BEDROOM - 121m2",
+    "group": "3br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-3br-18.webp",
+    "label": "20. BEDROOM - 3 BEDROOM - 121m2",
+    "group": "3br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-3br-19.webp",
+    "label": "22. BEDROOM - 3 BEDROOM - 121m2",
+    "group": "3br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-3br-20.webp",
+    "label": "24. BEDROOM - 3 BEDROOM - 121m2",
+    "group": "3br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-1br-00.webp",
+    "label": "1. ГОСТИНАЯ - 1-спальная 45.4 м2",
+    "group": "1br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-2br-01.webp",
+    "label": "1. ГОСТИНАЯ - 2-спальная 91.1 м²",
+    "group": "2br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-studio-02.webp",
+    "label": "1. ОБЕДЕННАЯ ЗОНА - студия 30.3 м2",
+    "group": "studio",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-1br-03.webp",
+    "label": "10. САНУЗЕЛ - 1-спальная 45.4 м2",
+    "group": "1br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-1br-04.webp",
+    "label": "11. САНУЗЕЛ - 1-спальная 45.4 м2",
+    "group": "1br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-1br-05.webp",
+    "label": "12. САНУЗЕЛ - 1-спальная 45.4 м2",
+    "group": "1br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-3br-06.webp",
+    "label": "13. BATHROOM - - 3 BEDROOM - 121m2",
+    "group": "3br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-1br-07.webp",
+    "label": "13. САНУЗЕЛ - 1-спальная 45.4 м2",
+    "group": "1br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-1br-10.webp",
+    "label": "15. КУХОННАЯ ЗОНА - 1-спальная 45.4 м2",
+    "group": "1br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-2br-15.webp",
+    "label": "2. ГОСТИНАЯ - 2-спальная 91.1 м²",
+    "group": "2br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-studio-16.webp",
+    "label": "2. КУХНЯ - студия 30.3 м2",
+    "group": "studio",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-1br-17.webp",
+    "label": "2. КУХОННАЯ ЗОНА И ГОСТИНАЯ - 1-спальная 45.4 м2",
+    "group": "1br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-3br-21.webp",
+    "label": "25. BATHROOM - 3 BEDROOM - 121m2",
+    "group": "3br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-3br-22.webp",
+    "label": "26. BATHROOM - 3 BEDROOM - 121m2",
+    "group": "3br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-3br-23.webp",
+    "label": "27. BATHROOM - 3 BEDROOM - 121m2",
+    "group": "3br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-3br-24.webp",
+    "label": "28. BATHROOM - 3 BEDROOM - 121m2",
+    "group": "3br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-3br-25.webp",
+    "label": "29. BATHROOM - 3 BEDROOM - 121m2",
+    "group": "3br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-1br-26.webp",
+    "label": "3. КУХОННАЯ ЗОНА И ГОСТИНАЯ - 1-спальная 45.4 м2",
+    "group": "1br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-studio-27.webp",
+    "label": "3. РАБОЧАЯ ЗОНА - студия 30.3 м2",
+    "group": "studio",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-2br-28.webp",
+    "label": "3. СПАЛЬНЯ - 2-спальная 91.1 м²",
+    "group": "2br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-3br-29.webp",
+    "label": "30. BATHROOM - 3 BEDROOM - 121m2",
+    "group": "3br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-1br-47.webp",
+    "label": "4. КУХОННАЯ ЗОНА И ГОСТИНАЯ - 1-спальная 45.4 м2",
+    "group": "1br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-studio-48.webp",
+    "label": "4. ОБЩИЙ ВИД - студия 30.3 м2",
+    "group": "studio",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-2br-49.webp",
+    "label": "4. СПАЛЬНЯ - 2-спальная 91.1 м²",
+    "group": "2br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-studio-50.webp",
+    "label": "5. БАЛКОН - студия 30.3 м2",
+    "group": "studio",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-duplex-51.webp",
+    "label": "5. ДУПЛЕКС - Вид на бассейн",
+    "group": "duplex",
+    "plan": false,
+    "render": true
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-1br-52.webp",
+    "label": "5. КУХОННАЯ ЗОНА И ГОСТИНАЯ - 1-спальная 45.4 м2",
+    "group": "1br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-2br-53.webp",
+    "label": "5. СПАЛЬНЯ - 2-спальная 91.1 м²",
+    "group": "2br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-1br-54.webp",
+    "label": "6. КУХОННАЯ ЗОНА - 1-спальная 45.4 м2",
+    "group": "1br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-2br-55.webp",
+    "label": "6. САНУЗЕЛ - 2-спальная 91.1 м²",
+    "group": "2br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-studio-56.webp",
+    "label": "6. САНУЗЕЛ - студия 30.3 м2",
+    "group": "studio",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-2br-57.webp",
+    "label": "7. САНУЗЕЛ - 2-спальная 91.1 м²",
+    "group": "2br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-studio-58.webp",
+    "label": "7. САНУЗЕЛ - студия 30.3 м2",
+    "group": "studio",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-1br-59.webp",
+    "label": "7. СПАЛЬНЯ - 1-спальная 45.4 м2",
+    "group": "1br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-1br-60.webp",
+    "label": "8. СПАЛЬНЯ - 1-спальная 45.4 м2",
+    "group": "1br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-studio-61.webp",
+    "label": "8. СПАЛЬНЯ - студия 30.3 м2",
+    "group": "studio",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-1br-62.webp",
+    "label": "9. БАЛКОН - 1-спальная 45.4 м2",
+    "group": "1br",
+    "plan": false,
+    "render": false
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-duplex-63.webp",
+    "label": "ДУПЛЕКС - Ванная комната",
+    "group": "duplex",
+    "plan": false,
+    "render": true
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-duplex-64.webp",
+    "label": "ДУПЛЕКС - Ванная комната",
+    "group": "duplex",
+    "plan": false,
+    "render": true
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-duplex-65.webp",
+    "label": "ДУПЛЕКС - Ванная комната",
+    "group": "duplex",
+    "plan": false,
+    "render": true
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-duplex-66.webp",
+    "label": "ДУПЛЕКС - Ванная комната",
+    "group": "duplex",
+    "plan": false,
+    "render": true
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-duplex-67.webp",
+    "label": "ДУПЛЕКС - Ванная комната",
+    "group": "duplex",
+    "plan": false,
+    "render": true
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-duplex-68.webp",
+    "label": "ДУПЛЕКС - Главный вид",
+    "group": "duplex",
+    "plan": false,
+    "render": true
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-duplex-69.webp",
+    "label": "ДУПЛЕКС - Гостиная",
+    "group": "duplex",
+    "plan": false,
+    "render": true
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-duplex-70.webp",
+    "label": "ДУПЛЕКС - Гостиная",
+    "group": "duplex",
+    "plan": false,
+    "render": true
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-duplex-71.webp",
+    "label": "ДУПЛЕКС - Кухня",
+    "group": "duplex",
+    "plan": false,
+    "render": true
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-duplex-72.webp",
+    "label": "ДУПЛЕКС - Обеденная зона",
+    "group": "duplex",
+    "plan": false,
+    "render": true
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-duplex-73.webp",
+    "label": "ДУПЛЕКС - Рабочая зона",
+    "group": "duplex",
+    "plan": false,
+    "render": true
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-duplex-74.webp",
+    "label": "ДУПЛЕКС - Рабочая зона",
+    "group": "duplex",
+    "plan": false,
+    "render": true
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-duplex-75.webp",
+    "label": "ДУПЛЕКС - Спальня",
+    "group": "duplex",
+    "plan": false,
+    "render": true
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-duplex-76.webp",
+    "label": "ДУПЛЕКС - Спальня",
+    "group": "duplex",
+    "plan": false,
+    "render": true
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-duplex-77.webp",
+    "label": "ДУПЛЕКС - Спальня",
+    "group": "duplex",
+    "plan": false,
+    "render": true
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-duplex-78.webp",
+    "label": "ДУПЛЕКС - Спальня",
+    "group": "duplex",
+    "plan": false,
+    "render": true
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-duplex-79.webp",
+    "label": "ДУПЛЕКС - Спальня",
+    "group": "duplex",
+    "plan": false,
+    "render": true
+  },
+  {
+    "src": "/assets/lgp-phase1/interior-duplex-80.webp",
+    "label": "ДУПЛЕКС - Туалетная комната",
+    "group": "duplex",
+    "plan": false,
+    "render": true
+  }
+]
