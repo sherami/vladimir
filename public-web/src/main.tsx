@@ -3,6 +3,7 @@ import {createRoot} from "react-dom/client";
 import {calculatePublicScenario,comparePublishedProperties,getPublishedProperties,getPublishedProperty,PublicCalculatorInput} from "./lib/api";
 import {c,language,languageHref,pageHref,preview} from "./lib/i18n";
 import "./styles.css";
+import {LayanGreenPark,LgpTeaser} from "./LayanGreenPark";
 import {Landing,SiteNavigation,Journey} from "./Landing";
 import {CatalogControls,catalogItems,catalogHref} from "./catalog-context";
 import {scenarioDraftKey,restoreScenarioDraft,saveScenarioDraft} from "./lib/scenario-draft";
@@ -122,6 +123,7 @@ function Catalog(){
  if(err)return <><Header/><main><div className="eyebrow">PrivatePhuket</div><h1 className="title">{c.publishedOnly}</h1><p className="sub">{serviceError}</p><RetryButton/></main></>;
  if(!items)return <><Header/><main className="loadingState">{c.loading}</main></>;
  return <><Header/><main><section className="catalogHero"><div className="eyebrow">{c.intelligence}</div><h1 className="title">{c.chooseNumbers}<br/>{c.notPromises}</h1><p className="sub">{preview?c.previewCatalogIntro:c.catalogIntro}</p></section>
+ {preview&&<LgpTeaser/>}
  {preview&&<CatalogControls/>}
  {visibleItems.length===0?<section className="empty"><div className="eyebrow">{c.publicationGate}</div><h2>{preview?(language==="ru"?"Нет объектов по этим условиям.":"No matching properties."):c.nothingPublished}</h2><p className="sub">{preview?(language==="ru"?"Измените тип или бюджет, либо сбросьте фильтры.":"Change type or budget, or reset the filters."):c.nothingPublishedHint}</p></section>:<>
  <div className="catalogToolbar"><span>{visibleItems.length} {preview?c.previewAnalysis:c.publishedAnalysis}</span><a className={`compareButton ${selected.length<2?"disabled":""}`} href={selected.length>=2?catalogHref(`compare=${selected.join(",")}`):undefined}>{c.compare} {selected.length>0?`(${selected.length})`:""}</a></div>
@@ -178,7 +180,7 @@ function PropertyGallery({items}:{items:any[]}){
   return()=>{document.body.style.overflow=previousOverflow;removeEventListener("keydown",onKey)};
  },[active,galleries]);
  if(items.length===0)return null;
- return <><div className="galleryTop"><div className="eyebrow">{language==="ru"?"МАТЕРИАЛЫ ПО ОБЪЕКТУ":"PROPERTY MEDIA"}</div></div><section className="propertyMedia" aria-label={language==="ru"?"Материалы по объекту":"Property media"}>{galleries.map((gallery,index)=>{const cover=gallery.items[0];return <button className={`mediaCard ${cover.src.includes("floorplan")?"floorplanCard":""}`} onClick={()=>setActive({gallery:index,image:0})} key={gallery.id} aria-label={`${language==="ru"?"Открыть галерею":"Open gallery"}: ${gallery.label}`}><img src={cover.src} alt={gallery.label}/><span className="mediaCaption"><small>{gallery.kind}</small><b>{gallery.label}</b><i>{gallery.items.length>1?`${gallery.items.length} ${language==="ru"?"фото":"photos"}`:language==="ru"?"Открыть ↗":"Open ↗"}</i></span></button>})}</section>{activeItem&&activeGallery&&active!=null&&<div ref={dialogRef} className="lightbox" role="dialog" aria-modal="true" aria-label={activeGallery.label} onClick={event=>{if(event.target===event.currentTarget)setActive(null)}}><button className="lightboxClose" onClick={()=>setActive(null)} aria-label={language==="ru"?"Закрыть":"Close"}>×</button>{activeGallery.items.length>1&&<button className="lightboxArrow lightboxPrev" onClick={()=>change(-1)} aria-label={language==="ru"?"Предыдущее изображение":"Previous image"}>←</button>}<figure><img src={activeItem.src} alt={activeItem.label}/><figcaption><span>{activeItem.kind}</span><b>{activeItem.label}</b><small>{active.image+1} / {activeGallery.items.length}</small></figcaption></figure>{activeGallery.items.length>1&&<button className="lightboxArrow lightboxNext" onClick={()=>change(1)} aria-label={language==="ru"?"Следующее изображение":"Next image"}>→</button>}</div>}</>;
+ return <><div className="galleryTop"><div className="eyebrow">{language==="ru"?"МАТЕРИАЛЫ ПО ОБЪЕКТУ":"PROPERTY MEDIA"}</div></div><section className="propertyMedia" aria-label={language==="ru"?"Материалы по объекту":"Property media"}>{galleries.map((gallery,index)=>{const cover=gallery.items[0];return <button className={`mediaCard ${cover.src.includes("floorplan")?"floorplanCard":""}`} onClick={()=>setActive({gallery:index,image:0})} key={gallery.id} aria-label={`${language==="ru"?"Открыть галерею":"Open gallery"}: ${gallery.label}`}><img src={cover.src} alt={gallery.label} loading="lazy"/><span className="mediaCaption"><small>{gallery.kind}</small><b>{gallery.label}</b><i>{gallery.items.length>1?`${gallery.items.length} ${language==="ru"?"фото":"photos"}`:language==="ru"?"Открыть ↗":"Open ↗"}</i></span></button>})}</section>{activeItem&&activeGallery&&active!=null&&<div ref={dialogRef} className="lightbox" role="dialog" aria-modal="true" aria-label={activeGallery.label} onClick={event=>{if(event.target===event.currentTarget)setActive(null)}}><button className="lightboxClose" onClick={()=>setActive(null)} aria-label={language==="ru"?"Закрыть":"Close"}>×</button>{activeGallery.items.length>1&&<button className="lightboxArrow lightboxPrev" onClick={()=>change(-1)} aria-label={language==="ru"?"Предыдущее изображение":"Previous image"}>←</button>}<figure><img src={activeItem.src} alt={activeItem.label}/><figcaption><span>{activeItem.kind}</span><b>{activeItem.label}</b><small>{active.image+1} / {activeGallery.items.length}</small></figcaption></figure>{activeGallery.items.length>1&&<button className="lightboxArrow lightboxNext" onClick={()=>change(1)} aria-label={language==="ru"?"Следующее изображение":"Next image"}>→</button>}</div>}</>;
 }
 function PropertyDetail({id}:{id:string}){
  const [data,setData]=useState<any>(),[err,setErr]=useState("");
@@ -230,7 +232,7 @@ function App(){
  const compare=params.get("compare")?.split(",").filter(Boolean)??[];
  const page=params.get("page");
  const journey=page&&["rent","living","villas"].includes(page)?page as Journey:undefined;
- return params.has("calculator")?<Calculator/>:compare.length>=2?<Comparison ids={compare}/>:id?<PropertyDetail id={id}/>:preview&&page!=="catalog"?<><Header/><Landing journey={journey}/><Footer/></>:<Catalog/>;
+ return preview&&params.get("project")==="layan-green-park-phase-1"?<><Header/><LayanGreenPark Gallery={PropertyGallery}/><Footer/></>:params.has("calculator")?<Calculator/>:compare.length>=2?<Comparison ids={compare}/>:id?<PropertyDetail id={id}/>:preview&&page!=="catalog"?<><Header/><Landing journey={journey}/><Footer/></>:<Catalog/>;
 }
 document.documentElement.lang=language;
 createRoot(document.getElementById("root")!).render(<App/>);
