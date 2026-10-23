@@ -3,6 +3,7 @@ import {createRoot} from "react-dom/client";
 import {calculatePublicScenario,comparePublishedProperties,getPublishedProperties,getPublishedProperty,PublicCalculatorInput} from "./lib/api";
 import {c,language,languageHref,pageHref,preview} from "./lib/i18n";
 import "./styles.css";
+import {LayanGreenParkPhase2,LgpPhase2Teaser} from "./LayanGreenParkPhase2";
 import {LayanGreenPark,LgpTeaser} from "./LayanGreenPark";
 import {Landing,SiteNavigation,Journey} from "./Landing";
 import {CatalogControls,catalogItems,catalogHref} from "./catalog-context";
@@ -123,7 +124,7 @@ function Catalog(){
  if(err)return <><Header/><main><div className="eyebrow">PrivatePhuket</div><h1 className="title">{c.publishedOnly}</h1><p className="sub">{serviceError}</p><RetryButton/></main></>;
  if(!items)return <><Header/><main className="loadingState">{c.loading}</main></>;
  return <><Header/><main><section className="catalogHero"><div className="eyebrow">{c.intelligence}</div><h1 className="title">{c.chooseNumbers}<br/>{c.notPromises}</h1><p className="sub">{preview?c.previewCatalogIntro:c.catalogIntro}</p></section>
- {preview&&<LgpTeaser/>}
+ {preview&&<><LgpTeaser/><LgpPhase2Teaser/></>}
  {preview&&<CatalogControls/>}
  {visibleItems.length===0?<section className="empty"><div className="eyebrow">{c.publicationGate}</div><h2>{preview?(language==="ru"?"Нет объектов по этим условиям.":"No matching properties."):c.nothingPublished}</h2><p className="sub">{preview?(language==="ru"?"Измените тип или бюджет, либо сбросьте фильтры.":"Change type or budget, or reset the filters."):c.nothingPublishedHint}</p></section>:<>
  <div className="catalogToolbar"><span>{visibleItems.length} {preview?c.previewAnalysis:c.publishedAnalysis}</span><a className={`compareButton ${selected.length<2?"disabled":""}`} href={selected.length>=2?catalogHref(`compare=${selected.join(",")}`):undefined}>{c.compare} {selected.length>0?`(${selected.length})`:""}</a></div>
@@ -232,7 +233,7 @@ function App(){
  const compare=params.get("compare")?.split(",").filter(Boolean)??[];
  const page=params.get("page");
  const journey=page&&["rent","living","villas"].includes(page)?page as Journey:undefined;
- return preview&&params.get("project")==="layan-green-park-phase-1"?<><Header/><LayanGreenPark Gallery={PropertyGallery}/><Footer/></>:params.has("calculator")?<Calculator/>:compare.length>=2?<Comparison ids={compare}/>:id?<PropertyDetail id={id}/>:preview&&page!=="catalog"?<><Header/><Landing journey={journey}/><Footer/></>:<Catalog/>;
+ return preview&&params.get("project")==="layan-green-park-phase-2"?<><Header/><LayanGreenParkPhase2 Gallery={PropertyGallery}/><Footer/></>:preview&&params.get("project")==="layan-green-park-phase-1"?<><Header/><LayanGreenPark Gallery={PropertyGallery}/><Footer/></>:params.has("calculator")?<Calculator/>:compare.length>=2?<Comparison ids={compare}/>:id?<PropertyDetail id={id}/>:preview&&page!=="catalog"?<><Header/><Landing journey={journey}/><Footer/></>:<Catalog/>;
 }
 document.documentElement.lang=language;
 createRoot(document.getElementById("root")!).render(<App/>);

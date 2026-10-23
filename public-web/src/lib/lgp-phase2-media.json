@@ -1,0 +1,3635 @@
+[
+  {
+    "id": "ac",
+    "code": "AC",
+    "category": "1br",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/2988a83df34ed1f1acd9.webp",
+        "section": "interiors",
+        "label": "ТИП AC (угловая малая 1-спальная, обновленная) - зона гостиной"
+      },
+      {
+        "src": "/assets/lgp-phase2/9ac43d47dfd133a0d651.webp",
+        "section": "interiors",
+        "label": "ТИП AC (угловая малая 1-спальная, обновленная) - зона гостиной(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/29c1979d9e2d3ad9bdd7.webp",
+        "section": "interiors",
+        "label": "ТИП AC (угловая малая 1-спальная, обновленная) - зона гостиной(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/89cb8b14d4d3addb4058.webp",
+        "section": "interiors",
+        "label": "ТИП AC (угловая малая 1-спальная, обновленная) - зона гостиной(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/164a7c2b521a1331678b.webp",
+        "section": "interiors",
+        "label": "ТИП AC (угловая малая 1-спальная, обновленная) - зона гостиной(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/5df7d30bd014eda196d2.webp",
+        "section": "interiors",
+        "label": "ТИП AC (угловая малая 1-спальная, обновленная) - зона гостиной(5)"
+      },
+      {
+        "src": "/assets/lgp-phase2/08f03936f7d8af4dcd9b.webp",
+        "section": "interiors",
+        "label": "ТИП AC (угловая малая 1-спальная, обновленная) - спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/d86b2418ea684930e0bf.webp",
+        "section": "interiors",
+        "label": "ТИП AC (угловая малая 1-спальная, обновленная) - спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/b5b63477026715150312.webp",
+        "section": "interiors",
+        "label": "ТИП AC (угловая малая 1-спальная, обновленная) - спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/52143921091a54548344.webp",
+        "section": "interiors",
+        "label": "ТИП АС (угловая малая 1-спальная, обновленная) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-1bac784631a2fe747e41.webp",
+        "section": "plans",
+        "label": "_ТИП АC (угловая малая 1-спальная, обновленная) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/3e87fceeb7b881860cc4.webp",
+        "section": "interiors",
+        "label": "ТИП AC (угловая малая 1-спальная, обновленная - ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/61f3ffe767a644e0824b.webp",
+        "section": "interiors",
+        "label": "ТИП AC (угловая малая 1-спальная, обновленная) - ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/a160338dec3e09897683.webp",
+        "section": "interiors",
+        "label": "ТИП AC (угловая малая 1-спальная, обновленная) - ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/ca20da80e74580cd61f7.webp",
+        "section": "interiors",
+        "label": "ТИП AC (угловая малая 1-спальная, обновленная) - ванная комната(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/fbf4542d144ca5275ee5.webp",
+        "section": "interiors",
+        "label": "ТИП АС (угловая малая 1-спальная, обновленная) - входная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/8fd0b43006680657a681.webp",
+        "section": "interiors",
+        "label": "ТИП АС (угловая малая 1-спальная, обновленная) - входная зона(1)"
+      }
+    ]
+  },
+  {
+    "id": "b",
+    "code": "B",
+    "category": "1br",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/265a32e8c6102c57beb6.webp",
+        "section": "interiors",
+        "label": "ТИП B (стандартная 1-спальная) - зона гостиной"
+      },
+      {
+        "src": "/assets/lgp-phase2/3e2cb254871f75cdfd83.webp",
+        "section": "interiors",
+        "label": "ТИП B (стандартная 1-спальная) - зона гостиной(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/b6a32371f166a3f2a658.webp",
+        "section": "interiors",
+        "label": "ТИП B (стандартная 1-спальная) - спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/d4b9bf70fd05ea056106.webp",
+        "section": "interiors",
+        "label": "ТИП B (стандартная 1-спальная) - спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/9db2639884408fa399e2.webp",
+        "section": "interiors",
+        "label": "ТИП B (стандартная 1-спальная) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/ea872c5cf7485984f15f.webp",
+        "section": "interiors",
+        "label": "ТИП B (стандартная 1-спальная) - кухонная зона(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-e750569a4a126e2b9d82.webp",
+        "section": "plans",
+        "label": "_ТИП B (стандартная 1-спальная) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/8484a765619637b098ce.webp",
+        "section": "interiors",
+        "label": "ТИП B (стандартная 1-спальная) - ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/87143981301b4950cf22.webp",
+        "section": "interiors",
+        "label": "ТИП B (стандартная 1-спальная) - ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/7dc655ff47eda2789c21.webp",
+        "section": "interiors",
+        "label": "ТИП B (стандартная 1-спальная) - ванная комната(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/c7206eb7d4aa49cb21cf.webp",
+        "section": "interiors",
+        "label": "ТИП B (стандартная 1-спальная) - зона рабочего стола"
+      }
+    ]
+  },
+  {
+    "id": "b-small",
+    "code": "B*",
+    "category": "1br",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/d19d217a47bddc31dbfd.webp",
+        "section": "interiors",
+        "label": "ТИП B_ (малая 1-спальная) - зона гостиной"
+      },
+      {
+        "src": "/assets/lgp-phase2/984aee47ea33e8b34a37.webp",
+        "section": "interiors",
+        "label": "ТИП B_ (малая 1-спальная) - зона гостиной(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/266e1827768095cddaf9.webp",
+        "section": "interiors",
+        "label": "ТИП B_ (малая 1-спальная) - зона гостиной(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/731da622a1e1f173df5b.webp",
+        "section": "interiors",
+        "label": "ТИП B_ (малая 1-спальная) - спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/c67944910569870b52c4.webp",
+        "section": "interiors",
+        "label": "ТИП B_ (малая 1-спальная) - спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/36dace03c503b19c84fc.webp",
+        "section": "interiors",
+        "label": "ТИП B_ (малая 1-спальная) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/b029ecd300818f12cbda.webp",
+        "section": "interiors",
+        "label": "ТИП B_ (малая 1-спальная) - кухонная зона(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-c35bc7be6c2b47e61c4c.webp",
+        "section": "plans",
+        "label": "_ТИП B_ (малая 1-спальная) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/d7d9da93a91a3591d8eb.webp",
+        "section": "interiors",
+        "label": "ТИП B_ (малая 1-спальная) - ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/1b23e4b7ec9c1f75bdb7.webp",
+        "section": "interiors",
+        "label": "ТИП B_ (малая 1-спальная) - рабочая зона"
+      }
+    ]
+  },
+  {
+    "id": "bc",
+    "code": "BC",
+    "category": "1br",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/b04807b7e410fdf70ae2.webp",
+        "section": "interiors",
+        "label": "ТИП BC (угловая 1-спальная) - зона гостиной"
+      },
+      {
+        "src": "/assets/lgp-phase2/b0f52312a292e6f6efb6.webp",
+        "section": "interiors",
+        "label": "ТИП BC (угловая 1-спальная) - зона гостиной(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/6ea2a98adaf13d9e5536.webp",
+        "section": "interiors",
+        "label": "ТИП BC (угловая 1-спальная) - спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/8e0e51e1ea2a86e3ad83.webp",
+        "section": "interiors",
+        "label": "ТИП BC (угловая 1-спальная) - спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/2a07a0630b3be192956e.webp",
+        "section": "interiors",
+        "label": "ТИП BC (угловая 1-спальная) - спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/2329a85e7c86bce1c7e6.webp",
+        "section": "interiors",
+        "label": "ТИП BC (угловая 1-спальная) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/769cd621a5563f083881.webp",
+        "section": "interiors",
+        "label": "ТИП BC (угловая 1-спальная) - кухонная зона(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-9bb790726185e592bf8a.webp",
+        "section": "plans",
+        "label": "_ТИП BC (угловая 1-спальная) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/2f16bdcfc1d8f097afb8.webp",
+        "section": "interiors",
+        "label": "ТИП BC (угловая 1-спальная) - ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/e10173459b11d2da092b.webp",
+        "section": "interiors",
+        "label": "ТИП BC (угловая 1-спальная) - ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/c566e5db0e3dc8ce3fcc.webp",
+        "section": "interiors",
+        "label": "ТИП BC (угловая 1-спальная) - ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/687ef648e974f9fc80b3.webp",
+        "section": "interiors",
+        "label": "ТИП BC (угловая 1-спальная) - гардеробная"
+      },
+      {
+        "src": "/assets/lgp-phase2/63a93a623f937541a50b.webp",
+        "section": "interiors",
+        "label": "ТИП BC (угловая 1-спальная) - гардеробная(1)"
+      }
+    ]
+  },
+  {
+    "id": "bc-small",
+    "code": "BC*",
+    "category": "1br",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/8d30499874092a16219f.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - зона гостиной"
+      },
+      {
+        "src": "/assets/lgp-phase2/ff4c3ff1ee2efd599f87.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - зона гостиной(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/73ccf039b90c3eb57023.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - зона гостиной(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/c3cf632d1c3c9c4b2e3b.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - зона гостиной(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/c8d179473021c326b277.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - зона гостиной(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/74dbdff59eebbe9a6def.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - зона гостиной(5)"
+      },
+      {
+        "src": "/assets/lgp-phase2/41b75a180ff1d451ea04.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - зона гостиной(6)"
+      },
+      {
+        "src": "/assets/lgp-phase2/b697f92414c750206e19.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/9ba3ecf815757d314bf4.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/2a33437e9563a1734b90.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/2d8f2d6b56c693677bef.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - спальня(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/b0110337efe27de24779.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - спальня(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/cd19466d7c2bc08f9732.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - спальня(5)"
+      },
+      {
+        "src": "/assets/lgp-phase2/55deb597c983d75d1383.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - спальня(6)"
+      },
+      {
+        "src": "/assets/lgp-phase2/ee2f93e9b1abd3f6cebf.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/5c79fc7bf04d4752ee65.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - кухонная зона(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/191d75ef9e4109bfac8f.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - кухонная зона(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/d870f9e54946e2ec2905.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - кухонная зона(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/4621d3ed46ae7b41c095.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - кухонная зона(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/e88b2762de42d62c4eeb.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - кухонная зона(5)"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-d0c8601071b843b8ca14.webp",
+        "section": "plans",
+        "label": "_ТИП BC_ (малая угловая 1-спальная) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/2518d48c08873b32104c.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/2748f6473274126e7940.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/01472a61c909b803768a.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - ванная комната(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/d13cb630b31c83a9eaae.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - ванная комната(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/19076d7a844e23258523.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - ванная комната(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/aaac95c8b0ed41e719bf.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - гардеробная"
+      },
+      {
+        "src": "/assets/lgp-phase2/85da5c1d550ce398cfe6.webp",
+        "section": "interiors",
+        "label": "ТИП BC_ (малая угловая 1-спальная) - гардеробная(1)"
+      }
+    ]
+  },
+  {
+    "id": "bm",
+    "code": "BM",
+    "category": "1br",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/9d40f4f02831b3318c3a.webp",
+        "section": "interiors",
+        "label": "ТИП BM (1-спальная с террасой и выходом к главному бассейну) - зона гостиной"
+      },
+      {
+        "src": "/assets/lgp-phase2/85d8907f4476dca6688e.webp",
+        "section": "interiors",
+        "label": "ТИП BM (1-спальная с террасой и выходом к главному бассейну) - зона гостиной(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/672430cbd1a001aa6927.webp",
+        "section": "interiors",
+        "label": "ТИП BM (1-спальная с террасой и выходом к главному бассейну) - спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/c1df2bd81a849733eab2.webp",
+        "section": "interiors",
+        "label": "ТИП BM (1-спальная с террасой и выходом к главному бассейну) - спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/e3fedef7fa3817ae41c8.webp",
+        "section": "interiors",
+        "label": "ТИП BM (1-спальная с террасой и выходом к главному бассейну) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/57d19254fae1755a076f.webp",
+        "section": "interiors",
+        "label": "ТИП BM (1-спальная с террасой и выходом к главному бассейну) - кухонная зона(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-fcd992217d08dca72eba.webp",
+        "section": "plans",
+        "label": "_ТИП BM (1-спальная с террасой и выходом к главному бассейну) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/c64fe01cf275840f316a.webp",
+        "section": "interiors",
+        "label": "ТИП BM (1-спальная с террасой и выходом к главному бассейну) - ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/2f16bdcfc1d8f097afb8.webp",
+        "section": "interiors",
+        "label": "ТИП BM (1-спальная с террасой и выходом к главному бассейну) - ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/68adf578fceace7afee7.webp",
+        "section": "terraces",
+        "label": "ТИП BM (1-спальная с террасой и выходом к главному бассейну) - терраса"
+      },
+      {
+        "src": "/assets/lgp-phase2/2303fa553691a315c655.webp",
+        "section": "terraces",
+        "label": "ТИП BM (1-спальная с террасой и выходом к главному бассейну) - терраса(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/475c0b1c10c6cd2bb3c6.webp",
+        "section": "terraces",
+        "label": "ТИП BM (1-спальная с террасой и выходом к главному бассейну) - терраса(2)"
+      }
+    ]
+  },
+  {
+    "id": "bm-small",
+    "code": "BM*",
+    "category": "1br",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/1df4a315ecc1b03b0e41.webp",
+        "section": "interiors",
+        "label": "ТИП BM_ (1-спальная с малой террасой) - зона гостиной"
+      },
+      {
+        "src": "/assets/lgp-phase2/48ab52c79ba6db14366f.webp",
+        "section": "interiors",
+        "label": "ТИП BM_ (1-спальная с малой террасой) - зона гостиной(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/dc0a6dec7e0ab62cf5ee.webp",
+        "section": "interiors",
+        "label": "ТИП BM_ (1-спальная с малой террасой) - спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/e88b2762de42d62c4eeb.webp",
+        "section": "interiors",
+        "label": "ТИП BM_ (1-спальная с малой террасой) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-518270d08e8324942d5c.webp",
+        "section": "plans",
+        "label": "_ТИП BM_ (1-спальная с малой террасой) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/86af54fbed0105ab44b1.webp",
+        "section": "interiors",
+        "label": "ТИП BM_ (1-спальная с малой террасой) - ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/01472a61c909b803768a.webp",
+        "section": "interiors",
+        "label": "ТИП BM_ (1-спальная с малой террасой) - ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/e219865bf2a8d04aab23.webp",
+        "section": "interiors",
+        "label": "ТИП BM_ (1-спальная с малой террасой) - ванная комната(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/a060191f124a3be6867f.webp",
+        "section": "terraces",
+        "label": "ТИП BM_ (1-спальная с малой террасой) - терраса"
+      },
+      {
+        "src": "/assets/lgp-phase2/b412957c3cf2ae9ad62c.webp",
+        "section": "terraces",
+        "label": "ТИП BM_ (1-спальная с малой террасой) - терраса(1)"
+      }
+    ]
+  },
+  {
+    "id": "bp",
+    "code": "BP",
+    "category": "1br",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/8c42b858f672a1d2a254.webp",
+        "section": "interiors",
+        "label": "ТИП BP (1-спальная с террасой и личным бассейном) - зона гостиной"
+      },
+      {
+        "src": "/assets/lgp-phase2/a7131f8f8fb02e3e2b96.webp",
+        "section": "interiors",
+        "label": "ТИП BP (1-спальная с террасой и личным бассейном) - зона гостиной(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/83b71ea3561f1b9cfc63.webp",
+        "section": "interiors",
+        "label": "ТИП BP (1-спальная с террасой и личным бассейном) - зона гостиной(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/aa771e197817509b3f8e.webp",
+        "section": "interiors",
+        "label": "ТИП BP (1-спальная с террасой и личным бассейном) - спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/c6f359c0b1b62333daec.webp",
+        "section": "interiors",
+        "label": "ТИП BP (1-спальная с террасой и личным бассейном) - спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/902781f305815efc1fd9.webp",
+        "section": "interiors",
+        "label": "ТИП BP (1-спальная с террасой и личным бассейном) - спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/e3fedef7fa3817ae41c8.webp",
+        "section": "interiors",
+        "label": "ТИП BP (1-спальная с террасой и личным бассейном) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-9291534b3bfd7edee404.webp",
+        "section": "plans",
+        "label": "_ТИП BP (1-спальная с террасой и личным бассейном) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/2f16bdcfc1d8f097afb8.webp",
+        "section": "interiors",
+        "label": "ТИП BP (1-спальная с террасой и личным бассейном) - ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/c64fe01cf275840f316a.webp",
+        "section": "interiors",
+        "label": "ТИП BP (1-спальная с террасой и личным бассейном) - ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/2acdb6a46e72221c1194.webp",
+        "section": "interiors",
+        "label": "ТИП BP (1-спальная с террасой и личным бассейном) - ванная комната(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/2e5fe507f1c88f979825.webp",
+        "section": "terraces",
+        "label": "ТИП BP (1-спальная с террасой и личным бассейном) - терраса и бассейн"
+      },
+      {
+        "src": "/assets/lgp-phase2/e413c583dc68b2bf7ce7.webp",
+        "section": "terraces",
+        "label": "ТИП BP (1-спальная с террасой и личным бассейном) - терраса и бассейн(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/6cb858da37387e3f6af0.webp",
+        "section": "terraces",
+        "label": "ТИП BP (1-спальная с террасой и личным бассейном) - терраса и бассейн(2)"
+      }
+    ]
+  },
+  {
+    "id": "bp-small",
+    "code": "BP*",
+    "category": "1br",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/86183833fe3996bc8353.webp",
+        "section": "interiors",
+        "label": "ТИП BP_ (1-спальная с малой террасой и личным бассейном) - зона гостиной"
+      },
+      {
+        "src": "/assets/lgp-phase2/35b6845f2bc052c1557a.webp",
+        "section": "interiors",
+        "label": "ТИП BP_ (1-спальная с малой террасой и личным бассейном) - зона гостиной(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/87e480dbc8ab6924e4b1.webp",
+        "section": "interiors",
+        "label": "ТИП BP_ (1-спальная с малой террасой и личным бассейном) - зона гостиной(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/314aed24d4d43769dddd.webp",
+        "section": "interiors",
+        "label": "ТИП BP_ (1-спальная с малой террасой и личным бассейном) - зона гостиной(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/07b53d3a0d8b94b52743.webp",
+        "section": "interiors",
+        "label": "ТИП BP_ (1-спальная с малой террасой и личным бассейном) - спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/1e0211db2fb30f1503e8.webp",
+        "section": "interiors",
+        "label": "ТИП BP_ (1-спальная с малой террасой и личным бассейном) - спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/98b68c03149d2cc3353c.webp",
+        "section": "interiors",
+        "label": "ТИП BP_ (1-спальная с малой террасой и личным бассейном) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-dc909694aede9f5743fb.webp",
+        "section": "plans",
+        "label": "_ТИП BP_ (1-спальная с малой террасой и личным бассейном) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/61f345e4679153d70e67.webp",
+        "section": "interiors",
+        "label": "ТИП BP_ (1-спальная с малой террасой и личным бассейном) - ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/2c479e664dbb4d3ccdff.webp",
+        "section": "interiors",
+        "label": "ТИП BP_ (1-спальная с малой террасой и личным бассейном) - ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/b2159f0f4bd25cbc3eb8.webp",
+        "section": "interiors",
+        "label": "ТИП BP_ (1-спальная с малой террасой и личным бассейном) - ванная комната(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/fdb5894bbfb0012dfd3e.webp",
+        "section": "interiors",
+        "label": "ТИП BP_ (1-спальная с малой террасой и личным бассейном) - зона рабочего стола"
+      },
+      {
+        "src": "/assets/lgp-phase2/cd533f6a5f67e9678590.webp",
+        "section": "terraces",
+        "label": "ТИП BP_ (1-спальная с малой террасой и личным бассейном) - терраса и бассейн"
+      },
+      {
+        "src": "/assets/lgp-phase2/552a1561df1a54c84e88.webp",
+        "section": "terraces",
+        "label": "ТИП BP_ (1-спальная с малой террасой и личным бассейном) - терраса и бассейн(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/04b2e942da0c18de8500.webp",
+        "section": "terraces",
+        "label": "ТИП BP_ (1-спальная с малой террасой и личным бассейном) - терраса и бассейн(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/6f0e9c489bbcf6e34a5e.webp",
+        "section": "terraces",
+        "label": "ТИП BP_ (1-спальная с малой террасой и личным бассейном) - терраса и бассейн(3)"
+      }
+    ]
+  },
+  {
+    "id": "bt",
+    "code": "BT",
+    "category": "1br",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/85d8907f4476dca6688e.webp",
+        "section": "interiors",
+        "label": "ТИП BT (1-спальная с террасой) - зона гостиной"
+      },
+      {
+        "src": "/assets/lgp-phase2/753d53bf5224bfa57995.webp",
+        "section": "interiors",
+        "label": "ТИП BT (1-спальная с террасой) - зона гостиной(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/05f3711cc4d39a42368b.webp",
+        "section": "interiors",
+        "label": "ТИП BT (1-спальная с террасой) - зона гостиной(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/672430cbd1a001aa6927.webp",
+        "section": "interiors",
+        "label": "ТИП BT (1-спальная с террасой) - спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/fded78bd77e44d00935e.webp",
+        "section": "interiors",
+        "label": "ТИП BT (1-спальная с террасой) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/e3fedef7fa3817ae41c8.webp",
+        "section": "interiors",
+        "label": "ТИП BT (1-спальная с террасой) - кухонная зона(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-3a3e2fabd4a7e194f9f2.webp",
+        "section": "plans",
+        "label": "_3D ТИП BT (1-спальная с террасой) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/2acdb6a46e72221c1194.webp",
+        "section": "interiors",
+        "label": "ТИП BT (1-спальная с террасой) - ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/c64fe01cf275840f316a.webp",
+        "section": "interiors",
+        "label": "ТИП BT (1-спальная с террасой) - ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/dcd9812e16a7b9f86370.webp",
+        "section": "interiors",
+        "label": "ТИП BT (1-спальная с террасой) - зона рабочего стола"
+      },
+      {
+        "src": "/assets/lgp-phase2/099f0258c11fad8af2fb.webp",
+        "section": "terraces",
+        "label": "ТИП BT (1-спальная с террасой) - терраса и бассейн"
+      },
+      {
+        "src": "/assets/lgp-phase2/c65d5357853c90348c94.webp",
+        "section": "terraces",
+        "label": "ТИП BT (1-спальная с террасой) - терраса и бассейн(1)"
+      }
+    ]
+  },
+  {
+    "id": "btp",
+    "code": "BTP",
+    "category": "1br",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/236eb60d56717a8c3755.webp",
+        "section": "interiors",
+        "label": "ТИП BTP (1-спальная с террасой и личным бассейном) - зона гостиной"
+      },
+      {
+        "src": "/assets/lgp-phase2/753d53bf5224bfa57995.webp",
+        "section": "interiors",
+        "label": "ТИП BTP (1-спальная с террасой и личным бассейном) - зона гостиной(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/7fcb12e86eb69cba585f.webp",
+        "section": "interiors",
+        "label": "ТИП BTP (1-спальная с террасой и личным бассейном) - спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/c6f359c0b1b62333daec.webp",
+        "section": "interiors",
+        "label": "ТИП BTP (1-спальная с террасой и личным бассейном) - спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/aa771e197817509b3f8e.webp",
+        "section": "interiors",
+        "label": "ТИП BTP (1-спальная с террасой и личным бассейном) - спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/e3fedef7fa3817ae41c8.webp",
+        "section": "interiors",
+        "label": "ТИП BTP (1-спальная с террасой и личным бассейном) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/edb02c2c40cd1588f928.webp",
+        "section": "interiors",
+        "label": "ТИП BTP (1-спальная с террасой и личным бассейном) - кухонная зона(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-68b359490a7ab46776a2.webp",
+        "section": "plans",
+        "label": "_ТИП BTP (1-спальная с террасой и личным бассейном) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/c64fe01cf275840f316a.webp",
+        "section": "interiors",
+        "label": "ТИП BTP (1-спальная с террасой и личным бассейном) - ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/e5330a43a2618e93c3e1.webp",
+        "section": "interiors",
+        "label": "ТИП BTP (1-спальная с террасой и личным бассейном) - ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/cabfdcc1c65b4a65cc27.webp",
+        "section": "interiors",
+        "label": "ТИП BTP (1-спальная с террасой и личным бассейном) - ванная комната(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/3f11ad5ed32948a56d63.webp",
+        "section": "terraces",
+        "label": "ТИП BTP (1-спальная с террасой и личным бассейном) - терраса и бассейн"
+      },
+      {
+        "src": "/assets/lgp-phase2/697b4197c927f3cfe063.webp",
+        "section": "terraces",
+        "label": "ТИП BTP (1-спальная с террасой и личным бассейном) - терраса и бассейн(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/5dc6e8123dc98cad72fb.webp",
+        "section": "terraces",
+        "label": "ТИП BTP (1-спальная с террасой и личным бассейном) - терраса и бассейн(2)"
+      }
+    ]
+  },
+  {
+    "id": "b-small-plus",
+    "code": "B*+",
+    "category": "2br",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/9ea921c7f478db236c57.webp",
+        "section": "interiors",
+        "label": "ТИП B_+ (малая 1-спальная + 1 спальня) - зона гостиной"
+      },
+      {
+        "src": "/assets/lgp-phase2/200b166b6839869772fa.webp",
+        "section": "interiors",
+        "label": "ТИП B_+ (малая 1-спальная + 1 спальня) - зона гостиной(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/7c7c5f68d4669ef968aa.webp",
+        "section": "interiors",
+        "label": "ТИП B_+ (малая 1-спальная + 1 спальня) - зона гостиной(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/47d34bf6a0ff7ffad2fb.webp",
+        "section": "interiors",
+        "label": "ТИП B_+ (малая 1-спальная + 1 спальня) - зона гостиной(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/214de65c21f2e675e28b.webp",
+        "section": "interiors",
+        "label": "ТИП B_+ (малая 1-спальная + 1 спальня) - зона гостиной(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-f51f3984c662127cea50.webp",
+        "section": "plans",
+        "label": "_ТИП B_+ (малая 1-спальная + 1 спальня) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/6da54136b625b9573413.webp",
+        "section": "interiors",
+        "label": "ТИП B_+ (малая 1-спальная + 1 спальня) - ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/4ad37b142cf0cad2bd71.webp",
+        "section": "interiors",
+        "label": "ТИП B_+ (малая 1-спальная + 1 спальня) - ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/7da1a641bc00e9ec5902.webp",
+        "section": "interiors",
+        "label": "ТИП B_+ (малая 1-спальная + 1 спальня) - ванная комната(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/2f1bdbf0ed8cb944bec8.webp",
+        "section": "interiors",
+        "label": "ТИП B_+ (малая 1-спальная + 1 спальня) - ванная комната(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/3119c72bbf1bdcfce23b.webp",
+        "section": "interiors",
+        "label": "ТИП B_+ (малая 1-спальная + 1 спальня) - главная спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/5aa9bb3ce2f4d3feb87b.webp",
+        "section": "interiors",
+        "label": "ТИП B_+ (малая 1-спальная + 1 спальня) - главная спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/95805b69a45a006fcc84.webp",
+        "section": "interiors",
+        "label": "ТИП B_+ (малая 1-спальная + 1 спальня) - главная спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/c1b1e3008b6995d480eb.webp",
+        "section": "interiors",
+        "label": "ТИП B_+ (малая 1-спальная + 1 спальня) - главная спальня(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/2328fc7f0c065dc40086.webp",
+        "section": "interiors",
+        "label": "ТИП B_+ (малая 1-спальная + 1 спальня) - главная спальня(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/32650a965d3c4d1b79ca.webp",
+        "section": "interiors",
+        "label": "ТИП B_+ (малая 1-спальная + 1 спальня) - главная спальня(5)"
+      },
+      {
+        "src": "/assets/lgp-phase2/bc90f2ddfb8d5e8c2d12.webp",
+        "section": "interiors",
+        "label": "ТИП B_+ (малая 1-спальная + 1 спальня) - главная спальня(6)"
+      },
+      {
+        "src": "/assets/lgp-phase2/cbfa483ed34f135dc00e.webp",
+        "section": "interiors",
+        "label": "ТИП B_+ (малая 1-спальная + 1 спальня) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/9564349647cdc5c75b24.webp",
+        "section": "interiors",
+        "label": "ТИП B_+ (малая 1-спальная + 1 спальня) - кухонная зона(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/409f997d0daf36584c6f.webp",
+        "section": "interiors",
+        "label": "ТИП B_+ (малая 1-спальная + 1 спальня) - кухонная зона(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/4e1c5b28f7fefef327a6.webp",
+        "section": "interiors",
+        "label": "ТИП B_+ (малая 1-спальная + 1 спальня) - кухонная зона(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/1e64e971f6749f69bc4d.webp",
+        "section": "interiors",
+        "label": "ТИП B_+ (малая 1-спальная + 1 спальня) - кухонная зона(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/f9058285cb2f8f212eb8.webp",
+        "section": "interiors",
+        "label": "ТИП B_+ (малая 1-спальная + 1 спальня) - спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/0df9285c27190499336d.webp",
+        "section": "interiors",
+        "label": "ТИП B_+ (малая 1-спальная + 1 спальня) - спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/f28ddc15c2a1f17dd3a0.webp",
+        "section": "interiors",
+        "label": "ТИП B_+ (малая 1-спальная + 1 спальня) - спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/f8a5659fceb10859f487.webp",
+        "section": "interiors",
+        "label": "ТИП B_+ (малая 1-спальная + 1 спальня) - спальня(3)"
+      }
+    ]
+  },
+  {
+    "id": "b-plus",
+    "code": "B+",
+    "category": "2br",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/abaff28c3816665ec021.webp",
+        "section": "interiors",
+        "label": "ТИП B+ (стандартная 1-спальная + 1 спальня) - зона гостиной"
+      },
+      {
+        "src": "/assets/lgp-phase2/5ee4773ef7613f4f7514.webp",
+        "section": "interiors",
+        "label": "ТИП B+ (стандартная 1-спальная + 1 спальня) - зона гостиной(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/39e91bf6873ab691b12d.webp",
+        "section": "interiors",
+        "label": "ТИП B+ (стандартная 1-спальная + 1 спальня) - зона гостиной(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-4507c2dc41b85facd1db.webp",
+        "section": "plans",
+        "label": "_ТИП B+ (стандартная 1-спальная + 1 спальня) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/41010eace7b81cc34467.webp",
+        "section": "interiors",
+        "label": "ТИП B+ (стандартная 1-спальная + 1 спальня) - ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/7969d48d4e0111f2bbbe.webp",
+        "section": "interiors",
+        "label": "ТИП B+ (стандартная 1-спальная + 1 спальня) - ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/d24fbae0a8c63ad3a4d4.webp",
+        "section": "interiors",
+        "label": "ТИП B+ (стандартная 1-спальная + 1 спальня) - ванная комната(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/7181b44d2e6cfbc314b3.webp",
+        "section": "interiors",
+        "label": "ТИП B+ (стандартная 1-спальная + 1 спальня) - ванная комната(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/19757888eca785cb12e1.webp",
+        "section": "interiors",
+        "label": "ТИП B+ (стандартная 1-спальная + 1 спальня) - главная спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/af27de29a60617b539cd.webp",
+        "section": "interiors",
+        "label": "ТИП B+ (стандартная 1-спальная + 1 спальня) - главная спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/b61b12c845914daaa0eb.webp",
+        "section": "interiors",
+        "label": "ТИП B+ (стандартная 1-спальная + 1 спальня) - главная спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/191a46fc9a6f3c07fce6.webp",
+        "section": "interiors",
+        "label": "ТИП B+ (стандартная 1-спальная + 1 спальня) - главная спальня(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/d77437b566b0d63ca51c.webp",
+        "section": "interiors",
+        "label": "ТИП B+ (стандартная 1-спальная + 1 спальня) - главная спальня(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/27b60eaae1f4384731c3.webp",
+        "section": "interiors",
+        "label": "ТИП B+ (стандартная 1-спальная + 1 спальня) - главная спальня(5)"
+      },
+      {
+        "src": "/assets/lgp-phase2/fbb00c75cc8bbf18b589.webp",
+        "section": "interiors",
+        "label": "ТИП B+ (стандартная 1-спальная + 1 спальня) - главная спальня(6)"
+      },
+      {
+        "src": "/assets/lgp-phase2/451f7db11bd252215e2d.webp",
+        "section": "interiors",
+        "label": "ТИП B+ (стандартная 1-спальная + 1 спальня) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/3781302bca54a87ed1a8.webp",
+        "section": "interiors",
+        "label": "ТИП B+ (стандартная 1-спальная + 1 спальня) - кухонная зона(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/cdb6ae9b9e3cd152fee9.webp",
+        "section": "interiors",
+        "label": "ТИП B+ (стандартная 1-спальная + 1 спальня) - кухонная зона(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/97fb99276f0b5f15f4e3.webp",
+        "section": "interiors",
+        "label": "ТИП B+ (стандартная 1-спальная + 1 спальня) - кухонная зона(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/2b0d78c9ff9cfbadd1aa.webp",
+        "section": "interiors",
+        "label": "ТИП B+ (стандартная 1-спальная + 1 спальня) - кухонная зона(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/f93043b03d5fc4ec9a85.webp",
+        "section": "interiors",
+        "label": "ТИП B+ (стандартная 1-спальная + 1 спальня) - спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/f455178c73e8f838637d.webp",
+        "section": "interiors",
+        "label": "ТИП B+ (стандартная 1-спальная + 1 спальня) - спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/034239dfdd6626121186.webp",
+        "section": "interiors",
+        "label": "ТИП B+ (стандартная 1-спальная + 1 спальня) - спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/ba0204c9028dad18ac02.webp",
+        "section": "interiors",
+        "label": "ТИП B+ (стандартная 1-спальная + 1 спальня) - спальня(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/2290f8df65040bb6c23b.webp",
+        "section": "interiors",
+        "label": "ТИП B+ (стандартная 1-спальная + 1 спальня) - спальня(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/c92811be1b33e5d7992c.webp",
+        "section": "interiors",
+        "label": "ТИП B+ (стандартная 1-спальная + 1 спальня) - спальня(5)"
+      }
+    ]
+  },
+  {
+    "id": "bc-small-plus",
+    "code": "BC*+",
+    "category": "2br",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/f06e06a223e0e64ebc72.webp",
+        "section": "interiors",
+        "label": "ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - зона гостиной"
+      },
+      {
+        "src": "/assets/lgp-phase2/a5e0555d2253c4666982.webp",
+        "section": "interiors",
+        "label": "ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - зона гостиной(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/e9ef205a67348867b839.webp",
+        "section": "interiors",
+        "label": "ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - зона гостиной(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/3027fa41d896ddfec94f.webp",
+        "section": "interiors",
+        "label": "ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - зона гостиной(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-6f2e7c80261a42864174.webp",
+        "section": "plans",
+        "label": "_ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/b8b3a0c3c362cb156995.webp",
+        "section": "interiors",
+        "label": "ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/70097fdfc2746fd45df6.webp",
+        "section": "interiors",
+        "label": "ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/262ec3962baf47a3603a.webp",
+        "section": "interiors",
+        "label": "ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - ванная комната(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/a7c01ec8db1508a7d4f7.webp",
+        "section": "interiors",
+        "label": "ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - ванная комната(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/fe2464127b84d4a84bce.webp",
+        "section": "interiors",
+        "label": "ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - гардеробная"
+      },
+      {
+        "src": "/assets/lgp-phase2/c3f5d95b7ca36fd67789.webp",
+        "section": "interiors",
+        "label": "ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - гардеробная(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/1f8d5c3d04de4043b0f4.webp",
+        "section": "interiors",
+        "label": "ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - главная спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/dc0fbeee5f7515f20d2b.webp",
+        "section": "interiors",
+        "label": "ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - главная спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/f6b51bedff404900863a.webp",
+        "section": "interiors",
+        "label": "ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - главная спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/c33aca9c9b516b622937.webp",
+        "section": "interiors",
+        "label": "ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - главная спальня(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/0161c0fe7796709ca424.webp",
+        "section": "interiors",
+        "label": "ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - главная спальня(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/a474e7d212641c5cdbd2.webp",
+        "section": "interiors",
+        "label": "ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - главная спальня(5)"
+      },
+      {
+        "src": "/assets/lgp-phase2/30434c0ebf7c8ea33db6.webp",
+        "section": "interiors",
+        "label": "ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - главная спальня(6)"
+      },
+      {
+        "src": "/assets/lgp-phase2/238e20c39bc081b167b9.webp",
+        "section": "interiors",
+        "label": "ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/ac302b76f565a7504502.webp",
+        "section": "interiors",
+        "label": "ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - кухонная зона(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/1e4a7492e108d071257b.webp",
+        "section": "interiors",
+        "label": "ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - кухонная зона(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/f54d9352d33dccc97795.webp",
+        "section": "interiors",
+        "label": "ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - кухонная зона(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/2d5c1bebe7cbcd2b79f2.webp",
+        "section": "interiors",
+        "label": "ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - кухонная зона(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/1a71e993093bb20c0b4c.webp",
+        "section": "interiors",
+        "label": "ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/62b5ac0edbd8c5fb400d.webp",
+        "section": "interiors",
+        "label": "ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/bd6854a8b8dc9b4c8eac.webp",
+        "section": "interiors",
+        "label": "ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/8877f36058019be009d9.webp",
+        "section": "interiors",
+        "label": "ТИП BC_+ (малая угловая 1-спальная + 1 спальня) - спальня(3)"
+      }
+    ]
+  },
+  {
+    "id": "bc-plus-v1",
+    "code": "BC+ (версия 1)",
+    "category": "2br",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/157f0f6df6ce3039d963.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - зона гостиной"
+      },
+      {
+        "src": "/assets/lgp-phase2/41f5d427efee5cc60697.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - зона гостиной(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/fb4b8672f84cd52435ad.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - зона гостиной(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/47809950d3b5a2b526bc.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - зона гостиной(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-de6c5b3e31d7c62d6dd1.webp",
+        "section": "plans",
+        "label": "_ТИП BC+ (угловая 1-спальная + 1 спальня) - планировка квартиры (версия 1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/e4959e128c9471f3ac04.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/c72459877e11a2505195.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/ac7e80c30a5183805c65.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/112847e1cc3ba721f4d2.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - ванная комната(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/63a93a623f937541a50b.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - гардеробная"
+      },
+      {
+        "src": "/assets/lgp-phase2/c380d68a18df2da8bc36.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - гардеробная"
+      },
+      {
+        "src": "/assets/lgp-phase2/71669216c55256de39a0.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - главная спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/9d9da2c6b6d22494239f.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - главная спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/fc0ed4b518f514f5d18a.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - главная спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/ceb898adcfdfe010046a.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - главная спальня(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/45fc6928d5684b7199bf.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - главная спальня(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/f6df3db2cc4e3713b11c.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - главная спальня(5)"
+      },
+      {
+        "src": "/assets/lgp-phase2/67b10f1d6655951a9dd7.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - главная спальня(6)"
+      },
+      {
+        "src": "/assets/lgp-phase2/3a6a847c0a560a94ebbb.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/dfafcb562709d6585bfc.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - кухонная зона(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/3f981bae8df265b30df3.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - кухонная зона(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/2dab918cc68f2fee2d85.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - кухонная зона(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/2ba916c0756f624b297c.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - кухонная зона(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/7602b41fcfa5737c4799.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/8a846ee52ef0ccafa302.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/9303f3f1636312d21c3d.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/4fac56d9c86d54533958.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - спальня(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/4a766a42d0c98a156055.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - спальня(4)"
+      }
+    ]
+  },
+  {
+    "id": "bc-plus-v2",
+    "code": "BC+ (версия 2)",
+    "category": "2br",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/4ea42df721dee19d0311.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - зона гостиной"
+      },
+      {
+        "src": "/assets/lgp-phase2/8e0c4d2dcccd2cf9d485.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - зона гостиной(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/6809beb5e056ec7326ce.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - зона гостиной(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/57f3b4b4c4a3eded3ca0.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - зона гостиной(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-74e9dbc7ae95a23ba8b2.webp",
+        "section": "plans",
+        "label": "_ТИП BC+ (угловая 1-спальная + 1 спальня) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/b6c749cd3895ace48abf.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/9d53b484b385bb9b2926.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/629fb3a9e6381593cfc2.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - ванная комната(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/f8dcc7cf27327d1e5009.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - ванная комната(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/5b6e5880242b57033ead.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - гардеробная"
+      },
+      {
+        "src": "/assets/lgp-phase2/6d1647e80873593b186e.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - гардеробная(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/b588f84584760434defc.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - главная спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/cbda3013b126202bbe55.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - главная спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/8658818cace8662f9d1c.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - главная спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/842bc2cb040aa7e53d2f.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - главная спальня(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/59df1a634c20d3942b18.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - главная спальня(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/b4b070df1508b435a3b2.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - главная спальня(5)"
+      },
+      {
+        "src": "/assets/lgp-phase2/373248307f3c0063f1d8.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/4a863016c2f1fc34d5d3.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - кухонная зона(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/1d8206e9f326de130de8.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - кухонная зона(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/46e14a58305418e43534.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - кухонная зона(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/198ccb22e0282d7b6c88.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - кухонная зона(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/149673c967b2960b92df.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - кухонная зона(5)"
+      },
+      {
+        "src": "/assets/lgp-phase2/2ebb4a33b4ef3122528f.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/37a612103c7d1440c9c0.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/cce715fde331f2df099a.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/ec0c923ae8334ab809f2.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - спальня(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/a70631ab64725f4d2f13.webp",
+        "section": "interiors",
+        "label": "ТИП BC+ (угловая 1-спальная + 1 спальня) - спальня(4)"
+      }
+    ]
+  },
+  {
+    "id": "btp-plus",
+    "code": "BTP+",
+    "category": "2br",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/b975f1c897af119e5052.webp",
+        "section": "interiors",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - зона гостиной"
+      },
+      {
+        "src": "/assets/lgp-phase2/4d30a635b1ec98f714af.webp",
+        "section": "interiors",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - зона гостиной(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/926f531fbec41a1c102b.webp",
+        "section": "interiors",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - зона гостиной(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/267bb756f0c4c96b6573.webp",
+        "section": "interiors",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - зона гостиной(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/314528bc3d30e220482a.webp",
+        "section": "interiors",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - зона гостиной(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-9eaf3a8dea54243c7351.webp",
+        "section": "plans",
+        "label": "_ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/881613278279742889db.webp",
+        "section": "interiors",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/a36ee1474442d057291d.webp",
+        "section": "interiors",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/1c34bc120394357f7d75.webp",
+        "section": "interiors",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - ванная комната(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/4d90b6d082506fcc8ea1.webp",
+        "section": "interiors",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - ванная комната(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/c2e8c70b16f200d65dda.webp",
+        "section": "interiors",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - главная спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/28ef405f2260642f9fa4.webp",
+        "section": "interiors",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - главная спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/6257c98cc24f1daac3be.webp",
+        "section": "interiors",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - главная спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/8f94462be228324eb03d.webp",
+        "section": "interiors",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - главная спальня(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/1fcda39a0faceae5781e.webp",
+        "section": "interiors",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - главная спальня(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/62bac5aa10f400ae0d7c.webp",
+        "section": "interiors",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - главная спальня(5)"
+      },
+      {
+        "src": "/assets/lgp-phase2/0d445907d23ae443ea7e.webp",
+        "section": "interiors",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - главная спальня(6)"
+      },
+      {
+        "src": "/assets/lgp-phase2/6c848ae4caf7813d8e09.webp",
+        "section": "interiors",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/a12153ead89a4a557396.webp",
+        "section": "interiors",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - кухонная зона(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/5d1087408427a641ce05.webp",
+        "section": "interiors",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - кухонная зона(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/abb2497c4f35a38c4764.webp",
+        "section": "interiors",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - кухонная зона(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/8c1a0a861656bbde784c.webp",
+        "section": "interiors",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - кухонная зона(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/00b46438ea1d4b134324.webp",
+        "section": "interiors",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/b68a50e4679f293137b7.webp",
+        "section": "interiors",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/5ddc910d260385125e86.webp",
+        "section": "interiors",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/745883b29fe35430b95b.webp",
+        "section": "interiors",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - спальня(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/d7c3a52e2274aec59752.webp",
+        "section": "terraces",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - терраса и бассейн"
+      },
+      {
+        "src": "/assets/lgp-phase2/fc09ed5a012c25f5e129.webp",
+        "section": "terraces",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - терраса и бассейн(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/74e97e70332e8f7f99e9.webp",
+        "section": "terraces",
+        "label": "ТИП BTP+ (1-спальная с террасой и личным бассейном + 1 спальня) - терраса и бассейн(2)"
+      }
+    ]
+  },
+  {
+    "id": "c",
+    "code": "C",
+    "category": "2br",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/85433553b31f17fc4d32.webp",
+        "section": "interiors",
+        "label": "ТИП C (стандартная 2-спальная) - зона гостиной"
+      },
+      {
+        "src": "/assets/lgp-phase2/c5740f990902a65dd37f.webp",
+        "section": "interiors",
+        "label": "ТИП C (стандартная 2-спальная) - зона гостиной(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/78cabac7cd1ea63aeb3e.webp",
+        "section": "interiors",
+        "label": "ТИП C (стандартная 2-спальная) - зона гостиной(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/2d9c9d2c01826105dc5a.webp",
+        "section": "interiors",
+        "label": "ТИП C (стандартная 2-спальная) - зона гостиной(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/af9ab463a8160d0cda66.webp",
+        "section": "interiors",
+        "label": "ТИП C (стандартная 2-спальная) - 2-ая спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/fa5df6d1062e01cdb662.webp",
+        "section": "interiors",
+        "label": "ТИП C (стандартная 2-спальная) - 2-ая спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/e32d58e6885609ad33aa.webp",
+        "section": "interiors",
+        "label": "ТИП C (стандартная 2-спальная) - главная спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/f3707504781d9742b3b2.webp",
+        "section": "interiors",
+        "label": "ТИП C (стандартная 2-спальная) - главная спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/c75ab4f299938de8abd7.webp",
+        "section": "interiors",
+        "label": "ТИП C (стандартная 2-спальная) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/5e7e70f5f1c4575619f5.webp",
+        "section": "interiors",
+        "label": "ТИП C (стандартная 2-спальная) - кухонная зона(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-957fa4393f0c29001d08.webp",
+        "section": "plans",
+        "label": "_ТИП C (стандартная 2-спальная) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/4d0ed95eb14a13ee7284.webp",
+        "section": "interiors",
+        "label": "ТИП C (стандартная 2-спальная) - ванная комната (внутри главной спальни)"
+      },
+      {
+        "src": "/assets/lgp-phase2/bf957d7db6a8c82c9bec.webp",
+        "section": "interiors",
+        "label": "ТИП C (стандартная 2-спальная) - ванная комната (внутри главной спальни)(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/7565926fb4cd38128723.webp",
+        "section": "interiors",
+        "label": "ТИП C (стандартная 2-спальная) - ванная комната (внутри главной спальни)(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/dc4cfbb2841ed15873b7.webp",
+        "section": "interiors",
+        "label": "ТИП C (стандартная 2-спальная) - ванная комната (внутри главной спальни)(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/54f72ba19d48d0f41a19.webp",
+        "section": "interiors",
+        "label": "ТИП C (стандартная 2-спальная) - гостевая ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/82fc72ff72233c15a923.webp",
+        "section": "interiors",
+        "label": "ТИП C (стандартная 2-спальная) - гостевая ванная комната(1)"
+      }
+    ]
+  },
+  {
+    "id": "cc",
+    "code": "CC",
+    "category": "2br",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/34ff2870f7ca87b84a95.webp",
+        "section": "interiors",
+        "label": "ТИП CC (2-спальная угловая) - зона гостиной"
+      },
+      {
+        "src": "/assets/lgp-phase2/03f0291fc76abd028e20.webp",
+        "section": "interiors",
+        "label": "ТИП CC (2-спальная угловая) - зона гостиной(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/50962b62dd8cff42f531.webp",
+        "section": "interiors",
+        "label": "ТИП CC (2-спальная угловая) - зона гостиной(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/498bf9ef485774f84973.webp",
+        "section": "interiors",
+        "label": "ТИП CC (2-спальная угловая) - 2-ая спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/be11ae424bba4d84a327.webp",
+        "section": "interiors",
+        "label": "ТИП CC (2-спальная угловая) - 2-ая спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/5ce8d406edf1873f495c.webp",
+        "section": "interiors",
+        "label": "ТИП CC (2-спальная угловая) - главная спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/8bf1bb8bbb751c4654ba.webp",
+        "section": "interiors",
+        "label": "ТИП CC (2-спальная угловая) - главная спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/7c1861ae330a98fa3aaf.webp",
+        "section": "interiors",
+        "label": "ТИП CC (2-спальная угловая) - главная спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/28fbd9c0bb7ba0e6b71f.webp",
+        "section": "interiors",
+        "label": "ТИП CC (2-спальная угловая) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-b1b566bdbd0040e08abe.webp",
+        "section": "plans",
+        "label": "_ТИП CC (2-спальная угловая) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/a25959ae22535222293a.webp",
+        "section": "interiors",
+        "label": "ТИП CC (2-спальная угловая) - ванная комната (внутри главной спальни)"
+      },
+      {
+        "src": "/assets/lgp-phase2/10fdf24d8d181c6961ac.webp",
+        "section": "interiors",
+        "label": "ТИП CC (2-спальная угловая) - ванная комната (внутри главной спальни)(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/c4d4e8960fb9d4553611.webp",
+        "section": "interiors",
+        "label": "ТИП CC (2-спальная угловая) - ванная комната (внутри главной спальни)(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/470794d04ad73b6804da.webp",
+        "section": "interiors",
+        "label": "ТИП CC (2-спальная угловая) - ванная комната (внутри главной спальни)(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/2fa8ef4ab24e08450f55.webp",
+        "section": "interiors",
+        "label": "ТИП CC (2-спальная угловая) - гардеробная"
+      },
+      {
+        "src": "/assets/lgp-phase2/945c356c9801e50d45c8.webp",
+        "section": "interiors",
+        "label": "ТИП CC (2-спальная угловая) - гостевая ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/3016f2ab1a2b82e8cf37.webp",
+        "section": "interiors",
+        "label": "ТИП CC (2-спальная угловая) - гостевая ванная комната(1)"
+      }
+    ]
+  },
+  {
+    "id": "cm",
+    "code": "CM",
+    "category": "2br",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/1c77f484a6638ce440dd.webp",
+        "section": "interiors",
+        "label": "ТИП CM (2-спальная с террасой и выходом к главному бассейну) - зона гостиной"
+      },
+      {
+        "src": "/assets/lgp-phase2/799154d6d3f8f4f3b5af.webp",
+        "section": "interiors",
+        "label": "ТИП CM (2-спальная с террасой и выходом к главному бассейну) - зона гостиной(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/870651ce4ec5898fc689.webp",
+        "section": "interiors",
+        "label": "ТИП CM (2-спальная с террасой и выходом к главному бассейну) - вторая спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/a1630adce95751ea4828.webp",
+        "section": "interiors",
+        "label": "ТИП CM (2-спальная с террасой и выходом к главному бассейну) - главная спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/ccfc5e6b6be9cb7ee053.webp",
+        "section": "interiors",
+        "label": "ТИП CM (2-спальная с террасой и выходом к главному бассейну) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-c4c791fe985ca0944f44.webp",
+        "section": "plans",
+        "label": "_ТИП CM (2-спальная с террасой и выходом к главному бассейну) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/60307f6cf78db049a5ed.webp",
+        "section": "interiors",
+        "label": "ТИП CM (2-спальная с террасой и выходом к главному бассейну) - ванна комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/e7539bbdb01ffa70c9d5.webp",
+        "section": "interiors",
+        "label": "ТИП CM (2-спальная с террасой и выходом к главному бассейну) - ванна комната в главной спальне"
+      },
+      {
+        "src": "/assets/lgp-phase2/1ab55cf6eac1f95ce314.webp",
+        "section": "interiors",
+        "label": "ТИП CM (2-спальная с террасой и выходом к главному бассейну) - ванна комната в главной спальне(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/c6671483d3a0ebd9cd22.webp",
+        "section": "interiors",
+        "label": "ТИП CM (2-спальная с террасой и выходом к главному бассейну) - ванна комната в главной спальне(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/9b72abbe3a125cd556a0.webp",
+        "section": "interiors",
+        "label": "ТИП CM (2-спальная с террасой и выходом к главному бассейну) - зона рабочего стола"
+      },
+      {
+        "src": "/assets/lgp-phase2/d3228a8429879c663487.webp",
+        "section": "terraces",
+        "label": "ТИП CM (2-спальная с террасой и выходом к главному бассейну) - терраса"
+      },
+      {
+        "src": "/assets/lgp-phase2/d624d1292dd1af20d6d8.webp",
+        "section": "terraces",
+        "label": "ТИП CM (2-спальная с террасой и выходом к главному бассейну) - терраса(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/8e613b3597762818045d.webp",
+        "section": "terraces",
+        "label": "ТИП CM (2-спальная с террасой и выходом к главному бассейну) - терраса(2)"
+      }
+    ]
+  },
+  {
+    "id": "cp",
+    "code": "CP",
+    "category": "2br",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/aa5eb6c296871fbd03c0.webp",
+        "section": "interiors",
+        "label": "ТИП CP (2-спальная с террасой и личным бассейном) - зона гостиной"
+      },
+      {
+        "src": "/assets/lgp-phase2/5fa8f7543d0985417b73.webp",
+        "section": "interiors",
+        "label": "ТИП CP (2-спальная с террасой и личным бассейном) - зона гостиной(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/54f38d6b667c201229cd.webp",
+        "section": "interiors",
+        "label": "ТИП CP (2-спальная с террасой и личным бассейном) - 2-ая спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/da05b5efcbf5e2aba34f.webp",
+        "section": "interiors",
+        "label": "ТИП CP (2-спальная с террасой и личным бассейном) - 2-ая спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/17562e1bb089d4b90911.webp",
+        "section": "interiors",
+        "label": "ТИП CP (2-спальная с террасой и личным бассейном) - главная спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/c6ee85b78bd0c1a91d65.webp",
+        "section": "interiors",
+        "label": "ТИП CP (2-спальная с террасой и личным бассейном) - главная спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/ccfc5e6b6be9cb7ee053.webp",
+        "section": "interiors",
+        "label": "ТИП CP (2-спальная с террасой и личным бассейном) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/28f82a4808e7f4909adc.webp",
+        "section": "interiors",
+        "label": "ТИП CP (2-спальная с террасой и личным бассейном) - кухонная зона(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-137e3700f47023e21891.webp",
+        "section": "plans",
+        "label": "_ТИП CP (2-спальная с террасой и личным бассейном) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/7c2f0c0077c147fed150.webp",
+        "section": "interiors",
+        "label": "ТИП CP (2-спальная с террасой и личным бассейном) - ванная комната (внутри главной спальни)"
+      },
+      {
+        "src": "/assets/lgp-phase2/9bb78547d837385e91b1.webp",
+        "section": "interiors",
+        "label": "ТИП CP (2-спальная с террасой и личным бассейном) - ванная комната (внутри главной спальни)(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/e7539bbdb01ffa70c9d5.webp",
+        "section": "interiors",
+        "label": "ТИП CP (2-спальная с террасой и личным бассейном) - ванная комната (внутри главной спальни)(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/c6671483d3a0ebd9cd22.webp",
+        "section": "interiors",
+        "label": "ТИП CP (2-спальная с террасой и личным бассейном) - ванная комната (внутри главной спальни)(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/9ea95e5b13e3fcc071ad.webp",
+        "section": "interiors",
+        "label": "ТИП CP (2-спальная с террасой и личным бассейном) - гостевая ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/60307f6cf78db049a5ed.webp",
+        "section": "interiors",
+        "label": "ТИП CP (2-спальная с террасой и личным бассейном) - гостевая ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/f5026aeaa16c6b7c4f92.webp",
+        "section": "terraces",
+        "label": "ТИП CP (2-спальная с террасой и личным бассейном) - терраса и бассейн"
+      },
+      {
+        "src": "/assets/lgp-phase2/b965f7711e87687df095.webp",
+        "section": "terraces",
+        "label": "ТИП CP (2-спальная с террасой и личным бассейном) - терраса и бассейн(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/19e6927de88ea805068b.webp",
+        "section": "terraces",
+        "label": "ТИП CP (2-спальная с террасой и личным бассейном) - терраса и бассейн(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/f3aa2cf60a7a1caca6f7.webp",
+        "section": "terraces",
+        "label": "ТИП CP (2-спальная с террасой и личным бассейном) - терраса и бассейн(3)"
+      }
+    ]
+  },
+  {
+    "id": "cs",
+    "code": "CS",
+    "category": "2br",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/0f403400d9520a322cdb.webp",
+        "section": "interiors",
+        "label": "ТИП CS (2-спальная, спец. размер) - зона гостиной"
+      },
+      {
+        "src": "/assets/lgp-phase2/acd54001072b17c88a22.webp",
+        "section": "interiors",
+        "label": "ТИП CS (2-спальная, спец. размер) - зона гостиной(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/a2237f398f6d502a6240.webp",
+        "section": "interiors",
+        "label": "ТИП CS (2-спальная, спец. размер) - зона гостиной(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/035266ff92e92b1c1bd1.webp",
+        "section": "interiors",
+        "label": "ТИП CS (2-спальная, спец. размер) - зона гостиной(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/c31f18a48fd0f2b5e19a.webp",
+        "section": "interiors",
+        "label": "ТИП CS (2-спальная, спец. размер) - 2-ая спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/7364503d9d4223b60fb8.webp",
+        "section": "interiors",
+        "label": "ТИП CS (2-спальная, спец. размер) - 2-ая спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/d0ad219e99f7f35af195.webp",
+        "section": "interiors",
+        "label": "ТИП CS (2-спальная, спец. размер) - главная спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/b22446a64b8e83571834.webp",
+        "section": "interiors",
+        "label": "ТИП CS (2-спальная, спец. размер) - главная спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/e64a3b46bea7d46b98f2.webp",
+        "section": "interiors",
+        "label": "ТИП CS (2-спальная, спец. размер) - главная спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/ef7e776d61ced5dbecdd.webp",
+        "section": "interiors",
+        "label": "ТИП CS (2-спальная, спец. размер) - зона рабочего стола (2-ая спальня)"
+      },
+      {
+        "src": "/assets/lgp-phase2/7414bdc094a01a01f2d9.webp",
+        "section": "interiors",
+        "label": "ТИП CS (2-спальная, спец. размер) - зона рабочего стола (2-ая спальня)(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/c53a381c10fa78d1a2be.webp",
+        "section": "interiors",
+        "label": "ТИП CS (2-спальная, спец. размер) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-a44890c15434bc07fbe2.webp",
+        "section": "plans",
+        "label": "_ТИП CS (2-спальная, спец. размер) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/929580112c8bbdc832ab.webp",
+        "section": "interiors",
+        "label": "ТИП CS (2-спальная, спец. размер) - ванная комната (внутри главной спальни)"
+      },
+      {
+        "src": "/assets/lgp-phase2/dfa7eb5b2ed0ce8e7f3d.webp",
+        "section": "interiors",
+        "label": "ТИП CS (2-спальная, спец. размер) - ванная комната (внутри главной спальни)(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/72b8754c68260e9ca1fc.webp",
+        "section": "interiors",
+        "label": "ТИП CS (2-спальная, спец. размер) - ванная комната (внутри главной спальни)(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/ec2a7e70deb2c57a6eb2.webp",
+        "section": "interiors",
+        "label": "ТИП CS (2-спальная, спец. размер) - ванная комната (внутри главной спальни)(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/cbb3737936beb15779bc.webp",
+        "section": "interiors",
+        "label": "ТИП CS (2-спальная, спец. размер) - гостевая ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/15cd12c4d823217f3cbb.webp",
+        "section": "interiors",
+        "label": "ТИП CS (2-спальная, спец. размер) - гостевая ванная комната(1)"
+      }
+    ]
+  },
+  {
+    "id": "csp",
+    "code": "CSP",
+    "category": "2br",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/68c5dcd47597676e66d1.webp",
+        "section": "interiors",
+        "label": "ТИП CSP (2-спальная специального размера с террасой и личным бассейном) - зона гостиной"
+      },
+      {
+        "src": "/assets/lgp-phase2/d86f1dac2d933104d120.webp",
+        "section": "interiors",
+        "label": "ТИП CSP (2-спальная специального размера с террасой и личным бассейном) - зона гостиной(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/1226fed8100eac808e3e.webp",
+        "section": "interiors",
+        "label": "ТИП CSP (2-спальная специального размера с террасой и личным бассейном) - зона гостиной(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/e1eeb7150cad115e5cf1.webp",
+        "section": "interiors",
+        "label": "ТИП CSP (2-спальная специального размера с террасой и личным бассейном) - зона гостиной(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/365bdb05395418500c97.webp",
+        "section": "interiors",
+        "label": "ТИП CSP (2-спальная специального размера с террасой и личным бассейном) - 2-ая спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/14ad83a81c39db0db935.webp",
+        "section": "interiors",
+        "label": "ТИП CSP (2-спальная специального размера с террасой и личным бассейном) - 2-ая спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/30cf7bb68dd47e5c0682.webp",
+        "section": "interiors",
+        "label": "ТИП CSP (2-спальная специального размера с террасой и личным бассейном) - главная спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/8bf950d6fc22bbcd2217.webp",
+        "section": "interiors",
+        "label": "ТИП CSP (2-спальная специального размера с террасой и личным бассейном) - главная спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/7da8b6b54ff6b4aae78a.webp",
+        "section": "interiors",
+        "label": "ТИП CSP (2-спальная специального размера с террасой и личным бассейном) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/8d104e96b5373460079a.webp",
+        "section": "interiors",
+        "label": "ТИП CSP (2-спальная специального размера с террасой и личным бассейном) - кухонная зона(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/9f21d2dbfef1937c510d.webp",
+        "section": "interiors",
+        "label": "ТИП CSP (2-спальная специального размера с террасой и личным бассейном) - кухонная зона(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-1aae16f3a935524eaa35.webp",
+        "section": "plans",
+        "label": "_ТИП CSP (2-спальная специального размера с террасой и личным бассейном) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/1bbb35b57da93687501a.webp",
+        "section": "interiors",
+        "label": "ТИП CSP (2-спальная специального размера с террасой и личным бассейном) - ванная комната (внутри главной спальни)"
+      },
+      {
+        "src": "/assets/lgp-phase2/21dd97e57c8ebb1ff1af.webp",
+        "section": "interiors",
+        "label": "ТИП CSP (2-спальная специального размера с террасой и личным бассейном) - ванная комната (внутри главной спальни)(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/98183cdee55ee55a06fe.webp",
+        "section": "interiors",
+        "label": "ТИП CSP (2-спальная специального размера с террасой и личным бассейном) - ванная комната (внутри главной спальни)(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/acdc91b1338a0d2c57a5.webp",
+        "section": "interiors",
+        "label": "ТИП CSP (2-спальная специального размера с террасой и личным бассейном) - гостевая ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/f258f743f4bba8f45bba.webp",
+        "section": "terraces",
+        "label": "ТИП CSP (2-спальная специального размера с террасой и личным бассейном) - терраса и бассейн"
+      },
+      {
+        "src": "/assets/lgp-phase2/e591c7acf06b9506c53c.webp",
+        "section": "terraces",
+        "label": "ТИП CSP (2-спальная специального размера с террасой и личным бассейном) - терраса и бассейн(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/4ba4c7203fe385a5c60c.webp",
+        "section": "terraces",
+        "label": "ТИП CSP (2-спальная специального размера с террасой и личным бассейном) - терраса и бассейн(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/80d854f87c7e56a88f8e.webp",
+        "section": "terraces",
+        "label": "ТИП CSP (2-спальная специального размера с террасой и личным бассейном) - терраса и бассейн(3)"
+      }
+    ]
+  },
+  {
+    "id": "ctp",
+    "code": "CTP",
+    "category": "2br",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/e10bfe5b4ebae13f252d.webp",
+        "section": "interiors",
+        "label": "ТИП CTP (2-спальная экстра размера с террасой и личным бассейном) - зона гостиной"
+      },
+      {
+        "src": "/assets/lgp-phase2/419f626267166b63c463.webp",
+        "section": "interiors",
+        "label": "ТИП CTP (2-спальная экстра размера с террасой и личным бассейном) - 2-ая спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/14ad83a81c39db0db935.webp",
+        "section": "interiors",
+        "label": "ТИП CTP (2-спальная экстра размера с террасой и личным бассейном) - 2-ая спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/18ff1b232f51425bfb6b.webp",
+        "section": "interiors",
+        "label": "ТИП CTP (2-спальная экстра размера с террасой и личным бассейном) - главная спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/7da8b6b54ff6b4aae78a.webp",
+        "section": "interiors",
+        "label": "ТИП CTP (2-спальная экстра размера с террасой и личным бассейном) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/8d104e96b5373460079a.webp",
+        "section": "interiors",
+        "label": "ТИП CTP (2-спальная экстра размера с террасой и личным бассейном) - кухонная зона(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/0ba9edc2e824a96527c2.webp",
+        "section": "interiors",
+        "label": "ТИП CTP (2-спальная экстра размера с террасой и личным бассейном) - кухонная зона(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-4971deebd1f3e46e1c1b.webp",
+        "section": "plans",
+        "label": "_ТИП CTP (2-спальная экстра размера с террасой и личным бассейном) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/1bbb35b57da93687501a.webp",
+        "section": "interiors",
+        "label": "ТИП CTP (2-спальная экстра размера с террасой и личным бассейном) - ванная комната (внутри главной спальни)"
+      },
+      {
+        "src": "/assets/lgp-phase2/6931dc4446848e251bcf.webp",
+        "section": "interiors",
+        "label": "ТИП CTP (2-спальная экстра размера с террасой и личным бассейном) - ванная комната (внутри главной спальни)(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/21dd97e57c8ebb1ff1af.webp",
+        "section": "interiors",
+        "label": "ТИП CTP (2-спальная экстра размера с террасой и личным бассейном) - ванная комната (внутри главной спальни)(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/7a7154ea7beca5b08a1b.webp",
+        "section": "interiors",
+        "label": "ТИП CTP (2-спальная экстра размера с террасой и личным бассейном) - гостевая ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/acdc91b1338a0d2c57a5.webp",
+        "section": "interiors",
+        "label": "ТИП CTP (2-спальная экстра размера с террасой и личным бассейном) - гостевая ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/9a4e168ea902c6c8ba0b.webp",
+        "section": "terraces",
+        "label": "ТИП CTP (2-спальная экстра размера с террасой и личным бассейном) - терраса и бассейн"
+      },
+      {
+        "src": "/assets/lgp-phase2/5b7901a459a0e7b04631.webp",
+        "section": "terraces",
+        "label": "ТИП CTP (2-спальная экстра размера с террасой и личным бассейном) - терраса и бассейн(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/0a441de6e95c22aaac71.webp",
+        "section": "terraces",
+        "label": "ТИП CTP (2-спальная экстра размера с террасой и личным бассейном) - терраса и бассейн(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/ca59f3cedd8615038937.webp",
+        "section": "terraces",
+        "label": "ТИП CTP (2-спальная экстра размера с террасой и личным бассейном) - терраса и бассейн(3)"
+      }
+    ]
+  },
+  {
+    "id": "d",
+    "code": "D",
+    "category": "3br",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/304f6fbbda626490a30a.webp",
+        "section": "interiors",
+        "label": "ТИП D (стандартная 3-спальная) - зона гостиной"
+      },
+      {
+        "src": "/assets/lgp-phase2/68f733adbc9ad00c5792.webp",
+        "section": "interiors",
+        "label": "ТИП D (стандартная 3-спальная) - зона гостиной(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/357a5e2460784fff0a0c.webp",
+        "section": "interiors",
+        "label": "ТИП D (стандартная 3-спальная) - зона гостиной(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/bf647ae004dbd20ece0a.webp",
+        "section": "interiors",
+        "label": "ТИП D (стандартная 3-спальная) - зона гостиной(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/861d29cacaa0742b716f.webp",
+        "section": "interiors",
+        "label": "ТИП D (стандартная 3-спальная) - 2-ая спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/45104eb99e2dd7d9706f.webp",
+        "section": "interiors",
+        "label": "ТИП D (стандартная 3-спальная) - главная спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/d16697600ebf79177d13.webp",
+        "section": "interiors",
+        "label": "ТИП D (стандартная 3-спальная) - главная спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/c0b5b34594969809f177.webp",
+        "section": "interiors",
+        "label": "ТИП D (стандартная 3-спальная) - гостевая спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/3135d29e54780b94de15.webp",
+        "section": "interiors",
+        "label": "ТИП D (стандартная 3-спальная) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-d82f56d97ff07aec3076.webp",
+        "section": "plans",
+        "label": "_ТИП D (стандартная 3-спальная) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/571f09093acf4a4d21e8.webp",
+        "section": "interiors",
+        "label": "ТИП D (стандартная 3-спальная) - барная стойка"
+      },
+      {
+        "src": "/assets/lgp-phase2/1ebd6c3c18e721501885.webp",
+        "section": "interiors",
+        "label": "ТИП D (стандартная 3-спальная) - ванная комната (внутри 2-ой спальни)"
+      },
+      {
+        "src": "/assets/lgp-phase2/ea319c29b2d4e12eec19.webp",
+        "section": "interiors",
+        "label": "ТИП D (стандартная 3-спальная) - ванная комната (внутри 2-ой спальни)(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/2d07c4e453783c0ce677.webp",
+        "section": "interiors",
+        "label": "ТИП D (стандартная 3-спальная) - ванная комната (внутри главной спальни)"
+      },
+      {
+        "src": "/assets/lgp-phase2/a62d5994b6a37b4ab6dd.webp",
+        "section": "interiors",
+        "label": "ТИП D (стандартная 3-спальная) - ванная комната (внутри главной спальни)(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/69bcab59d64778da6518.webp",
+        "section": "interiors",
+        "label": "ТИП D (стандартная 3-спальная) - гостевая ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/33c164b804c0fc81f857.webp",
+        "section": "interiors",
+        "label": "ТИП D (стандартная 3-спальная) - гостевая ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/98bb65a3df1b756ecf20.webp",
+        "section": "interiors",
+        "label": "ТИП D (стандартная 3-спальная) - обеденная зона"
+      }
+    ]
+  },
+  {
+    "id": "dm",
+    "code": "DM",
+    "category": "3br",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/d08863d447ea40d6d493.webp",
+        "section": "interiors",
+        "label": "ТИП DM (3-спальная с террасой и выходом к главному бассейну) - зона гостиной"
+      },
+      {
+        "src": "/assets/lgp-phase2/83b1b7864d21fe38be72.webp",
+        "section": "interiors",
+        "label": "ТИП DM (3-спальная с террасой и выходом к главному бассейну) - главная спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/3a2083ff0ae7af5566bf.webp",
+        "section": "interiors",
+        "label": "ТИП DM (3-спальная с террасой и выходом к главному бассейну) - спальня 2"
+      },
+      {
+        "src": "/assets/lgp-phase2/b7f99c643fe220c8e561.webp",
+        "section": "interiors",
+        "label": "ТИП DM (3-спальная с террасой и выходом к главному бассейну) - спальня 3"
+      },
+      {
+        "src": "/assets/lgp-phase2/4a70e7145ba86fb09265.webp",
+        "section": "interiors",
+        "label": "ТИП DM (3-спальная с террасой и выходом к главному бассейну) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/7d7a15857c44fc4562bf.webp",
+        "section": "interiors",
+        "label": "ТИП DM (3-спальная с террасой и выходом к главному бассейну) - кухонная зона(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-28e9d4722d5c9ebc7ca5.webp",
+        "section": "plans",
+        "label": "_ТИП DM (3-спальная с террасой и выходом к главному бассейну) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/f1a7e937b0938b5ad154.webp",
+        "section": "interiors",
+        "label": "ТИП DM (3-спальная с террасой и выходом к главному бассейну) - ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/12d7cb97801eab02bc9d.webp",
+        "section": "interiors",
+        "label": "ТИП DM (3-спальная с террасой и выходом к главному бассейну) - ванная комната в главной спальне"
+      },
+      {
+        "src": "/assets/lgp-phase2/e7539bbdb01ffa70c9d5.webp",
+        "section": "interiors",
+        "label": "ТИП DM (3-спальная с террасой и выходом к главному бассейну) - ванная комната в главной спальне(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/5bcfe590acdd40ab0e56.webp",
+        "section": "interiors",
+        "label": "ТИП DM (3-спальная с террасой и выходом к главному бассейну) - ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/6177445da56019e7e74d.webp",
+        "section": "interiors",
+        "label": "ТИП DM (3-спальная с террасой и выходом к главному бассейну) - обеденная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/cf800101cc8176413782.webp",
+        "section": "terraces",
+        "label": "ТИП DM (3-спальная с террасой и выходом к главному бассейну) - терраса"
+      },
+      {
+        "src": "/assets/lgp-phase2/46fb863ce2d7bd75f586.webp",
+        "section": "terraces",
+        "label": "ТИП DM (3-спальная с террасой и выходом к главному бассейну) - терраса(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/a092c6ec25be4ed473af.webp",
+        "section": "terraces",
+        "label": "ТИП DM (3-спальная с террасой и выходом к главному бассейну) - терраса(2)"
+      }
+    ]
+  },
+  {
+    "id": "e",
+    "code": "E",
+    "category": "duplex",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/9717b6c2f6509cca5d62.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 1 этаж. Гостиная"
+      },
+      {
+        "src": "/assets/lgp-phase2/9ae27e0e229b4bb140ef.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 1 этаж. Гостиная(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/42a91734c0412050fe05.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 1 этаж. Гостиная(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/1197d6dd456e133af907.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 1 этаж. Гостиная(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/0fb564d1aa12f3d2f128.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 2 этаж. Главная спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/5e78cbb9b0e2f07ff77f.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 2 этаж. Главная спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/019d8f9f0e7b69fe7b2b.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 2 этаж. Главная спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/c62d283870f6e0cdd748.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 2 этаж. Главная спальня(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/c63e2ca84e2a840c56f8.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 2 этаж. Спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/6dcacfdda04c443fc626.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 2 этаж. Спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/ab9e20adb8a8dfff0475.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 2 этаж. Спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/227715f5dd2f780a84d5.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 2 этаж. Спальня(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/4c6fcb5457730b16aa2c.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 2 этаж. Спальня(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/44827112776538cf8d5b.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 2 этаж. Спальня(5)"
+      },
+      {
+        "src": "/assets/lgp-phase2/7a9a5186abb1daeb1bd2.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 1 этаж. Кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/1b55157a38610d4ecce0.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 1 этаж. Кухонная зона(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-e0e4bbdd47d1c4822618.webp",
+        "section": "plans",
+        "label": "_ТИП E (J1-105-108 дуплекс с подземной парковкой, террасой и личным бассейном) - Планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/baa66d01414652fe59e5.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 1 этаж. Ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/3aafea0dee4036b00141.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 1 этаж. Ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/25f23cf560a8a5b89768.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 1 этаж. Входная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/6bd2acc440b375bd0b85.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 1 этаж. Лестница"
+      },
+      {
+        "src": "/assets/lgp-phase2/05a0276bb971d8fefdd4.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 1 этаж. Обеденная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/892f356d2fb94d0fec18.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 1 этаж. Обеденная зона(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/4536579b5bb12fb92bd7.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 1 этаж. Обеденная зона(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/740fa4503199d3cb4a8e.webp",
+        "section": "terraces",
+        "label": "ТИП E (J1-105-108) - 1 этаж. Терраса"
+      },
+      {
+        "src": "/assets/lgp-phase2/0058a2f0c4901f9a7a03.webp",
+        "section": "terraces",
+        "label": "ТИП E (J1-105-108) - 1 этаж. Терраса(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/6a717b1c8d3ae7deccd8.webp",
+        "section": "terraces",
+        "label": "ТИП E (J1-105-108) - 1 этаж. Терраса(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/ac0074ea98a4d63ec408.webp",
+        "section": "terraces",
+        "label": "ТИП E (J1-105-108) - 1 этаж. Терраса(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/4f27d2ac3872995f87f8.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 2 этаж. Ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/ad163d17bfc299328158.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 2 этаж. Ванная комната для главной спальни"
+      },
+      {
+        "src": "/assets/lgp-phase2/8080a535c0624959f9c8.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 2 этаж. Ванная комната для главной спальни(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/9f24bb72842dbdfbe5d5.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 2 этаж. Ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/24cc40cf3f75f10f4dcc.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 2 этаж. Ванная комната(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/8a6b725eefd3b8e37fc3.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 2 этаж. Лестница"
+      },
+      {
+        "src": "/assets/lgp-phase2/5bbf9d5c73782cc22eba.webp",
+        "section": "interiors",
+        "label": "ТИП E (J1-105-108) - 2 этаж. Лестница(1)"
+      }
+    ]
+  },
+  {
+    "id": "ec",
+    "code": "EC",
+    "category": "duplex",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/floorplan-778aa7e2cc5bc10baf6a.webp",
+        "section": "plans",
+        "label": "_ТИП EC (дуплекс с подземной парковкой, террасой, личным бассейном и придомовой территорией) - Планировка квартиры"
+      }
+    ]
+  },
+  {
+    "id": "esc",
+    "code": "ESC",
+    "category": "duplex",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/84613ec04d89dcf7ce47.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 1 этаж. Гостиная"
+      },
+      {
+        "src": "/assets/lgp-phase2/4a71e51721e2be2a9d08.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 1 этаж. Гостиная(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/8cb0c3707070a309f502.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 1 этаж. Гостиная(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/60915fea03218fde0941.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 1 этаж. Гостиная(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/ab3c80ff08600404294c.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 2 этаж. Главная спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/8385fe0dca6e34496682.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 2 этаж. Главная спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/8cf78a41cff08b8cc9db.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 2 этаж. Главная спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/14f365e92270eabefc17.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 2 этаж. Главная спальня(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/21df2dce588e0c2fbe76.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 2 этаж. Главная спальня(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/a96d8d27f116fbca9989.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 2 этаж. Спальня 2"
+      },
+      {
+        "src": "/assets/lgp-phase2/9b92ce4fc161bcc3d310.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 2 этаж. Спальня 2(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/7c7dfc2c9b468f0c1aa3.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 2 этаж. Спальня 2(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/7d19fbf39bcc262854a7.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 2 этаж. Спальня 2(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/4db8cb82a06b54cd7f28.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 2 этаж. Спальня 2(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/7b05254615739f821dd5.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 2 этаж. Спальня 3"
+      },
+      {
+        "src": "/assets/lgp-phase2/95e3305699ba2501a215.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 2 этаж. Спальня 3(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/26e9978958b8b4948afe.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 2 этаж. Спальня 3(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/ab7ab6a1d1388790b1c2.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 2 этаж. Спальня 3(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/dc1a2abe78eb36e29572.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 2 этаж. Спальня 3(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/df7065531d8d2a18240c.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 2 этаж. Спальня 3(5)"
+      },
+      {
+        "src": "/assets/lgp-phase2/4cb18ea572255f1ec4e5.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 1 этаж. Кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/09e0c67563a177ada1bc.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 1 этаж. Кухонная зона(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/6b2fc8d8157204cf90f4.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 1 этаж. Кухонная зона(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-40e604b5841df736366f.webp",
+        "section": "plans",
+        "label": "_ТИП ESC (дуплекс с подземной парковкой, террасой, личным бассейном и придомовой территорией) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/a3ae6cd1d71329c3e2c4.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 1 этаж. Ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/8773645d59cb91d397fd.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 1 этаж. Ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/b5c180676dbed8c3a858.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 1 этаж. Входная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/97c18b09af736d0c8297.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 1 этаж. Лестница"
+      },
+      {
+        "src": "/assets/lgp-phase2/7748e83c022633c5f475.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 1 этаж. Столовая"
+      },
+      {
+        "src": "/assets/lgp-phase2/f848f48ce163619b0042.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 1 этаж. Столовая(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/6525d5e6858e6249db2d.webp",
+        "section": "terraces",
+        "label": "ТИП ESC - 1 этаж. Терраса"
+      },
+      {
+        "src": "/assets/lgp-phase2/95e6d1092ce8ca7f1e91.webp",
+        "section": "terraces",
+        "label": "ТИП ESC - 1 этаж. Терраса(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/40b4802aa8a06008afaf.webp",
+        "section": "terraces",
+        "label": "ТИП ESC - 1 этаж. Терраса(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/33d10b1af4d986adf50f.webp",
+        "section": "terraces",
+        "label": "ТИП ESC - 1 этаж. Терраса(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/e359a28bb5b80fe35335.webp",
+        "section": "terraces",
+        "label": "ТИП ESC - 1 этаж. Терраса(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/f2ece609e45d98b86f51.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 2 этаж. Ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/3e49186970a6ecc27650.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 2 этаж. Ванная комната для главной спальни"
+      },
+      {
+        "src": "/assets/lgp-phase2/37e6cab235ef85674b7e.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 2 этаж. Ванная комната для главной спальни(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/cf634257bf52704e3b28.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 2 этаж. Ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/74251ef8b90d19b48c9f.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 2 этаж. Ванная комната(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/185f7061d1e60fe34182.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 2 этаж. Ванная комната(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/9f61abff07d66b63931d.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 2 этаж. Холл"
+      },
+      {
+        "src": "/assets/lgp-phase2/2ba58ef5a95448bf675d.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 2 этаж. Холл(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/22cb8ca4784eedfe2424.webp",
+        "section": "interiors",
+        "label": "ТИП ESC - 2 этаж. Холл(2)"
+      }
+    ]
+  },
+  {
+    "id": "f",
+    "code": "F",
+    "category": "duplex",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/f006242d047edc213af3.webp",
+        "section": "interiors",
+        "label": "ТИП F - 1 этаж. Гостиная"
+      },
+      {
+        "src": "/assets/lgp-phase2/a9db0ccdb9dd3ecfb72e.webp",
+        "section": "interiors",
+        "label": "ТИП F - 1 этаж. Гостиная(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/d6aa84b6acd936249592.webp",
+        "section": "interiors",
+        "label": "ТИП F - 1 этаж. Гостиная(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/14b3b0cb1f640b3174cb.webp",
+        "section": "interiors",
+        "label": "ТИП F - 1 этаж. Гостиная(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/8da13be8515a33c19431.webp",
+        "section": "interiors",
+        "label": "ТИП F - 1 этаж. Гостиная(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/f840a0a46f4ab3d21fad.webp",
+        "section": "interiors",
+        "label": "ТИП F - 2 этаж. Главная спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/81917a772130294277f3.webp",
+        "section": "interiors",
+        "label": "ТИП F - 2 этаж. Главная спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/6b7f565c7036395d1cd5.webp",
+        "section": "interiors",
+        "label": "ТИП F - 2 этаж. Главная спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/362b8ce1076d462243c5.webp",
+        "section": "interiors",
+        "label": "ТИП F - 2 этаж. Главная спальня(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/f27875bd5505ff503e7e.webp",
+        "section": "interiors",
+        "label": "ТИП F - 2 этаж. Главная спальня(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/0cbc6ba46adebc7cdc98.webp",
+        "section": "interiors",
+        "label": "ТИП F - 2 этаж. Спальня 2"
+      },
+      {
+        "src": "/assets/lgp-phase2/a050ca7bc6fbbda81ee4.webp",
+        "section": "interiors",
+        "label": "ТИП F - 2 этаж. Спальня 2(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/f128501fdbf2681d0666.webp",
+        "section": "interiors",
+        "label": "ТИП F - 2 этаж. Спальня 2(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/3055ebe3d099e6ad7d8c.webp",
+        "section": "interiors",
+        "label": "ТИП F - 2 этаж. Спальня 2(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/d388e054a734862bc8b8.webp",
+        "section": "interiors",
+        "label": "ТИП F - 2 этаж. Спальня 2(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/8c64592e73a222381e5c.webp",
+        "section": "interiors",
+        "label": "ТИП F - 1 этаж. Кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/ffb91e1004d87744e741.webp",
+        "section": "interiors",
+        "label": "ТИП F - 1 этаж. Кухонная зона(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/b85bb11fa1d6c00aae99.webp",
+        "section": "interiors",
+        "label": "ТИП F - 1 этаж. Кухонная зона(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/19399d0ad77708da5e7e.webp",
+        "section": "interiors",
+        "label": "ТИП F - 1 этаж. Кухонная зона(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-86ad0db8b3c26dddb04c.webp",
+        "section": "plans",
+        "label": "_ТИП F (дуплекс с придомовой территорией и террасой) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/8eecd66c89c17fe909e8.webp",
+        "section": "interiors",
+        "label": "ТИП F - 1 этаж. Входная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/070b989498a6c7f19cb0.webp",
+        "section": "interiors",
+        "label": "ТИП F - 1 этаж. Входная зона(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/21177dbc5b8db26c86ab.webp",
+        "section": "interiors",
+        "label": "ТИП F - 1 этаж. Лестница"
+      },
+      {
+        "src": "/assets/lgp-phase2/8275664b0c08e808487b.webp",
+        "section": "interiors",
+        "label": "ТИП F - 1 этаж. Обеденная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/dd0e65fd7e1ca94a03c3.webp",
+        "section": "interiors",
+        "label": "ТИП F - 1 этаж. Обеденная зона(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/0708ae20d002d02c9aab.webp",
+        "section": "interiors",
+        "label": "ТИП F - 1 этаж. Санузел"
+      },
+      {
+        "src": "/assets/lgp-phase2/ad228d936192b2843cb1.webp",
+        "section": "interiors",
+        "label": "ТИП F - 1 этаж. Санузел(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/6939351c64537f582e65.webp",
+        "section": "terraces",
+        "label": "ТИП F - 1 этаж. Терраса"
+      },
+      {
+        "src": "/assets/lgp-phase2/80d57a26d2ec8e4b7d22.webp",
+        "section": "terraces",
+        "label": "ТИП F - 1 этаж. Терраса(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/97f61c0eeace41772f76.webp",
+        "section": "terraces",
+        "label": "ТИП F - 1 этаж. Терраса(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/327e68e6a0ee30220ef3.webp",
+        "section": "terraces",
+        "label": "ТИП F - 1 этаж. Терраса(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/6c75c0e8ba050a28f3ff.webp",
+        "section": "terraces",
+        "label": "ТИП F - 1 этаж. Терраса(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/ff5d0eb0c13932efdc75.webp",
+        "section": "interiors",
+        "label": "ТИП F - 2 этаж. Ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/a77e721349a0d57f04d1.webp",
+        "section": "interiors",
+        "label": "ТИП F - 2 этаж. Ванная комната для главной спальни"
+      },
+      {
+        "src": "/assets/lgp-phase2/329ac7d62a14b995f34d.webp",
+        "section": "interiors",
+        "label": "ТИП F - 2 этаж. Ванная комната для главной спальни(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/733992548b6e6d993d7f.webp",
+        "section": "interiors",
+        "label": "ТИП F - 2 этаж. Ванная комната для главной спальни(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/e79ac929d07899143623.webp",
+        "section": "interiors",
+        "label": "ТИП F - 2 этаж. Ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/fdddabb51203e8516000.webp",
+        "section": "interiors",
+        "label": "ТИП F - 2 этаж. Ванная комната(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/1d0a7d057b0f8198373e.webp",
+        "section": "interiors",
+        "label": "ТИП F - 2 этаж. Ванная комната(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/57dd5c26293eceabb06b.webp",
+        "section": "interiors",
+        "label": "ТИП F - 2 этаж. Холл"
+      },
+      {
+        "src": "/assets/lgp-phase2/ebd43d7246a0408b96c7.webp",
+        "section": "interiors",
+        "label": "ТИП F - 2 этаж. Холл(1)"
+      }
+    ]
+  },
+  {
+    "id": "fc",
+    "code": "FC",
+    "category": "duplex",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/21b1faa50f5a53922f59.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 1 этаж. Гостиная"
+      },
+      {
+        "src": "/assets/lgp-phase2/bb2a20558f2407d94330.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 1 этаж. Гостиная(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/2b029c8c570d63e0509d.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 1 этаж. Гостиная(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/51d750795225e86a3ff7.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 1 этаж. Гостиная(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/1032207fd033d74319b3.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 1 этаж. Гостиная(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/c94089196717e878573d.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 1 этаж. Гостиная(5)"
+      },
+      {
+        "src": "/assets/lgp-phase2/464384ce628d02bd4861.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 1 этаж. Спальня 3"
+      },
+      {
+        "src": "/assets/lgp-phase2/2553ba8b391e9394e943.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 1 этаж. Спальня 3(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/ecf4c4e69405391243e3.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 1 этаж. Спальня 3(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/02a9b6c1ef102e9a99bf.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 1 этаж. Спальня 3(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/f840a0a46f4ab3d21fad.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 2 этаж. Главная спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/69da011b23a2ee1171d3.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 2 этаж. Главная спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/bec90781f549b80123c9.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 2 этаж. Главная спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/6b7f565c7036395d1cd5.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 2 этаж. Главная спальня(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/0ae10921b7287f17fa72.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 2 этаж. Главная спальня(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/b910496a6c4bd7a9a885.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 2 этаж. Главная спальня(5)"
+      },
+      {
+        "src": "/assets/lgp-phase2/a050ca7bc6fbbda81ee4.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 2 этаж. Спальня 2"
+      },
+      {
+        "src": "/assets/lgp-phase2/f128501fdbf2681d0666.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 2 этаж. Спальня 2(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/3055ebe3d099e6ad7d8c.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 2 этаж. Спальня 2(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/d388e054a734862bc8b8.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 2 этаж. Спальня 2(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/85ef286bc1d150e7ab16.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 1 этаж. Кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/c2559b28ea830d778793.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 1 этаж. Кухонная зона(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/191e02ab85917971b129.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 1 этаж. Кухонная зона(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-86937a89690c6b60e766.webp",
+        "section": "plans",
+        "label": "_ТИП FC (дуплекс с личной парковкой, личным садом и террасой) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/b359990bd459a779b7a4.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 1 этаж. Ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/30baf3c8f5f6cccd2e22.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 1 этаж. Ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/5feedef0af4fab791700.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 1 этаж. Входная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/5b0f8f3db69b041b47f7.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 1 этаж. Входная зона(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/1a33bee10bad3ca248d2.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 1 этаж. Лестница"
+      },
+      {
+        "src": "/assets/lgp-phase2/09f481e89adea54ef052.webp",
+        "section": "terraces",
+        "label": "ТИП FC - 1 этаж. Терраса"
+      },
+      {
+        "src": "/assets/lgp-phase2/4ea0e6ace2791731a268.webp",
+        "section": "terraces",
+        "label": "ТИП FC - 1 этаж. Терраса(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/d48f949722e9fa2226c1.webp",
+        "section": "terraces",
+        "label": "ТИП FC - 1 этаж. Терраса(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/1be17cf63d73f02d10ba.webp",
+        "section": "terraces",
+        "label": "ТИП FC - 1 этаж. Терраса(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/d74a3e9bdd11d8e00b72.webp",
+        "section": "terraces",
+        "label": "ТИП FC - 1 этаж. Терраса(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/ff5d0eb0c13932efdc75.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 2 этаж. Ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/329ac7d62a14b995f34d.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 2 этаж. Ванная комната для главной спальни"
+      },
+      {
+        "src": "/assets/lgp-phase2/8dac65536b5bd8de32a5.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 2 этаж. Ванная комната для главной спальни(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/a77e721349a0d57f04d1.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 2 этаж. Ванная комната для главной спальни(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/1d0a7d057b0f8198373e.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 2 этаж. Ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/fdddabb51203e8516000.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 2 этаж. Ванная комната(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/2e1e00047954c390a1cc.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 2 этаж. Ванная комната(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/d9cb621908bc68eba60f.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 2 этаж. Холл"
+      },
+      {
+        "src": "/assets/lgp-phase2/250463cf0da1b2c81601.webp",
+        "section": "interiors",
+        "label": "ТИП FC - 2 этаж. Холл(1)"
+      }
+    ]
+  },
+  {
+    "id": "a",
+    "code": "A",
+    "category": "studio",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/e873f86e6624756ddf97.webp",
+        "section": "interiors",
+        "label": "ТИП А (стандартная студия) - спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/49d7617ed8eee98736f6.webp",
+        "section": "interiors",
+        "label": "ТИП А (стандартная студия) - спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/e15fc1aa5b02109cd940.webp",
+        "section": "interiors",
+        "label": "ТИП А (стандартная студия) - спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/a1594fcf25b01583ffac.webp",
+        "section": "interiors",
+        "label": "ТИП А (стандартная студия) - спальня(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/d9a4d8da73cdf2d61fd2.webp",
+        "section": "interiors",
+        "label": "ТИП А (стандартная студия) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-aa4771dc861d31137f2e.webp",
+        "section": "plans",
+        "label": "_ТИП А (стандартная студия) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/f2d00c5c584f1294b9c6.webp",
+        "section": "interiors",
+        "label": "ТИП А (стандартная студия) - ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/ba8532d4625f706fa635.webp",
+        "section": "interiors",
+        "label": "ТИП А (стандартная студия) - ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/43fec0d9f8ea4e23015a.webp",
+        "section": "interiors",
+        "label": "ТИП А (стандартная студия) - ванная комната(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/65e6d035763fda5bd1e6.webp",
+        "section": "interiors",
+        "label": "ТИП А (стандартная студия) - зона рабочего стола"
+      },
+      {
+        "src": "/assets/lgp-phase2/49e35826d162afca8fb0.webp",
+        "section": "interiors",
+        "label": "ТИП А (стандартная студия) - зона рабочего стола(1)"
+      }
+    ]
+  },
+  {
+    "id": "am",
+    "code": "AM",
+    "category": "studio",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/1319523358716d398e26.webp",
+        "section": "interiors",
+        "label": "ТИП AM (студия с террасой и выходом к главному бассейну) - спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/aa6896d28bc7809dc614.webp",
+        "section": "interiors",
+        "label": "ТИП AM (студия с террасой и выходом к главному бассейну) - спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/ae5860f1148f78f78c3d.webp",
+        "section": "interiors",
+        "label": "ТИП AM (студия с террасой и выходом к главному бассейну) - спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/41e394bb963309ccb4c6.webp",
+        "section": "interiors",
+        "label": "ТИП AM (студия с террасой и выходом к главному бассейну) - спальня(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/f9ebb2b1ae358a041260.webp",
+        "section": "interiors",
+        "label": "ТИП AM (студия с террасой и выходом к главному бассейну) - спальня(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/597ec07a1bd5cc5293d5.webp",
+        "section": "interiors",
+        "label": "ТИП AM (студия с террасой и выходом к главному бассейну) - кухонная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-fba7654480fae2f2c712.webp",
+        "section": "plans",
+        "label": "_ТИП AM (студия с террасой и выходом к главному бассейну) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/e907aa462dea782c9672.webp",
+        "section": "interiors",
+        "label": "ТИП AM (студия с террасой и выходом к главному бассейну) - ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/3936e8721c5ad381b125.webp",
+        "section": "interiors",
+        "label": "ТИП AM (студия с террасой и выходом к главному бассейну) - ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/c16b5640a4e2b28b143a.webp",
+        "section": "interiors",
+        "label": "ТИП AM (студия с террасой и выходом к главному бассейну) - ванная комната(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/39a2b4f0ddd890ca1299.webp",
+        "section": "interiors",
+        "label": "ТИП AM (студия с террасой и выходом к главному бассейну) - входная зона"
+      },
+      {
+        "src": "/assets/lgp-phase2/a5d0c6855071778b0c5f.webp",
+        "section": "interiors",
+        "label": "ТИП AM (студия с террасой и выходом к главному бассейну) - зона рабочего стола"
+      },
+      {
+        "src": "/assets/lgp-phase2/238d712fc2f4d7b94e6f.webp",
+        "section": "terraces",
+        "label": "ТИП AM (студия с террасой и выходом к главному бассейну) - терраса"
+      },
+      {
+        "src": "/assets/lgp-phase2/de81588a3cfd39237d1f.webp",
+        "section": "terraces",
+        "label": "ТИП AM (студия с террасой и выходом к главному бассейну) - терраса(1)"
+      }
+    ]
+  },
+  {
+    "id": "ap",
+    "code": "AP",
+    "category": "studio",
+    "items": [
+      {
+        "src": "/assets/lgp-phase2/7543519388d0d763c267.webp",
+        "section": "interiors",
+        "label": "ТИП AP (студия с террасой и личным бассейном) - спальня"
+      },
+      {
+        "src": "/assets/lgp-phase2/054f281dab006e36e9be.webp",
+        "section": "interiors",
+        "label": "ТИП AP (студия с террасой и личным бассейном) - спальня(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/4fff9fc746f84f489030.webp",
+        "section": "interiors",
+        "label": "ТИП AP (студия с террасой и личным бассейном) - спальня(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/c87bf720db55f4cd4efd.webp",
+        "section": "interiors",
+        "label": "ТИП AP (студия с террасой и личным бассейном) - спальня(3)"
+      },
+      {
+        "src": "/assets/lgp-phase2/77919dad809b5abc9e74.webp",
+        "section": "interiors",
+        "label": "ТИП AP (студия с террасой и личным бассейном) - спальня(4)"
+      },
+      {
+        "src": "/assets/lgp-phase2/floorplan-6e17acbaa41c7f434261.webp",
+        "section": "plans",
+        "label": "_ТИП AP (студия с террасой и личным бассейном) - планировка квартиры"
+      },
+      {
+        "src": "/assets/lgp-phase2/c9448adaed60407eaedf.webp",
+        "section": "interiors",
+        "label": "ТИП AP (студия с террасой и личным бассейном) - ванная комната"
+      },
+      {
+        "src": "/assets/lgp-phase2/0628a839898d03204939.webp",
+        "section": "interiors",
+        "label": "ТИП AP (студия с террасой и личным бассейном) - ванная комната(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/5ffccebe68dd427d4dc0.webp",
+        "section": "interiors",
+        "label": "ТИП AP (студия с террасой и личным бассейном) - ванная комната(2)"
+      },
+      {
+        "src": "/assets/lgp-phase2/e91b43b6a0e148514c6d.webp",
+        "section": "interiors",
+        "label": "ТИП AP (студия с террасой и личным бассейном) - зона рабочего стола"
+      },
+      {
+        "src": "/assets/lgp-phase2/7524ed1931c25ac5901c.webp",
+        "section": "terraces",
+        "label": "ТИП AP (студия с террасой и личным бассейном) - терраса и бассейн"
+      },
+      {
+        "src": "/assets/lgp-phase2/a10eaf514c6b9b4a6920.webp",
+        "section": "terraces",
+        "label": "ТИП AP (студия с террасой и личным бассейном) - терраса и бассейн(1)"
+      },
+      {
+        "src": "/assets/lgp-phase2/5f1a6c8912ae4c421cf2.webp",
+        "section": "terraces",
+        "label": "ТИП AP (студия с террасой и личным бассейном) - терраса и бассейн(2)"
+      }
+    ]
+  }
+]
